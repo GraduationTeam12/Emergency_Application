@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782758238451",
+    "project_id": "smart-accident-system",
+    "storage_bucket": "smart-accident-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782758238451:android:7baedf8abf78f64936bf86",
+        "android_client_info": {
+          "package_name": "com.example.user_accident"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAevzjss4WUBVoBo3oiivM9avt27pjJcbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

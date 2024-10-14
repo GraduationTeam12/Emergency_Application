@@ -1,0 +1,41 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "smart-accident-system",
+          "appId": "1:782758238451:android:7baedf8abf78f64936bf86",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "smart-accident-system",
+          "configurations": {
+            "android": "1:782758238451:android:7baedf8abf78f64936bf86",
+            "ios": "1:782758238451:ios:00f451a6e84d128a36bf86",
+            "macos": "1:782758238451:ios:00f451a6e84d128a36bf86",
+            "web": "1:782758238451:web:df2cdbd89b20809036bf86",
+            "windows": "1:782758238451:web:636179fe408bc12036bf86"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ]
+}
