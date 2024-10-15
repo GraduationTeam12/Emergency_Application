@@ -24,6 +24,15 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
       pageController.animateToPage(currentIndex,
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
+    if (currentIndex == 0) {
+      goToSelectingMethodScreen();
+    }
+  }
+
+  void goToSelectingMethodScreen() {
+    if (currentIndex == 0) {
+      Navigator.pushReplacementNamed(context, selectingMethodScreen);
+    }
   }
 
   void goToNextPage() {
@@ -80,8 +89,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25))),
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, signInScreen);
+                            Navigator.pushNamed(context, signInScreen);
                           },
                           child: Text(
                             "Start",
