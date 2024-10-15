@@ -19,7 +19,10 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
   int currentIndex = 0;
 
   void goToPreviousPage() {
-    if (currentIndex > 0) {
+    if (currentIndex == 0) {
+      goToSelectingMethodScreen();
+    }
+    else if (currentIndex > 0) {
       currentIndex--;
       pageController.animateToPage(currentIndex,
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
@@ -31,6 +34,14 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
       currentIndex++;
       pageController.animateToPage(currentIndex,
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+   
+
+  void goToSelectingMethodScreen() {
+    if (currentIndex == 0) {
+      Navigator.pushReplacementNamed(context, selectingMethodScreen);
     }
   }
 
