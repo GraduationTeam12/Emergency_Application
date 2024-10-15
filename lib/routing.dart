@@ -8,10 +8,15 @@ import 'package:user_accident/presentation/screens/forgot_password_screen.dart';
 import 'package:user_accident/presentation/screens/on_boarding.dart';
 import 'package:user_accident/presentation/screens/selecting_method_screen.dart';
 import 'package:user_accident/presentation/screens/sign_in_screen.dart';
+import 'package:user_accident/presentation/screens/splash_screen.dart';
 
 class AppRouter {
   Route? generationRoute(RouteSettings settings) {
     switch (settings.name) {
+      case splashScreen:
+        return MaterialPageRoute(
+            builder: (context) => const SplashScreen());
+
       case selectingMethodScreen:
         return MaterialPageRoute(
             builder: (context) => const SelectingMethodScreen());

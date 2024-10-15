@@ -19,8 +19,8 @@ class Assets {
   static const String imagesAuthImagesLogin = "assets/images/auth_images/login.svg";
 
   /// Assets for imagesAuthImagesLogo
-  /// assets/images/auth_images/logo.svg
-  static const String imagesAuthImagesLogo = "assets/images/auth_images/logo.svg";
+  /// assets/images/auth_images/logo.png
+  static const String imagesAuthImagesLogo = "assets/images/auth_images/logo.png";
 
   /// Assets for imagesAuthImagesLogooo
   /// assets/images/auth_images/logooo.png
