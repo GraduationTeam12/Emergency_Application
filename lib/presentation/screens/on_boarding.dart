@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_style.dart';
+import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_section.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -19,7 +20,10 @@ class OnBoardingScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                                context, signInScreen);
+                    },
                     child: Text(
                       "Skip",
                       style: AppStyle.styleBold16(context),
