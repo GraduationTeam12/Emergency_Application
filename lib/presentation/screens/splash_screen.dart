@@ -30,8 +30,8 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
      
-    // Move after 3 seconds
-    Future.delayed(const Duration(seconds: 7), () {
+    // Move after 8 seconds
+    Future.delayed(const Duration(seconds: 8), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const SelectingMethodScreen()),
