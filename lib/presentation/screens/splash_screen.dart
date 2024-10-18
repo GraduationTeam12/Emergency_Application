@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5,milliseconds: 395), () {
+    Future.delayed(const Duration(seconds: 7 ), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) =>const SelectingMethodScreen()),
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SizedBox(
         height: MediaQuery.sizeOf(context).height,
         width: MediaQuery.sizeOf(context).width,
-        child: Lottie.asset('assets/images/auth_images/Flow 6 (3).json',fit: BoxFit.contain,),
+        child: Lottie.asset('assets/images/auth_images/Flow 6 (3).json',fit: BoxFit.contain,repeat: false),
       ),
     );
   }
