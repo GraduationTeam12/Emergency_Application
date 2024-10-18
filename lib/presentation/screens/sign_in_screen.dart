@@ -5,8 +5,8 @@ import 'package:user_accident/presentation/widgets/custom_app_bar.dart';
 import 'package:user_accident/presentation/widgets/sign_in_form.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
-
+  const SignInScreen({super.key, required this.isOwner});
+  final bool isOwner;
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
@@ -19,8 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return SafeArea(
         child: GestureDetector(
       onTap: () {
-        FocusScope.of(context)
-            .unfocus(); 
+        FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -36,14 +35,14 @@ class _SignInScreenState extends State<SignInScreen> {
               )),
 
               SizedBox(
-                child: SvgPicture.asset(Assets.imagesAuthImagesLogin),
+                child: SvgPicture.asset(widget.isOwner? Assets.imagesAuthImagesLogin:Assets.imagesEmergencyLogin),
               ),
 
               const SizedBox(
                 height: 50,
               ),
 
-              const SignInForm(),
+              SignInForm(isOwner:widget.isOwner),
 
               // const CustomElevatedButton(title: "Log In"),
               const Expanded(
