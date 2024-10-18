@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user_accident/constants/pages_name.dart';
@@ -14,7 +16,13 @@ import 'package:user_accident/routing.dart';
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
      );
-    runApp( MyApp(appRouter: AppRouter(),));
+    
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(appRouter: AppRouter()), // Wrap your app
+    ),
+  );
  }
 
 class MyApp extends StatelessWidget {
