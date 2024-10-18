@@ -111,7 +111,7 @@ class _SignInFormState extends State<SignInForm> {
           const SizedBox(
             height: 4,
           ),
-          Align(
+          if(widget.isOwner) Align(
             alignment: Alignment.centerRight,
             child: GestureDetector(
                 onTap: () {
@@ -120,7 +120,7 @@ class _SignInFormState extends State<SignInForm> {
                       MaterialPageRoute(
                             builder: (_) => BlocProvider(
                                        create: (BuildContext context) => AuthCubit(),
-                                       child:  ForgotPasswordScreen(isOwner: widget.isOwner,),
+                                       child:  ForgotPasswordScreen(),
                 )));
                 },
                 child: Text(

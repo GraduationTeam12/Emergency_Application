@@ -6,8 +6,7 @@ import 'package:user_accident/presentation/widgets/custom_app_bar.dart';
 import 'package:user_accident/presentation/widgets/forgot_password_field.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key, required this.isOwner});
-  final bool isOwner;
+  const ForgotPasswordScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,7 +23,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 height: 20,
               )),
               SizedBox(
-                child:  SvgPicture.asset(isOwner?Assets.imagesAuthImagesForgotPassword:Assets.imagesEmergencyForgetPassword),
+                child:  SvgPicture.asset(Assets.imagesAuthImagesForgotPassword),
               ),
               const SizedBox(
                 height: 50,
