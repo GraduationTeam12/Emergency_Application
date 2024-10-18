@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
+import 'package:user_accident/logic/auth_cubit/auth_cubit.dart';
+import 'package:user_accident/presentation/screens/sign_in_screen.dart';
 import 'package:user_accident/presentation/widgets/dots_indicator.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_pageview.dart';
 
 class OnBoardingSection extends StatefulWidget {
-  const OnBoardingSection({super.key});
-
+  const OnBoardingSection({super.key, required this.isOwner});
+  final bool isOwner;
   @override
   State<OnBoardingSection> createState() => _OnBoardingSectionState();
 }
@@ -21,8 +24,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
   void goToPreviousPage() {
     if (currentIndex == 0) {
       goToSelectingMethodScreen();
-    }
-    else if (currentIndex > 0) {
+    } else if (currentIndex > 0) {
       currentIndex--;
       pageController.animateToPage(currentIndex,
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
@@ -36,8 +38,6 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
-
-   
 
   void goToSelectingMethodScreen() {
     if (currentIndex == 0) {
@@ -65,7 +65,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Expanded(child: SizedBox()),
-          OnBoardingPageview(pageController: pageController),
+          OnBoardingPageview(pageController: pageController, isOwner:widget.isOwner),
           const SizedBox(
             height: 60,
           ),
@@ -91,8 +91,11 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25))),
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, signInScreen);
+                            Navigator.push(context,  MaterialPageRoute(
+                                      builder: (_) => BlocProvider(
+                                                    create: (BuildContext context) => AuthCubit(),
+                                                    child:  SignInScreen(isOwner: widget.isOwner,),
+                                          )));
                           },
                           child: Text(
                             "Start",

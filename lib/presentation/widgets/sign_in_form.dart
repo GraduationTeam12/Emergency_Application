@@ -4,10 +4,11 @@ import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/logic/auth_cubit/auth_cubit.dart';
+import 'package:user_accident/presentation/screens/forgot_password_screen.dart';
 
 class SignInForm extends StatefulWidget {
-  const SignInForm({super.key});
-
+  const SignInForm({super.key, required this.isOwner});
+  final bool isOwner;
   @override
   State<SignInForm> createState() => _SignInFormState();
 }
@@ -114,7 +115,13 @@ class _SignInFormState extends State<SignInForm> {
             alignment: Alignment.centerRight,
             child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, forgotPasswordScreen);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                            builder: (_) => BlocProvider(
+                                       create: (BuildContext context) => AuthCubit(),
+                                       child:  ForgotPasswordScreen(isOwner: widget.isOwner,),
+                )));
                 },
                 child: Text(
                   "Forgot Password ?",

@@ -21,23 +21,7 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (context) => const SelectingMethodScreen());
 
-      case onBoardingScreen:
-        return MaterialPageRoute(
-            builder: (context) => const OnBoardingScreen());
-
-      case signInScreen:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (BuildContext context) => AuthCubit(),
-                  child: const SignInScreen(),
-                ));
-
-      case forgotPasswordScreen:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (BuildContext context) => AuthCubit(),
-                  child: const ForgotPasswordScreen(),
-                ));
+    
     }
   }
 }

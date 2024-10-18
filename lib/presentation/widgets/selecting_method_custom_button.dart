@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/pages_name.dart';
+import 'package:user_accident/presentation/screens/on_boarding.dart';
 
 class SelectingMethodCustomButton extends StatelessWidget {
   const SelectingMethodCustomButton({
@@ -22,7 +23,7 @@ class SelectingMethodCustomButton extends StatelessWidget {
       height: 47,
       child: ElevatedButton(
           onPressed: () {
-          color!= null?  Navigator.pushReplacementNamed(context, onBoardingScreen) : null;
+          Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => OnBoardingScreen(isOwner:  color!= null),) )  ;
           },
           style: ElevatedButton.styleFrom(
             elevation: color != null ? 6 : 0,

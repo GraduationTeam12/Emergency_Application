@@ -4,28 +4,29 @@ import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/presentation/models/on_board_model_pageview.dart';
 
-class OnBoardingBody extends StatelessWidget {
-  const OnBoardingBody({super.key, required this.index});
+class OnBoardingBodyEmergency extends StatelessWidget {
+  const OnBoardingBodyEmergency({super.key, required this.index});
 
   final int index;
   static List<OnBoardModelPageview> items =[
     OnBoardModelPageview(
-        img: Assets.imagesAuthImagesOnBoarding1,
-        title: "Team",
-        description1: "We are a cohesive team striving to achieve and",
-        discription2: "ensure safety for everyone."),
+        img: Assets.imagesAuthImagesOnBoarding1Emergency,
+        title: "Emergency",
+        description1: "We strive to ensure safety and prompt response",
+        discription2: "to emergencies and we hope to provide you with",
+        discription3: "the greatest benefit."),
     OnBoardModelPageview(
-        img: Assets.imagesAuthImagesOnBoarding2,
-        title: "Goal",
-        description1: "The goal is to facilitate the prompt arrival of",
-        discription2: "rescue teams at the nearest hospital or",
-        discription3: "emergency center."),
+        img: Assets.imagesAuthImagesOnBoarding2Emergency,
+        title: " Location identification",
+        description1: "Quickly obtaining your location in the event of an",
+        discription2: "incident and delivering the appropriate",
+        discription3: "assistance to you in a short time."),
     OnBoardModelPageview(
-        img: Assets.imagesAuthImagesOnBoarding3,
-        title: "Vision",
-        description1: "Improvement Project using sensors is to",
-        discription2: "revolutionize how road accidents are managed",
-        discription3: "by integrating advanced technology"),
+        img: Assets.imagesAuthImagesOnBoarding3Emergency,
+        title: "Report",
+        description1: "Preparation of daily reports on the number of",
+        discription2: "incidents and the most common locations.",
+        ),
   ];
 
   @override

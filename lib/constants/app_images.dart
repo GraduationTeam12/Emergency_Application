@@ -41,10 +41,32 @@ class Assets {
   /// Assets for imagesAuthImagesOnBoarding3
   /// assets/images/auth_images/on_boarding3.svg
   static const String imagesAuthImagesOnBoarding3 = "assets/images/auth_images/on_boarding3.svg";
+  
+  /// Assets for imagesAuthImagesOnBoarding1 Emergency
+  /// assets/images/auth_images/on_boarding1_emergency.svg
+  static const String imagesAuthImagesOnBoarding1Emergency = "assets/images/auth_images/on_boarding1_emergency.svg";
+
+  /// Assets for imagesAuthImagesOnBoarding2 Emergency
+  /// assets/images/auth_images/on_boarding2_emergency.svg
+  static const String imagesAuthImagesOnBoarding2Emergency = "assets/images/auth_images/on_boarding2_emergency.svg";
+
+  /// Assets for imagesAuthImagesOnBoarding3 Emergency
+  /// assets/images/auth_images/on_boarding3_emergency.svg
+  static const String imagesAuthImagesOnBoarding3Emergency = "assets/images/auth_images/on_boarding3_emergency.svg";
 
   /// Assets for imagesAuthImagesOwnerButton
   /// assets/images/auth_images/owner_button.svg
   static const String imagesAuthImagesOwnerButton = "assets/images/auth_images/owner_button.svg";
+
+
+  /// Assets for imagesEmergencyLogin
+  /// assets/images/auth_images/emergency_login.svg
+  static const String imagesEmergencyLogin = "assets/images/auth_images/emergency_login.svg";
+
+    /// Assets for imagesEmergencyForgetPassword
+  /// assets/images/auth_images/emergency_forget_password.svg
+  static const String imagesEmergencyForgetPassword = "assets/images/auth_images/emergency_forget_password.svg";
+
 
   /// Assets for imagesAuthImagesVerify
   /// assets/images/auth_images/verify.svg
