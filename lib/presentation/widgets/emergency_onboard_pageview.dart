@@ -1,10 +1,10 @@
 
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
-import 'package:user_accident/presentation/widgets/on_boarding_body.dart';
+import 'package:user_accident/presentation/widgets/on_boarding_body_emergency.dart';
 
-class OnBoardingPageview extends StatelessWidget {
-  const OnBoardingPageview({super.key, required this.pageController});
+class EmergencyOnboardPageview extends StatelessWidget {
+  const EmergencyOnboardPageview({super.key, required this.pageController});
 
   final PageController pageController;
   @override
@@ -12,6 +12,6 @@ class OnBoardingPageview extends StatelessWidget {
     return ExpandablePageView(
       controller: pageController,
       scrollDirection: Axis.horizontal,
-      children: List.generate(3, (index) => OnBoardingBody(index: index,)) );
+      children: List.generate(3, (index) => OnBoardingBodyEmergency(index: index,)) );
   }
 }

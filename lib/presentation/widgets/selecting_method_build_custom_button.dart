@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/colors.dart';
@@ -12,7 +13,7 @@ class OwnerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SelectingMethodCustomButton(
-      title: "Owner",
+      title: " Owner        ",
       icon: Assets.imagesAuthImagesOwnerButton,
       color: MyColors.premiumColor,
       textColor: Colors.white,

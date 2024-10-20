@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_style.dart';
+import 'package:user_accident/constants/colors.dart';
 
 class SelectingMethodText extends StatelessWidget {
   const SelectingMethodText({
@@ -9,16 +11,28 @@ class SelectingMethodText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:  [
-        Text("Welcome to our unique new system", style: AppStyle.styleBold20(context) ,),
-        Text("enter the category you belong to", style: AppStyle.styleBold20(context)),
-        Text("choose wisely please", style: AppStyle.styleBold20(context)),
-    
-    
-                
-    
+      children: [
+        
+        FittedBox(
+          child: RichText(
+              text: TextSpan(
+                  text: "Welcome to ",
+                  style: AppStyle.styleRegular25(context),
+                  children: <TextSpan>[
+                TextSpan(
+                    text: "SATARS",
+                    style: AppStyle.styleRegular25(context).copyWith(fontWeight: FontWeight.w600)
+                        .copyWith(color: MyColors.premiumColor)),
+              ])),
+        ),
+
+        FittedBox(
+            child: Text(
+          "Family!",
+          style: AppStyle.styleRegular25(context),
+        )),
       ],
     );
+     
   }
 }
-

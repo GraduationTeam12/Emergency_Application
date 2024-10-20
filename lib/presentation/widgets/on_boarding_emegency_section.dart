@@ -6,16 +6,17 @@ import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/presentation/widgets/dots_indicator.dart';
+import 'package:user_accident/presentation/widgets/emergency_onboard_pageview.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_pageview.dart';
 
-class OnBoardingSection extends StatefulWidget {
-  const OnBoardingSection({super.key});
+class OnBoardingEmegencySection extends StatefulWidget {
+  const OnBoardingEmegencySection({super.key});
 
   @override
-  State<OnBoardingSection> createState() => _OnBoardingSectionState();
+  State<OnBoardingEmegencySection> createState() => _OnBoardingEmegencySectionState();
 }
 
-class _OnBoardingSectionState extends State<OnBoardingSection> {
+class _OnBoardingEmegencySectionState extends State<OnBoardingEmegencySection> {
   late PageController pageController;
   int currentIndex = 0;
 
@@ -66,7 +67,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Expanded(child: SizedBox()),
-          OnBoardingPageview(pageController: pageController),
+          EmergencyOnboardPageview(pageController: pageController),
           const SizedBox(
             height: 60,
           ),
@@ -93,7 +94,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                                   borderRadius: BorderRadius.circular(25))),
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, signInScreen);
+                                context, emergencySignInScreen);
                           },
                           child: Text(
                             "Start",

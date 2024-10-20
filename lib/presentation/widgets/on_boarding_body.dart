@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_images.dart';
@@ -5,10 +6,13 @@ import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/presentation/models/on_board_model_pageview.dart';
 
 class OnBoardingBody extends StatelessWidget {
-  const OnBoardingBody({super.key, required this.index});
+  const OnBoardingBody({
+    super.key,
+    required this.index,
+  });
 
   final int index;
-  static List<OnBoardModelPageview> items =[
+  static List<OnBoardModelPageview> items = [
     OnBoardModelPageview(
         img: Assets.imagesAuthImagesOnBoarding1,
         title: "Team",
@@ -45,26 +49,27 @@ class OnBoardingBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        Column(
-          children: [
-            FittedBox(
-              child: Text(
-                items[index].description1,
-                style: AppStyle.styleRegular17(context),
+          Column(
+            children: [
+              FittedBox(
+                child: Text(
+                  items[index].description1,
+                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
+                ),
               ),
-            ),
-            FittedBox(
-              child: Text(
-                items[index].discription2,
-                style: AppStyle.styleRegular17(context),
+              FittedBox(
+                child: Text(
+                  items[index].discription2,
+                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
+                ),
               ),
-            ),
-            Text(
-              items[index].discription3 ?? '',
-              style: AppStyle.styleRegular17(context),
-            )
-          ],
-        ),
+              Text(
+                items[index].discription3 ?? '',
+                style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
+              )
+            ],
+          ),
+        
       ],
     );
   }

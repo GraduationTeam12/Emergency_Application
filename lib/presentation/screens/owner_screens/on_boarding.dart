@@ -1,11 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/pages_name.dart';
+import 'package:user_accident/presentation/widgets/on_boarding_emegency_section.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_section.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key, required this. isOwner});
-  final bool isOwner;
+  const OnBoardingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +31,7 @@ class OnBoardingScreen extends StatelessWidget {
               )
             ],
           ),
-          body:  OnBoardingSection(isOwner: isOwner)),
+          body: const OnBoardingSection()),
     );
   }
 }

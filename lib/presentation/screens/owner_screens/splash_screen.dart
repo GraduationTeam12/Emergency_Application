@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:user_accident/presentation/screens/selecting_method_screen.dart';
+import 'package:user_accident/presentation/screens/owner_screens/selecting_method_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
