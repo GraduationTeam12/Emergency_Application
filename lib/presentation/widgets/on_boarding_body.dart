@@ -53,18 +53,18 @@ class OnBoardingBody extends StatelessWidget {
               FittedBox(
                 child: Text(
                   items[index].description1,
-                  style: AppStyle.styleRegular17(context),
+                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
                 ),
               ),
               FittedBox(
                 child: Text(
                   items[index].discription2,
-                  style: AppStyle.styleRegular17(context),
+                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
                 ),
               ),
               Text(
                 items[index].discription3 ?? '',
-                style: AppStyle.styleRegular17(context),
+                style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
               )
             ],
           ),

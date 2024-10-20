@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_style.dart';
 
-AppBar buildCustomAppBar(BuildContext context , String title) {
+AppBar buildCustomAppBarForForgottenPasswordScreens(BuildContext context , String title) {
     return AppBar(
+      
       elevation: 0,
       scrolledUnderElevation: 0,
       backgroundColor: Colors.white,

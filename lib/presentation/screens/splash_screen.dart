@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_images.dart';
+import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/presentation/screens/selecting_method_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -291,14 +294,14 @@ class _SplashScreenState extends State<SplashScreen>
                                                 'SATARS',
                                                 style: TextStyle(
                                                     fontSize: widthScreen > 500
-                                                        ? 80
+                                                        ? 60
                                                         : widthScreen > 400
-                                                            ? 50
-                                                            : 45,
+                                                            ? 40
+                                                            : 35,
                                                     fontWeight: FontWeight.w600,
                                                     color: Colors
                                                         .white, // Must be set to a color for ShaderMask to apply the gradient
-                                                    fontFamily: "Roboto"),
+                                                    fontFamily: "Inter"),
                                               ),
                                             ),
                                           )
@@ -343,28 +346,47 @@ class _SplashScreenState extends State<SplashScreen>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 // The item we want to move to the middle of the screen
-                                SlideTransition(
-                                  position: Tween<Offset>(
-                                    begin: const Offset(
-                                        20, 0), //Start from the right
-                                    end: const Offset(
-                                        0, 0), // Go to the middle of the screen
-                                  ).animate(CurvedAnimation(
-                                    parent: _animationControllerSecondText,
-                                    curve: Curves.easeInOut,
-                                  )),
-                                  child: Text(
-                                    'Smart  Accident Tracking and Rescue System',
-                                    style: TextStyle(
-                                        fontSize: widthScreen > 500
-                                            ? 18
-                                            : widthScreen > 400
-                                                ? 12
-                                                : 10,
-                                        fontWeight: FontWeight.w600,
-                                        color:
-                                            const Color.fromRGBO(51, 51, 51, 1),
-                                        fontFamily: "Roboto"),
+                                Flexible(
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: SlideTransition(
+                                      position: Tween<Offset>(
+                                        begin: const Offset(
+                                            20, 0), //Start from the right
+                                        end: const Offset(
+                                            0, 0), // Go to the middle of the screen
+                                      ).animate(CurvedAnimation(
+                                        parent: _animationControllerSecondText,
+                                        curve: Curves.easeInOut,
+                                      )),
+                                      child: ShaderMask(
+                                        shaderCallback: (bounds) =>
+                                                  const LinearGradient(
+                                                colors: [
+                                                  Color.fromRGBO(220, 92, 34, 1),
+                                                  Color.fromRGBO(30, 69, 121, 1)
+                                                ],
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                              ).createShader(bounds),
+                                        child: Text(
+                                          'Smart Accident Tracking And Rescue System',
+                                          style:
+                                           AppStyle.styleBold25(context).copyWith(color: Colors.white , fontSize: 18)
+                                          //  TextStyle(
+                                          //     fontSize: widthScreen > 500
+                                          //         ? 18
+                                          //         : widthScreen > 400
+                                          //             ? 12
+                                          //             : 10,
+                                          //     fontWeight: FontWeight.w600,
+                                          //     color: Colors.white,
+                                          //     // color:
+                                          //     //     const Color.fromRGBO(51, 51, 51, 1),
+                                          //     fontFamily: "Roboto"),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 )
                               ],

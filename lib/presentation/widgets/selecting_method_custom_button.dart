@@ -25,7 +25,8 @@ class SelectingMethodCustomButton extends StatelessWidget {
           color!= null?  Navigator.pushReplacementNamed(context, onBoardingScreen) : null;
           },
           style: ElevatedButton.styleFrom(
-            elevation: color != null ? 6 : 0,
+            elevation: 6,
+            // color != null ? 6 : 0,
             shape: RoundedRectangleBorder(
                 side: BorderSide(width: color != null ? 0 : 1),
                 borderRadius: BorderRadius.circular(15)),

@@ -19,37 +19,39 @@ class _SignInScreenState extends State<SignInScreen> {
     return SafeArea(
         child: GestureDetector(
       onTap: () {
-        FocusScope.of(context)
-            .unfocus(); 
+        FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: buildCustomAppBar(context, 'Welcome Back !'),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Expanded(
-                  child: SizedBox(
-                height: 20,
-              )),
-
-              SizedBox(
-                child: SvgPicture.asset(Assets.imagesAuthImagesLogin),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    SizedBox(
+                      child: SvgPicture.asset(Assets.imagesAuthImagesLogin),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    const SignInForm(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
               ),
-
-              const SizedBox(
-                height: 50,
+              const SliverFillRemaining(
+                hasScrollBody: false,
+                child: SizedBox(height: 20),
               ),
-
-              const SignInForm(),
-
-              // const CustomElevatedButton(title: "Log In"),
-              const Expanded(
-                  child: SizedBox(
-                height: 20,
-              ))
             ],
           ),
         ),
