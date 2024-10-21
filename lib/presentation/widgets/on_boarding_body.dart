@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
@@ -38,7 +39,7 @@ class OnBoardingBody extends StatelessWidget {
       children: [
         Center(
           child: SizedBox(
-            child: SvgPicture.asset(items[index].img),
+            child: SvgPicture.asset(items[index].img,height:   23.h * MediaQuery.sizeOf(context).height*0.008,),
           ),
         ),
         const SizedBox(height: 15),

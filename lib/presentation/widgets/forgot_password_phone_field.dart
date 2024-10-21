@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/presentation/widgets/custom_elevated_button.dart';
@@ -47,32 +48,35 @@ class _ForgotPasswordByPhoneFieldState
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.phone_iphone, color: Colors.black),
+                   Icon(Icons.phone_iphone, color: Colors.black,size: 22.sp* MediaQuery.sizeOf(context).width*0.001),
                   const SizedBox(width: 10),
-                  DropdownButton<String>(
-                    underline: const SizedBox.shrink(),
-                    value: selectedCountryCode,
-                    icon: const Icon(Icons.keyboard_arrow_down_outlined),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedCountryCode = newValue!;
-                        selectedDialCode = countries.firstWhere((country) =>
-                            country['code'] ==
-                            selectedCountryCode)['dial_code']!;
-                      });
-                    },
-                    items: countries.map<DropdownMenuItem<String>>(
-                        (Map<String, String> country) {
-                      return DropdownMenuItem<String>(
-                        value: country['code'],
-                        child: Row(
-                          children: [
-                            Text(generateCountryFlag(country['code']!)),
-                            const SizedBox(width: 5),
-                          ],
-                        ),
-                      );
-                    }).toList(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: DropdownButton<String>(
+                      underline: const SizedBox.shrink(),
+                      value: selectedCountryCode,
+                      icon: const Icon(Icons.keyboard_arrow_down_outlined,),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedCountryCode = newValue!;
+                          selectedDialCode = countries.firstWhere((country) =>
+                              country['code'] ==
+                              selectedCountryCode)['dial_code']!;
+                        });
+                      },
+                      items: countries.map<DropdownMenuItem<String>>(
+                          (Map<String, String> country) {
+                        return DropdownMenuItem<String>(
+                          value: country['code'],
+                          child: Row(
+                            children: [
+                              Text(generateCountryFlag(country['code']!)),
+                              const SizedBox(width: 5),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
                   Text(selectedDialCode,
                       style: AppStyle.styleRegular16(context)
@@ -88,7 +92,7 @@ class _ForgotPasswordByPhoneFieldState
                     const BorderSide(width: 2, color: MyColors.premiumColor)),
             floatingLabelStyle: AppStyle.styleRegular16(context).copyWith(
                 color: MyColors.premiumColor, fontWeight: FontWeight.w600),
-            contentPadding: const EdgeInsets.all(15),
+                     contentPadding:  EdgeInsets.all(29* MediaQuery.sizeOf(context).height*0.0005),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(

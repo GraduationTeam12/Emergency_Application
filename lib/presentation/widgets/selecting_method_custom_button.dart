@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/pages_name.dart';
@@ -19,7 +20,7 @@ class SelectingMethodCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 47,
+      //height: 47.sp* MediaQuery.sizeOf(context).height*0.0017,
       child: ElevatedButton(
           onPressed: () {
           color!= null?  Navigator.pushReplacementNamed(context, onBoardingScreen) : Navigator.pushReplacementNamed(context, emergencyOnBoardScreen);
@@ -32,19 +33,22 @@ class SelectingMethodCustomButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15)),
             backgroundColor: color ?? Colors.white,
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(icon ?? ''),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                title,
-                style: AppStyle.styleSemiBold25(context)
-                    .copyWith(color: textColor),
-              ),
-            ],
+          child: Padding(
+            padding:  EdgeInsets.all(12.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(icon ?? '',height: 20* MediaQuery.sizeOf(context).height*0.00122,width:30* MediaQuery.sizeOf(context).height*0.00112,),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  title,
+                  style: AppStyle.styleSemiBold25(context)
+                      .copyWith(color: textColor),
+                ),
+              ],
+            ),
           )),
     );
   }

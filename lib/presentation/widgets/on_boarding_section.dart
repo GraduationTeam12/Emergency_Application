@@ -84,7 +84,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                   )),
               currentIndex == 2
                   ? SizedBox(
-                      width: 111,
+                      
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               elevation: 0,
@@ -95,10 +95,13 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                             Navigator.pushNamed(
                                 context, signInScreen);
                           },
-                          child: Text(
-                            "Start",
-                            style: AppStyle.styleRegular16(context)
-                                .copyWith(color: Colors.white),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              "Start",
+                              style: AppStyle.styleRegular16(context)
+                                  .copyWith(color: Colors.white),
+                            ),
                           )),
                     )
                   : GestureDetector(

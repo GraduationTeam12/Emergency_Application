@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
@@ -51,9 +52,13 @@ class _SignInFormState extends State<SignInForm> {
                 controller: BlocProvider.of<LoginCubit>(context).signInEmail,
                 decoration: InputDecoration(
                     prefixIcon:
-                        const Icon(Icons.email_outlined, color: Colors.black),
+                         Padding(
+                           padding: const EdgeInsets.only(right: 16.0,left: 16),
+                           child: Icon(Icons.email_outlined, color: Colors.black,size: 22.sp* MediaQuery.sizeOf(context).width*0.001),
+                         ),
                     labelText: "E-mail",
                     labelStyle: AppStyle.styleRegular16(context),
+                    
 
                     focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -65,7 +70,7 @@ class _SignInFormState extends State<SignInForm> {
                             color: MyColors.premiumColor,
                             fontWeight: FontWeight.w600),
                     
-                    contentPadding: const EdgeInsets.all(8),
+                    contentPadding:  EdgeInsets.all(29* MediaQuery.sizeOf(context).height*0.0005),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
@@ -78,8 +83,8 @@ class _SignInFormState extends State<SignInForm> {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 40,
+               SizedBox(
+                height: 10.h * MediaQuery.sizeOf(context).width*0.0025,
               ),
               TextFormField(
                 keyboardType: TextInputType.text,
@@ -88,7 +93,10 @@ class _SignInFormState extends State<SignInForm> {
                 controller: BlocProvider.of<LoginCubit>(context).signInPassword,
                 decoration: InputDecoration(
                     prefixIcon:
-                        const Icon(Icons.lock_outlined, color: Colors.black),
+                         Padding(
+                           padding: const EdgeInsets.only(right: 16.0,left: 16),
+                           child: Icon(Icons.lock_outlined, color: Colors.black,size: 22.sp* MediaQuery.sizeOf(context).width*0.001,),
+                         ),
                     suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -96,8 +104,14 @@ class _SignInFormState extends State<SignInForm> {
                           });
                         },
                         icon: isVisable
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off)),
+                            ?  Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(Icons.visibility ,size: 22.sp* MediaQuery.sizeOf(context).width*0.001),
+                            )
+                            :  Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(Icons.visibility_off, size: 22.sp* MediaQuery.sizeOf(context).width*0.001),
+                            )),
                     labelText: "Password",
                     labelStyle: AppStyle.styleRegular16(context),
                     focusedErrorBorder: OutlineInputBorder(
@@ -108,7 +122,7 @@ class _SignInFormState extends State<SignInForm> {
                         .copyWith(
                             color: MyColors.premiumColor,
                             fontWeight: FontWeight.w600),
-                    contentPadding: const EdgeInsets.all(8),
+                    contentPadding: EdgeInsets.all(29* MediaQuery.sizeOf(context).height*0.0005),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
@@ -121,8 +135,8 @@ class _SignInFormState extends State<SignInForm> {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 4,
+               SizedBox(
+                  height: 4.h * MediaQuery.sizeOf(context).width*0.0025,
               ),
               Align(
                 alignment: Alignment.centerRight,
@@ -133,15 +147,15 @@ class _SignInFormState extends State<SignInForm> {
                     },
                     child: Text(
                       "Forgot Password?",
-                      style: AppStyle.styleSemiBold16(context).copyWith(fontSize: 13 , color: MyColors.premiumColor),
+                      style: AppStyle.styleSemiBold16(context).copyWith(fontSize: 13.sp* MediaQuery.sizeOf(context).width*0.0007 , color: MyColors.premiumColor),
                     )),
               ),
-              const SizedBox(
-                height: 30,
+               SizedBox(
+                height: 12.h * MediaQuery.sizeOf(context).width*0.0025,
               ),
               SizedBox(
                   width: double.infinity,
-                  height: 47,
+                  height: 40 *MediaQuery.sizeOf(context).height*0.0013,
                   child: ElevatedButton(
                     onPressed: () async {
                       if (!BlocProvider.of<LoginCubit>(context)
@@ -153,6 +167,7 @@ class _SignInFormState extends State<SignInForm> {
                         BlocProvider.of<LoginCubit>(context).login();
                       }
                     },
+                    
                     style: ElevatedButton.styleFrom(
                         backgroundColor: MyColors.premiumColor,
                         shape: RoundedRectangleBorder(
