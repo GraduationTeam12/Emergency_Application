@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
@@ -56,8 +57,10 @@ class ForgotPasswordEmailFieldState extends State<ForgotPasswordEmailField> {
                 controller: BlocProvider.of<ForgotPasswordCubit>(context)
                     .emailController,
                 decoration: InputDecoration(
-                    prefixIcon:
-                        const Icon(Icons.email_outlined, color: Colors.black),
+                    prefixIcon: Padding(
+                           padding:  EdgeInsets.only(right: 16.0,left: 16),
+                           child: Icon(Icons.email_outlined, color: Colors.black,size: 22.sp* MediaQuery.sizeOf(context).width*0.001),
+                         ),
                     // hintText: "E-mail",
                     // hintStyle: AppStyle.styleRegular16(context),
                     labelText: "E-mail",
@@ -70,7 +73,7 @@ class ForgotPasswordEmailFieldState extends State<ForgotPasswordEmailField> {
                         .copyWith(
                             color: MyColors.premiumColor,
                             fontWeight: FontWeight.w600),
-                    contentPadding: const EdgeInsets.all(1),
+                     contentPadding:  EdgeInsets.all(29* MediaQuery.sizeOf(context).height*0.0005),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
@@ -93,6 +96,7 @@ class ForgotPasswordEmailFieldState extends State<ForgotPasswordEmailField> {
                 height: 25,
               ),
               CustomElevatedButton(
+              
                   title: "Send Code",
                   onPressed: () {
                     if (!BlocProvider.of<ForgotPasswordCubit>(context)
@@ -107,7 +111,8 @@ class ForgotPasswordEmailFieldState extends State<ForgotPasswordEmailField> {
                           .save();
                       BlocProvider.of<ForgotPasswordCubit>(context).sendCode();
                     }
-                  }),
+                  }
+                  ),
               const SizedBox(
                 height: 18,
               ),

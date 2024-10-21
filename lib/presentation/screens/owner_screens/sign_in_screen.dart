@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/presentation/widgets/custom_app_bar.dart';
@@ -37,7 +38,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 50,
                     ),
                     SizedBox(
-                      child: SvgPicture.asset(Assets.imagesAuthImagesLogin),
+                      child: SvgPicture.asset(Assets.imagesAuthImagesLogin, height:   19.h * MediaQuery.sizeOf(context).height*0.012,),
                     ),
                     const SizedBox(
                       height: 50,

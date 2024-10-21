@@ -10,11 +10,12 @@ class LogoImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
+        //color: Colors.amber,
           width: MediaQuery.of(context).size.width / 2,
           height: MediaQuery.of(context).size.height / 5,
           child: Image.asset(
             Assets.imagesAuthImagesLogooo,
-            //  fit: BoxFit.contain,
+             fit: BoxFit.contain,
           )),
     );
   }

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
@@ -30,7 +31,9 @@ class ForgotPasswordPhoneScreen extends StatelessWidget {
                       const SizedBox(height: 50),
                       SizedBox(
                         child: SvgPicture.asset(
-                            Assets.imagesAuthImagesForgotPassword),
+                            Assets.imagesAuthImagesForgotPassword,
+                             height:   18.h * MediaQuery.sizeOf(context).height*0.012
+                             ),
                       ),
                       const SizedBox(height: 50),
 
