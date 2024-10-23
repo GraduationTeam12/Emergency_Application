@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_accident/constants/app_style.dart';
@@ -34,9 +33,7 @@ class ForgotPasswordEmailFieldState extends State<ForgotPasswordEmailField> {
 
         if (state is SendCodeSucess) {
           Navigator.of(context)
-              .pushReplacementNamed(resetPasswordEmailScreen,
-               arguments: email
-               );
+              .pushReplacementNamed(resetPasswordEmailScreen, arguments: email);
         }
 
         if (state is SendCodeError) {
@@ -51,13 +48,24 @@ class ForgotPasswordEmailFieldState extends State<ForgotPasswordEmailField> {
           child: Column(
             children: [
               TextFormField(
+                style: AppStyle.styleRegular16(context)
+                    .copyWith(color: Colors.black),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
                 controller: BlocProvider.of<ForgotPasswordCubit>(context)
                     .emailController,
                 decoration: InputDecoration(
-                    prefixIcon:
-                        const Icon(Icons.email_outlined, color: Colors.black),
+                    errorStyle: AppStyle.styleRegular16(context).copyWith(color: Colors.red),
+                    prefixIcon: Padding(
+                      padding: MediaQuery.sizeOf(context).width > 600
+                          ? const EdgeInsets.symmetric(horizontal: 20)
+                          : const EdgeInsets.all(0),
+                      child: Icon(
+                        Icons.email_outlined,
+                        color: Colors.black,
+                        size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                      ),
+                    ),
                     // hintText: "E-mail",
                     // hintStyle: AppStyle.styleRegular16(context),
                     labelText: "E-mail",
@@ -70,7 +78,9 @@ class ForgotPasswordEmailFieldState extends State<ForgotPasswordEmailField> {
                         .copyWith(
                             color: MyColors.premiumColor,
                             fontWeight: FontWeight.w600),
-                    contentPadding: const EdgeInsets.all(1),
+                    contentPadding: MediaQuery.sizeOf(context).width > 600
+                        ? const EdgeInsets.all(30)
+                        : const EdgeInsets.all(8),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(

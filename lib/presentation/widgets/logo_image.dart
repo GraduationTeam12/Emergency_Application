@@ -14,7 +14,7 @@ class LogoImage extends StatelessWidget {
           height: MediaQuery.of(context).size.height / 5,
           child: Image.asset(
             Assets.imagesAuthImagesLogooo,
-            //  fit: BoxFit.contain,
+            fit: BoxFit.contain,
           )),
     );
   }

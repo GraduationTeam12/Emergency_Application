@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_images.dart';
@@ -22,8 +21,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
   void goToPreviousPage() {
     if (currentIndex == 0) {
       goToSelectingMethodScreen();
-    }
-    else if (currentIndex > 0) {
+    } else if (currentIndex > 0) {
       currentIndex--;
       pageController.animateToPage(currentIndex,
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
@@ -37,8 +35,6 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
-
-   
 
   void goToSelectingMethodScreen() {
     if (currentIndex == 0) {
@@ -84,7 +80,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                   )),
               currentIndex == 2
                   ? SizedBox(
-                      width: 111,
+                      // width: 111,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               elevation: 0,
@@ -92,19 +88,28 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25))),
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, signInScreen);
+                            Navigator.pushNamed(context, signInScreen);
                           },
-                          child: Text(
-                            "Start",
-                            style: AppStyle.styleRegular16(context)
-                                .copyWith(color: Colors.white),
+                          child: FittedBox(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Start",
+                                style: AppStyle.styleRegular16(context)
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ),
                           )),
                     )
                   : GestureDetector(
                       onTap: goToNextPage,
                       child: SizedBox(
-                          child: SvgPicture.asset(Assets.imagesAuthImagesNext)),
+                          height: MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
+                          width: MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
+                          child: SvgPicture.asset(
+                            Assets.imagesAuthImagesNext,
+                            // fit: BoxFit.contain,
+                          )),
                     ),
             ],
           ),

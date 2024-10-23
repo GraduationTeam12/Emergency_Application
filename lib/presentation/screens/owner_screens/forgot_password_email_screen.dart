@@ -28,7 +28,14 @@ class ForgotPasswordEmailScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, signInScreen);
                 },
-                icon: const Icon(Icons.arrow_back)),
+                icon: Padding(
+                    padding: MediaQuery.sizeOf(context).width > 600
+                          ? const EdgeInsets.symmetric(horizontal: 20)
+                          : const EdgeInsets.all(0),
+                  child: Icon(Icons.arrow_back , 
+                                size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                  ),
+                )),
             title: Center(
                 child: Text(
               'Forgot Password',
@@ -47,8 +54,12 @@ class ForgotPasswordEmailScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 50),
                       SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      height: MediaQuery.of(context).size.height / 4,
                         child: SvgPicture.asset(
-                            Assets.imagesAuthImagesForgotPassword),
+                            Assets.imagesAuthImagesForgotPassword,
+                            
+                            ),
                       ),
                       const SizedBox(height: 50),
                       Column(

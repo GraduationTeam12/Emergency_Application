@@ -10,11 +10,12 @@ class OnBoardingCustomDots extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(microseconds: 300),
-      width: isActive ? 32 : 10,
-      height: 10,
+      width: isActive ? MediaQuery.sizeOf(context).width > 600 ? 82 : 32   : MediaQuery.sizeOf(context).width > 600 ? 22 : 10,
+      height: MediaQuery.sizeOf(context).width > 600 ? 22 : 10,
+      // 10,
       decoration: BoxDecoration(
           color: isActive ? MyColors.premiumColor : Colors.white,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
               color: Color(0x3F000000),

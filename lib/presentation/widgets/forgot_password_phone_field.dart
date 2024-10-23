@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
@@ -38,21 +37,30 @@ class _ForgotPasswordByPhoneFieldState
     return Column(
       children: [
         TextFormField(
+          style: AppStyle.styleRegular16(context).copyWith(color: Colors.black),
           keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.done,
           controller: phoneController,
           decoration: InputDecoration(
+              errorStyle: AppStyle.styleRegular16(context).copyWith(color: Colors.red),
             prefixIcon: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.phone_iphone, color: Colors.black),
+                  Icon(
+                    Icons.phone_iphone,
+                    color: Colors.black,
+                    size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                  ),
                   const SizedBox(width: 10),
                   DropdownButton<String>(
                     underline: const SizedBox.shrink(),
                     value: selectedCountryCode,
-                    icon: const Icon(Icons.keyboard_arrow_down_outlined),
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_outlined,
+                      size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                    ),
                     onChanged: (String? newValue) {
                       setState(() {
                         selectedCountryCode = newValue!;
@@ -67,7 +75,14 @@ class _ForgotPasswordByPhoneFieldState
                         value: country['code'],
                         child: Row(
                           children: [
-                            Text(generateCountryFlag(country['code']!)),
+                            Text(
+                              generateCountryFlag(country['code']!),
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width > 600
+                                          ? 35
+                                          : 17),
+                            ),
                             const SizedBox(width: 5),
                           ],
                         ),
@@ -88,7 +103,9 @@ class _ForgotPasswordByPhoneFieldState
                     const BorderSide(width: 2, color: MyColors.premiumColor)),
             floatingLabelStyle: AppStyle.styleRegular16(context).copyWith(
                 color: MyColors.premiumColor, fontWeight: FontWeight.w600),
-            contentPadding: const EdgeInsets.all(15),
+            contentPadding: MediaQuery.sizeOf(context).width > 600
+                ? const EdgeInsets.all(38)
+                : const EdgeInsets.all(15),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(

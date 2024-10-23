@@ -28,7 +28,10 @@ class ChangePassword extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  SvgPicture.asset(Assets.imagesAuthImagesConfirm),
+                  SvgPicture.asset(Assets.imagesAuthImagesConfirm,
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.height / 4,
+                  ),
               
                   const SizedBox(
                     height: 30,

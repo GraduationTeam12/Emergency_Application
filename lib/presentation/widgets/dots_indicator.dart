@@ -12,7 +12,7 @@ class DotsIndicator extends StatelessWidget {
       children: List.generate(
           3,
           (index) => Padding(
-                padding: const EdgeInsets.only(right: 12),
+                padding: MediaQuery.sizeOf(context).width < 600 ? const EdgeInsets.only(right:  12) : const EdgeInsets.only(right:  25),
                 child: OnBoardingCustomDots(isActive: index == currentIndex),
               )),
     );

@@ -46,25 +46,23 @@ class OnBoardingBodyEmergency extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        Column(
-          children: [
-            FittedBox(
-              child: Text(
+        FittedBox(
+          child: Column(
+            children: [
+              Text(
                 items[index].description1,
                 style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
               ),
-            ),
-            FittedBox(
-              child: Text(
+              Text(
                 items[index].discription2,
                 style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
               ),
-            ),
-            Text(
-              items[index].discription3 ?? '',
-              style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-            )
-          ],
+              Text(
+                items[index].discription3 ?? '',
+                style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
+              )
+            ],
+          ),
         ),
       ],
     );

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_images.dart';
@@ -29,6 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: CustomScrollView(
             slivers: [
+              
               SliverToBoxAdapter(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -37,15 +37,20 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 50,
                     ),
                     SizedBox(
-                      child: SvgPicture.asset(Assets.imagesAuthImagesLogin),
+                      width: MediaQuery.of(context).size.width / 2,
+                      height: MediaQuery.of(context).size.height / 4,
+                      child: SvgPicture.asset(
+                        Assets.imagesAuthImagesLogin,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                     const SizedBox(
                       height: 50,
                     ),
                     const SignInForm(),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
                   ],
                 ),
               ),

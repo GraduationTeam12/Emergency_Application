@@ -19,7 +19,7 @@ class SelectingMethodCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 47,
+      height: MediaQuery.sizeOf(context).height*0.06,
       child: ElevatedButton(
           onPressed: () {
           color!= null?  Navigator.pushReplacementNamed(context, onBoardingScreen) : Navigator.pushReplacementNamed(context, emergencyOnBoardScreen);
@@ -35,7 +35,10 @@ class SelectingMethodCustomButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(icon ?? ''),
+              SvgPicture.asset(icon ?? '',
+              height: MediaQuery.sizeOf(context).height*0.022,
+              width:  MediaQuery.sizeOf(context).width*0.032,
+              ),
               const SizedBox(
                 width: 10,
               ),

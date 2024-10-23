@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_images.dart';
@@ -14,40 +13,40 @@ class ForgotPasswordPhoneScreen extends StatelessWidget {
     return SafeArea(
       child: GestureDetector(
         onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+          FocusScope.of(context).unfocus();
+        },
         child: Scaffold(
           backgroundColor: Colors.white,
-            appBar: buildCustomAppBar(context, 'Forgot Password'),
-           
-          body:  Padding(padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: CustomScrollView(
-            slivers: [
+          appBar: buildCustomAppBar(context, 'Forgot Password'),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: CustomScrollView(
+              slivers: [
                 SliverToBoxAdapter(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(height: 50),
                       SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 4,
                         child: SvgPicture.asset(
                             Assets.imagesAuthImagesForgotPassword),
                       ),
                       const SizedBox(height: 50),
-
-                       
                       Column(
                         children: [
                           FittedBox(
                             child: Text(
                               "Please enter your phone number to",
-                              style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600),
+                              style: AppStyle.styleRegular17(context)
+                                  .copyWith(fontWeight: FontWeight.w600),
                             ),
                           ),
                           FittedBox(
-                            child: Text(
-                              "receive a verification code",
-                              style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600))
-                          ),
+                              child: Text("receive a verification code",
+                                  style: AppStyle.styleRegular17(context)
+                                      .copyWith(fontWeight: FontWeight.w600))),
                         ],
                       ),
                       const SizedBox(height: 30),
@@ -60,7 +59,7 @@ class ForgotPasswordPhoneScreen extends StatelessWidget {
                   child: SizedBox(height: 20),
                 ),
               ],
-          ),
+            ),
           ),
         ),
       ),

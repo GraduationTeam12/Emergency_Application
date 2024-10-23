@@ -35,7 +35,11 @@ class _EmergencySignInScreenState extends State<EmergencySignInScreen> {
                       height: 20,
                     ),
                     SizedBox(
-                      child: SvgPicture.asset(Assets.imagesEmergencyLogin),
+                      width: MediaQuery.of(context).size.width / 2,
+                      height: MediaQuery.of(context).size.height / 4,
+                      child: SvgPicture.asset(Assets.imagesEmergencyLogin,
+                      fit: BoxFit.contain,
+                      ),
                     ),
                     const SizedBox(
                       height: 50,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_accident/constants/app_style.dart';
@@ -14,9 +13,7 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
- 
   bool isVisable = true;
- 
 
   @override
   Widget build(BuildContext context) {
@@ -46,26 +43,35 @@ class _SignInFormState extends State<SignInForm> {
           child: Column(
             children: [
               TextFormField(
+                style: AppStyle.styleRegular16(context).copyWith(color: Colors.black),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
                 controller: BlocProvider.of<LoginCubit>(context).signInEmail,
                 decoration: InputDecoration(
-                    prefixIcon:
-                        const Icon(Icons.email_outlined, color: Colors.black),
+                    errorStyle: AppStyle.styleRegular16(context).copyWith(color: Colors.red),
+                    prefixIcon: Padding(
+                      padding: MediaQuery.sizeOf(context).width > 600
+                          ? const EdgeInsets.symmetric(horizontal: 20)
+                          : const EdgeInsets.all(0),
+                      child: Icon(
+                        Icons.email_outlined,
+                        color: Colors.black,
+                        size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                      ),
+                    ),
                     labelText: "E-mail",
                     labelStyle: AppStyle.styleRegular16(context),
-
                     focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
                             width: 2, color: MyColors.premiumColor)),
-                     
                     floatingLabelStyle: AppStyle.styleRegular16(context)
                         .copyWith(
                             color: MyColors.premiumColor,
                             fontWeight: FontWeight.w600),
-                    
-                    contentPadding: const EdgeInsets.all(8),
+                    contentPadding: MediaQuery.sizeOf(context).width > 600
+                        ? const EdgeInsets.all(30)
+                        : const EdgeInsets.all(8),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
@@ -82,13 +88,24 @@ class _SignInFormState extends State<SignInForm> {
                 height: 40,
               ),
               TextFormField(
+            
+                style: AppStyle.styleRegular16(context).copyWith(color: Colors.black),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
                 obscureText: isVisable ? true : false,
                 controller: BlocProvider.of<LoginCubit>(context).signInPassword,
                 decoration: InputDecoration(
-                    prefixIcon:
-                        const Icon(Icons.lock_outlined, color: Colors.black),
+                    errorStyle: AppStyle.styleRegular16(context).copyWith(color: Colors.red),
+                    prefixIcon: Padding(
+                      padding: MediaQuery.sizeOf(context).width > 600
+                          ? const EdgeInsets.symmetric(horizontal: 20)
+                          : const EdgeInsets.all(0),
+                      child: Icon(
+                        Icons.lock_outlined,
+                        color: Colors.black,
+                        size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                      ),
+                    ),
                     suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -96,8 +113,18 @@ class _SignInFormState extends State<SignInForm> {
                           });
                         },
                         icon: isVisable
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off)),
+                            ? Icon(
+                                Icons.visibility,
+                                size: MediaQuery.sizeOf(context).width > 600
+                                    ? 45
+                                    : 25,
+                              )
+                            : Icon(
+                                Icons.visibility_off,
+                                size: MediaQuery.sizeOf(context).width > 600
+                                    ? 45
+                                    : 25,
+                              )),
                     labelText: "Password",
                     labelStyle: AppStyle.styleRegular16(context),
                     focusedErrorBorder: OutlineInputBorder(
@@ -108,12 +135,16 @@ class _SignInFormState extends State<SignInForm> {
                         .copyWith(
                             color: MyColors.premiumColor,
                             fontWeight: FontWeight.w600),
-                    contentPadding: const EdgeInsets.all(8),
+                    contentPadding: MediaQuery.sizeOf(context).width > 600
+                        ? const EdgeInsets.all(30)
+                        : const EdgeInsets.all(8),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
                             width: 2, color: MyColors.premiumColor)),
                     border: buildBorder()),
+
+               
                 validator: (password) {
                   if (password!.isEmpty) {
                     return "Please enter your password";
@@ -133,7 +164,8 @@ class _SignInFormState extends State<SignInForm> {
                     },
                     child: Text(
                       "Forgot Password?",
-                      style: AppStyle.styleSemiBold16(context).copyWith(fontSize: 13 , color: MyColors.premiumColor),
+                      style: AppStyle.styleSemiBold16(context)
+                          .copyWith(color: MyColors.premiumColor),
                     )),
               ),
               const SizedBox(
@@ -141,7 +173,7 @@ class _SignInFormState extends State<SignInForm> {
               ),
               SizedBox(
                   width: double.infinity,
-                  height: 47,
+                  height: MediaQuery.sizeOf(context).width > 600 ? 70 : 47,
                   child: ElevatedButton(
                     onPressed: () async {
                       if (!BlocProvider.of<LoginCubit>(context)
@@ -162,7 +194,6 @@ class _SignInFormState extends State<SignInForm> {
                       style: AppStyle.styleSemiBold18(context),
                     ),
                   )),
-               
             ],
           ),
         );

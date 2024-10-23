@@ -13,7 +13,7 @@ import 'package:user_accident/presentation/screens/emegency_screens/emergency_si
 import 'package:user_accident/presentation/screens/emegency_screens/on_boarding.dart';
 import 'package:user_accident/presentation/screens/owner_screens/change_password.dart';
 import 'package:user_accident/presentation/screens/owner_screens/forgot_password_phone_screen.dart';
-import 'package:user_accident/presentation/screens/owner_screens/forgot_password_screen.dart';
+import 'package:user_accident/presentation/screens/owner_screens/forgot_password_email_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/on_boarding.dart';
 import 'package:user_accident/presentation/screens/owner_screens/reset_password_emal_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/reset_password_phone_screen.dart';

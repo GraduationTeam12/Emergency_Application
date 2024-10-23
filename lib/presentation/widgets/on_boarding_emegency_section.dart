@@ -7,7 +7,6 @@ import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/presentation/widgets/dots_indicator.dart';
 import 'package:user_accident/presentation/widgets/emergency_onboard_pageview.dart';
-import 'package:user_accident/presentation/widgets/on_boarding_pageview.dart';
 
 class OnBoardingEmegencySection extends StatefulWidget {
   const OnBoardingEmegencySection({super.key});

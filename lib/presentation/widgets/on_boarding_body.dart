@@ -38,7 +38,12 @@ class OnBoardingBody extends StatelessWidget {
       children: [
         Center(
           child: SizedBox(
-            child: SvgPicture.asset(items[index].img),
+            width: MediaQuery.of(context).size.width / 2,
+            height: MediaQuery.of(context).size.height / 5,
+            child: SvgPicture.asset(items[index].img,
+            fit: BoxFit.contain,
+
+            ),
           ),
         ),
         const SizedBox(height: 15),
@@ -49,25 +54,23 @@ class OnBoardingBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-          Column(
-            children: [
-              FittedBox(
-                child: Text(
+          FittedBox(
+            child: Column(
+              children: [
+                Text(
                   items[index].description1,
                   style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
                 ),
-              ),
-              FittedBox(
-                child: Text(
+                Text(
                   items[index].discription2,
                   style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
                 ),
-              ),
-              Text(
-                items[index].discription3 ?? '',
-                style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-              )
-            ],
+                Text(
+                  items[index].discription3 ?? '',
+                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
+                )
+              ],
+            ),
           ),
         
       ],

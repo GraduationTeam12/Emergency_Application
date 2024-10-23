@@ -21,7 +21,7 @@ class ResetPasswordText extends StatelessWidget {
         FittedBox(
           child: RichText(
               text: TextSpan(
-                  text: "sent to: ",
+                  text: " sent to: ",
                   style: AppStyle.styleRegular17(context)
                       .copyWith(fontWeight: FontWeight.w600),
                   children: <TextSpan>[

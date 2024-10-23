@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:pinput/pinput.dart';
+import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/logic/forgot_password_cubit/cubit/forgot_password_cubit.dart';
@@ -13,9 +13,9 @@ class PinCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ForgotPasswordCubit,  ForgotPasswordState>(
+    return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
       listener: (context, state) {
-          if (state is VerifyCodeLoading) {
+        if (state is VerifyCodeLoading) {
           const CircularProgressIndicator(
             backgroundColor: Colors.amber,
           );
@@ -36,46 +36,52 @@ class PinCode extends StatelessWidget {
           key: BlocProvider.of<ForgotPasswordCubit>(context).verifyCodeKey,
           child: Column(
             children: [
-              PinCodeTextField(
-                appContext: context,
-                cursorColor: Colors.black,
+              Pinput(
+                submittedPinTheme: PinTheme(
+                  margin: MediaQuery.sizeOf(context).width > 600
+                      ? const EdgeInsets.symmetric(horizontal: 20)
+                      : const EdgeInsets.symmetric(horizontal: 7),
+                  height: MediaQuery.sizeOf(context).width > 600 ? 100 : 60,
+                  width: MediaQuery.sizeOf(context).width > 600 ? 90 : 50,
+                  textStyle: AppStyle.styleRegular16(context)
+                      .copyWith(color: Colors.black),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 225, 239, 247),
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: makeShadowBox,
+                    border: Border.all(color: MyColors.premiumColor, width: 2),
+                  ),
+                ),
+                errorTextStyle: AppStyle.styleRegular16(context)
+                    .copyWith(color: Colors.red),
+                length: 4,
                 controller: BlocProvider.of<ForgotPasswordCubit>(context)
                     .codeController,
-                length: 4,
-                keyboardType: TextInputType.number,
-                obscureText: false,
-                animationType: AnimationType.scale,
-                pinTheme: PinTheme(
-                  inActiveBoxShadow: makeShadowBox,
-                  activeBoxShadow: makeShadowBox,
-                  errorBorderColor: MyColors.premiumColor,
-                  fieldOuterPadding: const EdgeInsets.symmetric(horizontal: 10),
-                  shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(10),
-                  fieldHeight: 70,
-                  fieldWidth: 60,
-                  borderWidth: 0.1,
-                  activeColor: MyColors.premiumColor,
-                  inactiveColor: MyColors.premiumColor,
-                  inactiveFillColor: Colors.white,
-                  activeFillColor: const Color.fromARGB(255, 225, 239, 247),
-                  selectedColor: MyColors.premiumColor,
-                  selectedFillColor: Colors.white,
+                focusNode: FocusNode(),
+                defaultPinTheme: PinTheme(
+                  margin: MediaQuery.sizeOf(context).width > 600
+                      ? const EdgeInsets.symmetric(horizontal: 20)
+                      : const EdgeInsets.symmetric(horizontal: 7),
+                  height: MediaQuery.sizeOf(context).width > 600 ? 100 : 60,
+                  width: MediaQuery.sizeOf(context).width > 600 ? 90 : 50,
+                  textStyle: AppStyle.styleRegular16(context)
+                      .copyWith(color: Colors.black),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: makeShadowBox,
+                    border: Border.all(color: MyColors.premiumColor, width: 2),
+                  ),
                 ),
-                animationDuration: const Duration(milliseconds: 300),
-                backgroundColor: Colors.white,
-                enableActiveFill: true,
-
                 validator: (value) {
-                    if (value!.isEmpty) {
-              return "Please enter 4 digit code to reset your password";
-            }
-            return null;
+                  if (value!.isEmpty) {
+                    return "Please enter 4 digit code to reset your password";
+                  }
+                  return null;
                 },
               ),
-
               const SizedBox(
-                height: 6,
+                height: 25,
               ),
               CustomElevatedButton(
                   title: 'Verify Code',
