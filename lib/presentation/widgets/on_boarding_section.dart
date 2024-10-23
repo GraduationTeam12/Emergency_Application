@@ -8,8 +8,9 @@ import 'package:user_accident/presentation/widgets/dots_indicator.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_pageview.dart';
 
 class OnBoardingSection extends StatefulWidget {
-  const OnBoardingSection({super.key});
+  const OnBoardingSection({super.key, required this.isOwner});
 
+  final bool isOwner;
   @override
   State<OnBoardingSection> createState() => _OnBoardingSectionState();
 }
@@ -62,7 +63,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Expanded(child: SizedBox()),
-          OnBoardingPageview(pageController: pageController),
+          OnBoardingPageview(pageController: pageController, isOwner: widget.isOwner,),
           const SizedBox(
             height: 60,
           ),
@@ -88,7 +89,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25))),
                           onPressed: () {
-                            Navigator.pushNamed(context, signInScreen);
+                            widget.isOwner? Navigator.pushNamed(context, signInScreen) : Navigator.pushNamed(context, emergencySignInScreen);
                           },
                           child: FittedBox(
                             child: Padding(
@@ -104,8 +105,10 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                   : GestureDetector(
                       onTap: goToNextPage,
                       child: SizedBox(
-                          height: MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
-                          width: MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
+                          height:
+                              MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
+                          width:
+                              MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
                           child: SvgPicture.asset(
                             Assets.imagesAuthImagesNext,
                             // fit: BoxFit.contain,

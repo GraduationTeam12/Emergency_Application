@@ -4,9 +4,9 @@ import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_section.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key});
+  const OnBoardingScreen({super.key , required this.isOwner});
 
-  
+  final  isOwner;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,7 +30,7 @@ class OnBoardingScreen extends StatelessWidget {
               )
             ],
           ),
-          body: const OnBoardingSection()),
+          body:  OnBoardingSection(isOwner: isOwner,)),
     );
   }
 }

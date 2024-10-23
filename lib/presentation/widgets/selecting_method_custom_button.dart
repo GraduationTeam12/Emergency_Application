@@ -22,7 +22,10 @@ class SelectingMethodCustomButton extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height*0.06,
       child: ElevatedButton(
           onPressed: () {
-          color!= null?  Navigator.pushReplacementNamed(context, onBoardingScreen) : Navigator.pushReplacementNamed(context, emergencyOnBoardScreen);
+          Navigator.pushReplacementNamed(context, onBoardingScreen , 
+          arguments: color!= null
+          );
+          //  : Navigator.pushReplacementNamed(context, emergencyOnBoardScreen);
           },
           style: ElevatedButton.styleFrom(
             elevation: 6,

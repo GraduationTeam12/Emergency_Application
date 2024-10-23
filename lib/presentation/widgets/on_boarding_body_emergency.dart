@@ -35,7 +35,11 @@ class OnBoardingBodyEmergency extends StatelessWidget {
       children: [
         Center(
           child: SizedBox(
-            child: SvgPicture.asset(items[index].img),
+              width: MediaQuery.of(context).size.width / 2,
+            height: MediaQuery.of(context).size.height / 5,
+            child: SvgPicture.asset(items[index].img,
+            fit: BoxFit.contain,
+            ),
           ),
         ),
         const SizedBox(height: 15),

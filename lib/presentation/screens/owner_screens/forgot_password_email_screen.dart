@@ -58,7 +58,7 @@ class ForgotPasswordEmailScreen extends StatelessWidget {
                       height: MediaQuery.of(context).size.height / 4,
                         child: SvgPicture.asset(
                             Assets.imagesAuthImagesForgotPassword,
-                            
+                            fit: BoxFit.contain,
                             ),
                       ),
                       const SizedBox(height: 50),

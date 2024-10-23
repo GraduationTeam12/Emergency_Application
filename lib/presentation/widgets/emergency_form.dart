@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
-import 'package:user_accident/core/logic/login_cubit/login_cubit.dart';
+ 
 
 class EmergencyForm extends StatefulWidget {
   const EmergencyForm({super.key});
@@ -14,20 +13,34 @@ class EmergencyForm extends StatefulWidget {
 class _EmergencyFormState extends State<EmergencyForm> {
   bool isVisable = true;
 
+  final GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: formKey,
       child: Column(
         children: [
           TextFormField(
+            style:
+                AppStyle.styleRegular16(context).copyWith(color: Colors.black),
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.done,
             controller: emailController,
             decoration: InputDecoration(
-                prefixIcon:
-                    const Icon(Icons.email_outlined, color: Colors.black),
+                errorStyle: AppStyle.styleRegular16(context)
+                    .copyWith(color: Colors.red),
+                prefixIcon: Padding(
+                  padding: MediaQuery.sizeOf(context).width > 600
+                      ? const EdgeInsets.symmetric(horizontal: 20)
+                      : const EdgeInsets.all(0),
+                  child: Icon(
+                    Icons.email_outlined,
+                    color: Colors.black,
+                    size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                  ),
+                ),
                 labelText: "E-mail",
                 labelStyle: AppStyle.styleRegular16(context),
                 focusedErrorBorder: OutlineInputBorder(
@@ -36,7 +49,9 @@ class _EmergencyFormState extends State<EmergencyForm> {
                         width: 2, color: MyColors.premiumColor)),
                 floatingLabelStyle: AppStyle.styleRegular16(context).copyWith(
                     color: MyColors.premiumColor, fontWeight: FontWeight.w600),
-                contentPadding: const EdgeInsets.all(8),
+                contentPadding: MediaQuery.sizeOf(context).width > 600
+                    ? const EdgeInsets.all(30)
+                    : const EdgeInsets.all(8),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: const BorderSide(
@@ -53,13 +68,25 @@ class _EmergencyFormState extends State<EmergencyForm> {
             height: 40,
           ),
           TextFormField(
+            style:
+                AppStyle.styleRegular16(context).copyWith(color: Colors.black),
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.done,
             obscureText: isVisable ? true : false,
-            controller:  passwordController,
+            controller: passwordController,
             decoration: InputDecoration(
-                prefixIcon:
-                    const Icon(Icons.lock_outlined, color: Colors.black),
+                errorStyle: AppStyle.styleRegular16(context)
+                    .copyWith(color: Colors.red),
+                prefixIcon: Padding(
+                  padding: MediaQuery.sizeOf(context).width > 600
+                      ? const EdgeInsets.symmetric(horizontal: 20)
+                      : const EdgeInsets.all(0),
+                  child: Icon(
+                    Icons.lock_outlined,
+                    color: Colors.black,
+                    size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
+                  ),
+                ),
                 suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -67,8 +94,18 @@ class _EmergencyFormState extends State<EmergencyForm> {
                       });
                     },
                     icon: isVisable
-                        ? const Icon(Icons.visibility)
-                        : const Icon(Icons.visibility_off)),
+                        ? Icon(
+                            Icons.visibility,
+                            size: MediaQuery.sizeOf(context).width > 600
+                                ? 45
+                                : 25,
+                          )
+                        : Icon(
+                            Icons.visibility_off,
+                            size: MediaQuery.sizeOf(context).width > 600
+                                ? 45
+                                : 25,
+                          )),
                 labelText: "Password",
                 labelStyle: AppStyle.styleRegular16(context),
                 focusedErrorBorder: OutlineInputBorder(
@@ -77,7 +114,9 @@ class _EmergencyFormState extends State<EmergencyForm> {
                         width: 2, color: MyColors.premiumColor)),
                 floatingLabelStyle: AppStyle.styleRegular16(context).copyWith(
                     color: MyColors.premiumColor, fontWeight: FontWeight.w600),
-                contentPadding: const EdgeInsets.all(8),
+                contentPadding: MediaQuery.sizeOf(context).width > 600
+                    ? const EdgeInsets.all(30)
+                    : const EdgeInsets.all(8),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: const BorderSide(
@@ -90,21 +129,17 @@ class _EmergencyFormState extends State<EmergencyForm> {
               return null;
             },
           ),
-           
           const SizedBox(
             height: 30,
           ),
           SizedBox(
               width: double.infinity,
-              height: 47,
+              height: MediaQuery.sizeOf(context).width > 600 ? 70 : 47,
               child: ElevatedButton(
                 onPressed: () async {
-                  if (!BlocProvider.of<LoginCubit>(context)
-                      .loginKey
-                      .currentState!
-                      .validate()) {
+                  if (!formKey.currentState!.validate()) {
                     return;
-                  }  
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: MyColors.premiumColor,

@@ -33,8 +33,9 @@ class AppRouter {
             builder: (context) => const SelectingMethodScreen());
 
       case onBoardingScreen:
+      final isOwner = settings.arguments;
         return MaterialPageRoute(
-            builder: (context) => const OnBoardingScreen());
+            builder: (context) => OnBoardingScreen(isOwner: isOwner,));
 
         case emergencyOnBoardScreen:
         return MaterialPageRoute(

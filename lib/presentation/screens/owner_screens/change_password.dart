@@ -12,44 +12,46 @@ class ChangePassword extends StatelessWidget {
     return SafeArea(
       child: GestureDetector(
         onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: buildCustomAppBar(context, 'Change Password'),
-        body: Padding(padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
-                children: [
-
-                  const SizedBox(
-                    height: 50,
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: buildCustomAppBar(context, 'Change Password'),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 4,
+                        child: SvgPicture.asset(
+                          Assets.imagesAuthImagesConfirm,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const ChangePasswordFields(),
+                      const Expanded(
+                        child: SizedBox(
+                          height: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                  SvgPicture.asset(Assets.imagesAuthImagesConfirm,
-                    width: MediaQuery.of(context).size.width / 2,
-                    height: MediaQuery.of(context).size.height / 4,
-                  ),
-              
-                  const SizedBox(
-                    height: 30,
-                  ), 
-                  const ChangePasswordFields(),
-
-                  const Expanded(
-                    child: SizedBox(
-                      height: 20,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
-        ),
-      ),
       ),
     );
   }

@@ -31,7 +31,9 @@ class ForgotPasswordPhoneScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2,
                         height: MediaQuery.of(context).size.height / 4,
                         child: SvgPicture.asset(
-                            Assets.imagesAuthImagesForgotPassword),
+                            Assets.imagesAuthImagesForgotPassword,
+                            fit: BoxFit.contain,
+                            ),
                       ),
                       const SizedBox(height: 50),
                       Column(
