@@ -10,7 +10,6 @@ import 'package:user_accident/core/data/repo/auth_repo.dart';
 import 'package:user_accident/core/logic/forgot_password_cubit/cubit/forgot_password_cubit.dart';
 import 'package:user_accident/core/logic/login_cubit/login_cubit.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/emergency_sign_in_screen.dart';
-import 'package:user_accident/presentation/screens/emegency_screens/on_boarding.dart';
 import 'package:user_accident/presentation/screens/owner_screens/change_password.dart';
 import 'package:user_accident/presentation/screens/owner_screens/forgot_password_phone_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/forgot_password_email_screen.dart';
@@ -37,9 +36,7 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (context) => OnBoardingScreen(isOwner: isOwner,));
 
-        case emergencyOnBoardScreen:
-        return MaterialPageRoute(
-            builder: (context) => const EmergencyOnBoardingScreen());
+         
       case signInScreen:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(

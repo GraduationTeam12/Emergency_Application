@@ -3,7 +3,6 @@ const selectingMethodScreen = '/selecting-screen';
 const onBoardingScreen = '/onboarding-screen';
 const signInScreen = '/signin-screen';
 const emergencySignInScreen = '/emergencysignin-screen';
-const emergencyOnBoardScreen = '/emergencyonboard-screen';
 const forgotPasswordEmailScreen = '/forgotpasswordbyemail-screen';
 const forgotPasswordPhoneScreen = '/forgotpasswordbyphone-screen';
 const resetPasswordEmailScreen = '/resetbyemail-screen';
