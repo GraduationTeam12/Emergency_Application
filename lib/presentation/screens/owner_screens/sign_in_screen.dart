@@ -37,8 +37,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 50,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: MediaQuery.of(context).size.height / 4,
+                      width: MediaQuery.sizeOf(context).width > 600
+                          ? MediaQuery.sizeOf(context).width / 2
+                          : null,
+                      height: MediaQuery.sizeOf(context).width > 600
+                          ? MediaQuery.of(context).size.height / 3
+                          : null,
                       child: SvgPicture.asset(
                         Assets.imagesAuthImagesLogin,
                         fit: BoxFit.contain,

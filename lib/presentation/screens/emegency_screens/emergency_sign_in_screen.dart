@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/presentation/widgets/custom_app_bar.dart';
 import 'package:user_accident/presentation/widgets/emergency_form.dart';
- 
 
 class EmergencySignInScreen extends StatefulWidget {
   const EmergencySignInScreen({super.key});
@@ -15,7 +14,7 @@ class EmergencySignInScreen extends StatefulWidget {
 class _EmergencySignInScreenState extends State<EmergencySignInScreen> {
   @override
   Widget build(BuildContext context) {
-      return SafeArea(
+    return SafeArea(
         child: GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -35,10 +34,15 @@ class _EmergencySignInScreenState extends State<EmergencySignInScreen> {
                       height: 20,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: MediaQuery.of(context).size.height / 4,
-                      child: SvgPicture.asset(Assets.imagesEmergencyLogin,
-                      fit: BoxFit.contain,
+                      width: MediaQuery.sizeOf(context).width > 600
+                          ? MediaQuery.sizeOf(context).width / 2
+                          : null,
+                      height: MediaQuery.sizeOf(context).width > 600
+                          ? MediaQuery.of(context).size.height / 3
+                          : null,
+                      child: SvgPicture.asset(
+                        Assets.imagesEmergencyLogin,
+                        fit: BoxFit.contain,
                       ),
                     ),
                     const SizedBox(
@@ -61,4 +65,4 @@ class _EmergencySignInScreenState extends State<EmergencySignInScreen> {
       ),
     ));
   }
-  }
+}

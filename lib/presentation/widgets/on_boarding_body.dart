@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_images.dart';
@@ -38,11 +37,15 @@ class OnBoardingBody extends StatelessWidget {
       children: [
         Center(
           child: SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            height: MediaQuery.of(context).size.height / 5,
-            child: SvgPicture.asset(items[index].img,
-            fit: BoxFit.contain,
-
+            width: MediaQuery.sizeOf(context).width > 600
+                ? MediaQuery.sizeOf(context).width / 2
+                : null,
+            height: MediaQuery.sizeOf(context).width > 600
+                ? MediaQuery.of(context).size.height / 3
+                : null,
+            child: SvgPicture.asset(
+              items[index].img,
+              fit: BoxFit.contain,
             ),
           ),
         ),
@@ -54,25 +57,21 @@ class OnBoardingBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-          FittedBox(
-            child: Column(
-              children: [
-                Text(
-                  items[index].description1,
-                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-                ),
-                Text(
-                  items[index].discription2,
-                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-                ),
-                Text(
-                  items[index].discription3 ?? '',
-                  style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-                )
-              ],
-            ),
+        FittedBox(
+          child: Column(
+            children: [
+              Text(items[index].description1,
+                  style: AppStyle.styleRegular17(context)
+                      .copyWith(fontWeight: FontWeight.w600)),
+              Text(items[index].discription2,
+                  style: AppStyle.styleRegular17(context)
+                      .copyWith(fontWeight: FontWeight.w600)),
+              Text(items[index].discription3 ?? '',
+                  style: AppStyle.styleRegular17(context)
+                      .copyWith(fontWeight: FontWeight.w600))
+            ],
           ),
-        
+        ),
       ],
     );
   }

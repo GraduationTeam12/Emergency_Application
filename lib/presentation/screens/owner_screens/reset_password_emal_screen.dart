@@ -55,14 +55,17 @@ class ResetPasswordEmailScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                          width: MediaQuery.of(context).size.width / 2,
-                          height: MediaQuery.of(context).size.height / 4,
-                          child:
-                              SvgPicture.asset(Assets.imagesAuthImagesVerify,
-                              fit: BoxFit.cover,
-                              ),
-                              
-                              ),
+                        width: MediaQuery.sizeOf(context).width > 600
+                            ? MediaQuery.sizeOf(context).width / 2
+                            : null,
+                        height: MediaQuery.sizeOf(context).width > 600
+                            ? MediaQuery.of(context).size.height / 3
+                            : null,
+                        child: SvgPicture.asset(
+                          Assets.imagesAuthImagesVerify,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                       const SizedBox(
                         height: 50,
                       ),

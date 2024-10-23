@@ -8,7 +8,7 @@ class OnBoardingBodyEmergency extends StatelessWidget {
   const OnBoardingBodyEmergency({super.key, required this.index});
 
   final int index;
-  static List<OnBoardModelPageview> items =[
+  static List<OnBoardModelPageview> items = [
     OnBoardModelPageview(
         img: Assets.imagesAuthImagesOnBoarding1Emergency,
         title: "Emergency",
@@ -22,11 +22,11 @@ class OnBoardingBodyEmergency extends StatelessWidget {
         discription2: "incident and delivering the appropriate",
         discription3: "assistance to you in a short time."),
     OnBoardModelPageview(
-        img: Assets.imagesAuthImagesOnBoarding3Emergency,
-        title: "Report",
-        description1: "Preparation of daily reports on the number of",
-        discription2: "incidents and the most common locations.",
-        ),
+      img: Assets.imagesAuthImagesOnBoarding3Emergency,
+      title: "Report",
+      description1: "Preparation of daily reports on the number of",
+      discription2: "incidents and the most common locations.",
+    ),
   ];
 
   @override
@@ -35,10 +35,15 @@ class OnBoardingBodyEmergency extends StatelessWidget {
       children: [
         Center(
           child: SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
-            height: MediaQuery.of(context).size.height / 5,
-            child: SvgPicture.asset(items[index].img,
-            fit: BoxFit.contain,
+            width: MediaQuery.sizeOf(context).width > 600
+                ? MediaQuery.sizeOf(context).width / 2
+                : null,
+            height: MediaQuery.sizeOf(context).width > 600
+                ? MediaQuery.of(context).size.height / 3
+                : null,
+            child: SvgPicture.asset(
+              items[index].img,
+              fit: BoxFit.contain,
             ),
           ),
         ),
@@ -53,18 +58,15 @@ class OnBoardingBodyEmergency extends StatelessWidget {
         FittedBox(
           child: Column(
             children: [
-              Text(
-                items[index].description1,
-                style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-              ),
-              Text(
-                items[index].discription2,
-                style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-              ),
-              Text(
-                items[index].discription3 ?? '',
-                style: AppStyle.styleRegular17(context).copyWith(fontWeight: FontWeight.w600)
-              )
+              Text(items[index].description1,
+                  style: AppStyle.styleRegular17(context)
+                      .copyWith(fontWeight: FontWeight.w600)),
+              Text(items[index].discription2,
+                  style: AppStyle.styleRegular17(context)
+                      .copyWith(fontWeight: FontWeight.w600)),
+              Text(items[index].discription3 ?? '',
+                  style: AppStyle.styleRegular17(context)
+                      .copyWith(fontWeight: FontWeight.w600))
             ],
           ),
         ),
