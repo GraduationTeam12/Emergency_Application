@@ -19,9 +19,10 @@ import 'package:user_accident/presentation/screens/owner_screens/reset_password_
 import 'package:user_accident/presentation/screens/owner_screens/selecting_method_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/sign_in_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/splash_screen.dart';
+import 'package:user_accident/presentation/widgets/home.dart';
 
 class AppRouter {
-  Route? generationRoute(RouteSettings settings) {
+  Route? generationRoute(RouteSettings settings) {  
     
     switch (settings.name) {
       case splashScreen:
@@ -82,6 +83,11 @@ class AppRouter {
                       AuthRepository(apiConsumer: DioConsumer(dio: Dio()))),
                   child: const ChangePassword(),
                 ));
+
+      case homeScreen:
+        
+        return MaterialPageRoute(
+            builder: (_) =>   HomePage());
     }
   }
 }

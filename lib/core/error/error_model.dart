@@ -8,7 +8,7 @@ class ErrorModel{
   factory ErrorModel.fromJson(Map jsonData) {
     return ErrorModel(
       // status: jsonData['status'],
-      errorMessage: jsonData['message'],
+      errorMessage: jsonData['msg'],
     );
   }
 }

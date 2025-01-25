@@ -12,11 +12,12 @@ class AuthRepository {
   Future<Either<String, LoginModel>> login({
     required String email,
     required String password,
+    required String? fcmToken,
   }) async {
     try {
       final response = await apiConsumer.post(
         EndPoint.logIn,
-        data: {ApiKeys.email: email, ApiKeys.password: password},
+        data: {ApiKeys.email: email, ApiKeys.password: password , 'fcmToken' : fcmToken},
       );
       return Right(LoginModel.fromJson(response));
     } on ServerException catch (error) {
@@ -55,7 +56,7 @@ class AuthRepository {
   }) async {
     try {
       final response =
-          await apiConsumer.patch(EndPoint.changeForgottenPassword, data: {
+          await apiConsumer.post(EndPoint.changeForgottenPassword, data: {
         ApiKeys.email: email,
         ApiKeys.password: password,
         ApiKeys.confirmPassword: confirmPassword,

@@ -8,3 +8,4 @@ const forgotPasswordPhoneScreen = '/forgotpasswordbyphone-screen';
 const resetPasswordEmailScreen = '/resetbyemail-screen';
 const resetPasswordPhoneScreen = '/resetbyphone-screen';
 const changePasswordScreen = '/change-screen';
+const homeScreen = '/home-screen';

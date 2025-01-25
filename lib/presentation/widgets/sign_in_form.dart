@@ -30,6 +30,7 @@ class _SignInFormState extends State<SignInForm> {
           String message = state.message;
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(message)));
+          Navigator.pushReplacementNamed(context,  homeScreen);
         }
         if (state is LoginErrorState) {
           String message = state.errMsg;
@@ -43,12 +44,14 @@ class _SignInFormState extends State<SignInForm> {
           child: Column(
             children: [
               TextFormField(
-                style: AppStyle.styleRegular16(context).copyWith(color: Colors.black),
+                style: AppStyle.styleRegular16(context)
+                    .copyWith(color: Colors.black),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
                 controller: BlocProvider.of<LoginCubit>(context).signInEmail,
                 decoration: InputDecoration(
-                    errorStyle: AppStyle.styleRegular16(context).copyWith(color: Colors.red),
+                    errorStyle: AppStyle.styleRegular16(context)
+                        .copyWith(color: Colors.red),
                     prefixIcon: Padding(
                       padding: MediaQuery.sizeOf(context).width > 600
                           ? const EdgeInsets.symmetric(horizontal: 20)
@@ -88,14 +91,15 @@ class _SignInFormState extends State<SignInForm> {
                 height: 40,
               ),
               TextFormField(
-            
-                style: AppStyle.styleRegular16(context).copyWith(color: Colors.black),
+                style: AppStyle.styleRegular16(context)
+                    .copyWith(color: Colors.black),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
                 obscureText: isVisable ? true : false,
                 controller: BlocProvider.of<LoginCubit>(context).signInPassword,
                 decoration: InputDecoration(
-                    errorStyle: AppStyle.styleRegular16(context).copyWith(color: Colors.red),
+                    errorStyle: AppStyle.styleRegular16(context)
+                        .copyWith(color: Colors.red),
                     prefixIcon: Padding(
                       padding: MediaQuery.sizeOf(context).width > 600
                           ? const EdgeInsets.symmetric(horizontal: 20)
@@ -143,8 +147,6 @@ class _SignInFormState extends State<SignInForm> {
                         borderSide: const BorderSide(
                             width: 2, color: MyColors.premiumColor)),
                     border: buildBorder()),
-
-               
                 validator: (password) {
                   if (password!.isEmpty) {
                     return "Please enter your password";

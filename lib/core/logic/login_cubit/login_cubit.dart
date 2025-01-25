@@ -7,6 +7,7 @@ import 'package:user_accident/core/api/end_points.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/core/data/model/model.dart';
 import 'package:user_accident/core/data/repo/auth_repo.dart';
+import 'package:user_accident/presentation/widgets/test.dart';
 
 part 'login_state.dart';
 
@@ -23,7 +24,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoadingState());
 
     final result = await authRepo.login(
-        email: signInEmail.text, password: signInPassword.text);
+        email: signInEmail.text, password: signInPassword.text, fcmToken: PushNotificationsService.token );
 
     result.fold((l) => emit(LoginErrorState(errMsg: l)), (r) async {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
