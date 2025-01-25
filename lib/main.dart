@@ -19,7 +19,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(DevicePreview(
-    enabled: true,
+    enabled: false,
     builder: (context)=> MyApp(
       appRouter: AppRouter(),
     ),
