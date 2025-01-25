@@ -29,22 +29,24 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
   device_preview: ^1.2.0
+  dio: ^5.7.0
   expandable_page_view: ^1.0.17
   firebase_auth: ^5.3.1
   firebase_core: ^3.6.0
+  firebase_database: ^11.3.1
   firebase_storage: ^12.3.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_svg: ^2.0.10+1
-  lottie: ^3.1.3
-  pin_code_fields: ^8.0.1
-  shared_preferences: ^2.3.2
   jwt_decoder: ^2.0.1
-  dartz: ^0.10.1
-  dio: ^5.7.0
+  lottie: ^3.1.3
+  ml_algo: ^16.17.13
+  pin_code_fields: ^8.0.1
   pinput: ^5.0.0
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0
