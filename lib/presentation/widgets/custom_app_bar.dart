@@ -6,7 +6,7 @@ AppBar buildCustomAppBar(BuildContext context , String title) {
       elevation: 0,
       scrolledUnderElevation: 0,
       backgroundColor: Colors.white,
-      toolbarHeight: MediaQuery.sizeOf(context).height / 8,
+      toolbarHeight: MediaQuery.sizeOf(context).height / 7,
       title: Center(
           child: Text(
         title,

@@ -1,8 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <application
         android:label="user_accident"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+         <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBW3ndkvcWC4zrdYMnOe4o7vMZb279fJNo"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -42,4 +48,8 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

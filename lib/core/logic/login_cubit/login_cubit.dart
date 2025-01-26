@@ -36,23 +36,5 @@ class LoginCubit extends Cubit<LoginState> {
     });
   }
 
-  // Future<void> signInWithEmailAndPassword(TextEditingController emailController,
-  //     TextEditingController passwordController) async {
-  //   emit(Loading());
-
-  //   try {
-  //     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //         email: emailController.text, password: passwordController.text);
-
-  //     emit(SuccessfullyLogin());
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'user-not-found') {
-  //       emit(ErrorOccured(errMsg: e.toString()));
-  //     } else if (e.code == 'wrong-password') {
-  //       emit(ErrorOccured(errMsg: e.toString()));
-  //     } else {
-  //       emit(ErrorOccured(errMsg: e.toString()));
-  //     }
-  //   }
-  // }
+   
 }

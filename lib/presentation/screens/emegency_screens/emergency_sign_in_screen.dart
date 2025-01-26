@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/presentation/widgets/custom_app_bar.dart';
 import 'package:user_accident/presentation/widgets/emergency_form.dart';
 
@@ -41,7 +40,7 @@ class _EmergencySignInScreenState extends State<EmergencySignInScreen> {
                           ? MediaQuery.of(context).size.height / 3
                           : null,
                       child: SvgPicture.asset(
-                        Assets.imagesEmergencyLogin,
+                        'assets/images/auth_images/emergency_login.svg',
                         fit: BoxFit.contain,
                       ),
                     ),

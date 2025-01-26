@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user_accident/constants/pages_name.dart';
+import 'package:user_accident/core/api/end_points.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/firebase_options.dart';
 import 'package:user_accident/routing.dart';
@@ -19,7 +20,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(DevicePreview(
-    enabled: false,
+    enabled: true,
     builder: (context)=> MyApp(
       appRouter: AppRouter(),
     ),
@@ -27,9 +28,10 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.appRouter});
+    MyApp({super.key, required this.appRouter});
 
   final AppRouter appRouter;
+  final token = CacheHelper().getData(key: ApiKeys.token);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       onGenerateRoute: appRouter.generationRoute,
-      initialRoute: splashScreen,
+      initialRoute: token == null ? splashScreen : homeEmergencyScreen,
     );
   }
 }

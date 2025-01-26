@@ -45,6 +45,8 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.7.0
   pinput: ^5.0.0
+  google_maps_flutter: ^2.10.0
+  geolocator: ^13.0.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -63,6 +65,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/auth_images/
+    - assets/images/auth_images/emergency_images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see
