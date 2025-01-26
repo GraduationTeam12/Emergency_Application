@@ -67,6 +67,7 @@ class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
           left: 16,
           child: InkWell(
             onTap: () {
+              
               Navigator.pushNamed(context, notificationsScreen);
             },
             child: SizedBox(
