@@ -15,6 +15,7 @@ import 'package:user_accident/presentation/screens/emegency_screens/home_screen.
 import 'package:user_accident/presentation/screens/emegency_screens/notifications_screen.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/reports_screeen.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/settings_screen.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/user_info.dart';
 import 'package:user_accident/presentation/screens/owner_screens/change_password.dart';
 import 'package:user_accident/presentation/screens/owner_screens/forgot_password_phone_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/forgot_password_email_screen.dart';
@@ -109,6 +110,10 @@ class AppRouter {
       case reportsScreen:
         return MaterialPageRoute(
             builder: (_) => const  ReportsScreeen());
+
+      case userInfoScreen:
+        return MaterialPageRoute(
+            builder: (_) => const  UserInfo());
     }
   }
 }

@@ -12,3 +12,4 @@ const homeEmergencyScreen = '/home-screen';
 const settingScreen = '/settings-screen';
 const notificationsScreen = '/notifications-screen';
 const reportsScreen = '/reports-screen';
+const userInfoScreen = '/userinfo-screen';

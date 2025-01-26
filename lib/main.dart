@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: appRouter.generationRoute,
       initialRoute: token == null ? splashScreen : homeEmergencyScreen,
+      // initialRoute:  userInfoScreen,
     );
   }
 }
