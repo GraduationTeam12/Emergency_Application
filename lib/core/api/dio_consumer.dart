@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:user_accident/core/error/error_model.dart';
+import 'package:user_accident/core/error/exception_response.dart';
 import 'package:user_accident/core/error/exceptions.dart';
  
 
@@ -108,7 +109,7 @@ class DioConsumer extends ApiConsumer {
       case DioExceptionType.badResponse:
         switch (e.response?.statusCode) {
           case 400: //bad request
-            throw BadRequestException(ErrorModel.fromJson(e.response!.data));
+            throw BadRequestExceptionResponse(ErrorResponse.fromJson(e.response!.data));
 
           case 401: //unauthorized
             throw UnauthorizedException(ErrorModel.fromJson(e.response!.data));

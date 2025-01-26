@@ -85,7 +85,7 @@ abstract class AppStyle {
   static TextStyle styleRegular25(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF000000),
-      fontSize: getResponsiveFontSize(context , fontSize: 25),
+      fontSize: getResponsiveFontSize(context , fontSize: 30),
       fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );
