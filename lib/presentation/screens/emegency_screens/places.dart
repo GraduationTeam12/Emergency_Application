@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Places extends StatefulWidget {
-  const Places({super.key});
+class Places extends StatelessWidget {
+  const Places({super.key, required this.locations});
+  final List<MapEntry<String, int>> locations;
 
-  @override
-  State<Places> createState() => _PlacesState();
-}
+  TopAccidentLocations(locations) {
+    // TODO: implement TopAccidentLocations
+    throw UnimplementedError();
+  }
 
-class _PlacesState extends State<Places> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +30,9 @@ class _PlacesState extends State<Places> {
         body: SizedBox(
           width: MediaQuery.sizeOf(context).width,
           child: ListView.builder(
-              itemCount: 20,
+              itemCount: locations.length,
               itemBuilder: (context, index) {
+                final location = locations[index];
                 return Container(
                   height: 150,
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -85,8 +87,8 @@ class _PlacesState extends State<Places> {
                                                 0.5,
                                         padding: EdgeInsets.only(left: 5),
                                         child: Text(
-                                          "Giza Plateau, Al Haram, Giza Governorate, Egypt",
-                                          style: TextStyle(
+                                          "${location.key}",
+                                          style: const TextStyle(
                                               color:
                                                   Color.fromRGBO(38, 50, 56, 1),
                                               fontWeight: FontWeight.w400,
@@ -94,6 +96,21 @@ class _PlacesState extends State<Places> {
                                         ))
                                   ],
                                 ),
+                                SizedBox(height: 10,),
+                                  Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          "Accidents: ${location.value}",
+                                          style: const TextStyle(
+                                              color:
+                                                  Color.fromRGBO(38, 50, 56, 1),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14),
+                                        ))
+                                  ,
                                 Spacer(
                                   flex: 5,
                                 ),
@@ -135,6 +152,8 @@ class _PlacesState extends State<Places> {
                   ),
                 );
               }),
-        ));
+        )
+        
+        );
   }
 }
