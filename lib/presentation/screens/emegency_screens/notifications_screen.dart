@@ -48,11 +48,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         toolbarHeight: MediaQuery.sizeOf(context).height / 8,
-        title: Center(
-            child: Text(
-          'Notification',
-          style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
-        )),
+        title: Text(
+                  'Notification',
+                  style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
+                ),
+        centerTitle: true,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -183,7 +183,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                   child: FittedBox(
                                     child: Text(
                                       'Check',
-                                      style: AppStyle.styleRegular25(context)
+                                      style: AppStyle.styleRegular30(context)
                                           .copyWith(color: Colors.white),
                                     ),
                                   ),

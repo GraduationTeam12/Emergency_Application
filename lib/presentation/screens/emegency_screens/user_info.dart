@@ -19,11 +19,12 @@ class _UserInfoState extends State<UserInfo> {
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         toolbarHeight: MediaQuery.sizeOf(context).height / 8,
-        title: Center(
-            child: Text(
-          "User's Data",
-          style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
-        )),
+        title: Text(
+                  "User's Data",
+                  style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
+                ),
+
+        centerTitle: true,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

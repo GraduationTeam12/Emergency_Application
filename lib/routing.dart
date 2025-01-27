@@ -10,6 +10,10 @@ import 'package:user_accident/core/data/repo/auth_repo_emergency.dart';
 import 'package:user_accident/core/logic/forgot_password_cubit/cubit/forgot_password_cubit.dart';
 import 'package:user_accident/core/logic/login_cubit/login_cubit.dart';
 import 'package:user_accident/core/logic/login_emergency_cubit/login_emergency_cubit.dart';
+import 'package:user_accident/core/logic/logout_cubit/logout_cubit.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/contact_with_admin.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/places.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/profile_screen.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/emergency_sign_in_screen.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/home_screen.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/notifications_screen.dart';
@@ -25,6 +29,7 @@ import 'package:user_accident/presentation/screens/owner_screens/reset_password_
 import 'package:user_accident/presentation/screens/owner_screens/selecting_method_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/sign_in_screen.dart';
 import 'package:user_accident/presentation/screens/owner_screens/splash_screen.dart';
+import 'package:user_accident/presentation/widgets/calendar.dart';
 
 class AppRouter {
   Route? generationRoute(RouteSettings settings) {
@@ -55,8 +60,7 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (BuildContext context) => LoginEmergencyCubit(
-                    AuthRepoEmergency(apiConsumer: DioConsumer(dio: Dio()))
-                  ),
+                      AuthRepoEmergency(apiConsumer: DioConsumer(dio: Dio()))),
                   child: const EmergencySignInScreen(),
                 ));
 
@@ -96,24 +100,36 @@ class AppRouter {
                 ));
 
       case homeEmergencyScreen:
-        return MaterialPageRoute(
-            builder: (_) => const HomeScreenEmergency());
+        return MaterialPageRoute(builder: (_) => const HomeScreenEmergency());
 
-      case  settingScreen:
+      case settingScreen:
         return MaterialPageRoute(
-            builder: (_) => const SettingsScreen());
+            builder: (_) => BlocProvider(
+                  create: (BuildContext context) => LogoutCubit(),
+                  child: const SettingsScreen(),
+                ));
 
-      case  notificationsScreen:
-        return MaterialPageRoute(
-            builder: (_) => const  NotificationsScreen());
+      case notificationsScreen:
+        return MaterialPageRoute(builder: (_) => const NotificationsScreen());
 
       case reportsScreen:
-        return MaterialPageRoute(
-            builder: (_) => const  ReportsScreeen());
+        return MaterialPageRoute(builder: (_) => const ReportsScreeen());
 
       case userInfoScreen:
+        return MaterialPageRoute(builder: (_) => const UserInfo());
+
+      case emergencyProfileScreen:
         return MaterialPageRoute(
-            builder: (_) => const  UserInfo());
+            builder: (_) => const EmergencyProfileScreen());
+
+      case contactWithAdminScreen:
+        return MaterialPageRoute(builder: (_) => const ContactWithAdmin());
+
+      case calendarScreen:
+        return MaterialPageRoute(builder: (_) =>  const CalendarWidget());
+
+        case placesScreen:
+        return MaterialPageRoute(builder: (_) =>  const Places(locations: [],));
     }
   }
 }
