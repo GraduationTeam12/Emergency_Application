@@ -14,7 +14,7 @@ void showLogOutDialog(BuildContext context) {
       child: BlocConsumer<LogoutCubit, LogoutState>(
         listener: (context, state) {
           if (state is LogoutSuccessState) {
-            Navigator.pushReplacementNamed(context, emergencySignInScreen);
+            Navigator.pushNamedAndRemoveUntil(context, emergencySignInScreen, (Route<dynamic> route) => false);
           }
         },
         builder: (context, state) {

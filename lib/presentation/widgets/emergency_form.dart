@@ -4,7 +4,6 @@ import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/logic/login_emergency_cubit/login_emergency_cubit.dart';
-import 'package:user_accident/presentation/screens/emegency_screens/contact_with_admin.dart';
 
 class EmergencyForm extends StatefulWidget {
   const EmergencyForm({super.key});
@@ -22,8 +21,10 @@ class _EmergencyFormState extends State<EmergencyForm> {
       listener: (context, state) {
         if (state is LoginLoadingEmergencyState) {
           const Center(
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.amber,
+            child: Center(
+              child: CircularProgressIndicator(
+                backgroundColor: MyColors.premiumColor,
+              ),
             ),
           );
         }
@@ -88,7 +89,7 @@ class _EmergencyFormState extends State<EmergencyForm> {
                     border: buildBorder()),
                 validator: (email) {
                   if (email!.isEmpty) {
-                    return "Please enter your email";
+                    return "Please enter emergency email";
                   }
                   return null;
                 },
@@ -165,9 +166,7 @@ class _EmergencyFormState extends State<EmergencyForm> {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(
-                        context, MaterialPageRoute(builder: (context) => const ContactWithAdmin(),)
-                      );
+                      Navigator.pushNamed(context, contactWithAdminScreen);
                     },
                     child: Text(
                       "Contact Admin",

@@ -7,10 +7,11 @@ AppBar buildCustomAppBar(BuildContext context , String title) {
       scrolledUnderElevation: 0,
       backgroundColor: Colors.white,
       toolbarHeight: MediaQuery.sizeOf(context).height / 7,
-      title: Center(
-          child: Text(
-        title,
-        style: AppStyle.styleRegular30(context),
-      )),
+      title: Text(
+              title,
+              style: AppStyle.styleRegular30(context),
+            ),
+
+            centerTitle: true,
     );
   }
