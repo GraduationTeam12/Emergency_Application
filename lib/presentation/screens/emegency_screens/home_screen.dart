@@ -68,8 +68,7 @@ class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
           left: 16,
           child: InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PlacesScreen(),));
-              //Navigator.pushNamed(context, notificationsScreen);
+              Navigator.pushNamed(context, notificationsScreen);
             },
             child: SizedBox(
               height: MediaQuery.sizeOf(context).width > 600 ? 60 : 45,
