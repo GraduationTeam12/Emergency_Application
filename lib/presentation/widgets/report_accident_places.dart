@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/places_screen.dart';
 
 class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
   const ReportAccidentPlacesAndNumberOfAccident({super.key});
@@ -84,7 +85,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                 right: 10,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, placesScreen);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>const PlacesScreen(),));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: MyColors.premiumColor,

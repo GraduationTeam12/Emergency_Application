@@ -3,8 +3,15 @@ import 'package:user_accident/core/data/firebase/analyze_and_count_accidents_by_
 Future<List<MapEntry<String, int>>> getTopAccidentLocations() async {
   final locationCounts = await analyzeAccidentData();
 
-  final sortedLocations = locationCounts.entries.toList()
-    ..sort((a, b) => b.value.compareTo(a.value)); // Descending order
+  if (locationCounts.isEmpty) {
+    return [];
+  }
 
-  return sortedLocations;
+  final filteredLocations = locationCounts.entries
+      .where((entry) => entry.value > 2)
+      .toList();
+
+  filteredLocations.sort((a, b) => b.value.compareTo(a.value));
+
+  return filteredLocations;
 }
