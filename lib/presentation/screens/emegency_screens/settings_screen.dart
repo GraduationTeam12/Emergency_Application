@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/pages_name.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/places_screen.dart';
 import 'package:user_accident/presentation/widgets/emergency_setting_list_view.dart';
 import 'package:user_accident/presentation/widgets/logout_dialog.dart';
 
@@ -31,9 +32,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: Colors.white,
         toolbarHeight: MediaQuery.sizeOf(context).height / 8,
         title: Text(
-                  'Settings',
-                  style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
-                ),
+          'Settings',
+          style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -112,7 +113,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 EmergencySettingListView(
                   leading: Text(
-                    'Contact Us',
+                    'Places',
                     style: AppStyle.styleRegular25(context),
                   ),
                   trailing: Transform.rotate(
@@ -124,7 +125,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, contactWithAdminScreen);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PlacesScreen(),));
+                    //Navigator.pushNamed(context, contactWithAdminScreen);
                   },
                 ),
                 SizedBox(
