@@ -18,6 +18,31 @@ class Assets {
   /// assets/images/auth_images/emergency_images/notification.svg
   static const String imagesAuthImagesEmergencyImagesNotification = "assets/images/auth_images/emergency_images/notification.svg";
 
+  
+  /// Assets for imagesAuthImagesEmergencyImagesContactAdmin
+  /// assets/images/auth_images/emergency_images/contact_admin.svg
+  static const String imagesAuthImagesEmergencyImagesContactAdmin = "assets/images/auth_images/emergency_images/contact_admin.svg";
+
+
+  /// Assets for imagesAuthImagesEmergencyImagesSend
+  /// assets/images/auth_images/emergency_images/send.svg
+  static const String imagesAuthImagesEmergencyImagesSend = "assets/images/auth_images/emergency_images/send.svg";
+
+ 
+  /// Assets for imagesAuthImagesEmergencyImagesTikTok
+  /// assets/images/auth_images/emergency_images/hugeicons_tiktok.svg
+  static const String imagesAuthImagesEmergencyImagesTikTok = "assets/images/auth_images/emergency_images/hugeicons_tiktok.svg";
+  
+  
+  /// Assets for imagesAuthImagesEmergencyImagesFacebook
+  /// assets/images/auth_images/emergency_images/devicon_facebook.svg
+  static const String imagesAuthImagesEmergencyImagesFacebook = "assets/images/auth_images/emergency_images/devicon_facebook.svg";
+  
+  
+  /// Assets for imagesAuthImagesEmergencyImagesMageX
+  /// assets/images/auth_images/emergency_images/mage_x.svg
+  static const String imagesAuthImagesEmergencyImagesMageX = "assets/images/auth_images/emergency_images/mage_x.svg";
+  
   /// Assets for imagesAuthImagesEmergencyLogin
   /// assets/images/auth_images/emergency_login.svg
   static const String imagesAuthImagesEmergencyLogin = "assets/images/auth_images/emergency_login.svg";
