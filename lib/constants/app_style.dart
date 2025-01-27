@@ -82,10 +82,37 @@ abstract class AppStyle {
     );
   }
 
-  static TextStyle styleRegular25(BuildContext context) {
+  static TextStyle styleSemiBold28(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFFFFFFFF),
+      fontSize: getResponsiveFontSize(context , fontSize: 28),
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  static TextStyle styleSemiBold20(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF000000),
+      fontSize: getResponsiveFontSize(context , fontSize: 20),
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  static TextStyle styleRegular30(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF000000),
       fontSize: getResponsiveFontSize(context , fontSize: 30),
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle styleRegular25(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF000000),
+      fontSize: getResponsiveFontSize(context , fontSize: 25),
       fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );
@@ -95,6 +122,15 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context , fontSize: 17),
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+    static TextStyle styleRegular20(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF5C5858),
+      fontSize: getResponsiveFontSize(context , fontSize: 20),
       fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );

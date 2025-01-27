@@ -39,7 +39,7 @@ class ForgotPasswordEmailScreen extends StatelessWidget {
             title: Center(
                 child: Text(
               'Forgot Password',
-              style: AppStyle.styleRegular25(context),
+              style: AppStyle.styleRegular30(context),
             )),
           ),
 

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_images.dart';
@@ -41,7 +43,7 @@ class ResetPasswordEmailScreen extends StatelessWidget {
             title: Center(
                 child: Text(
               'Reset Password',
-              style: AppStyle.styleRegular25(context),
+              style: AppStyle.styleRegular30(context),
             )),
           ),
 
