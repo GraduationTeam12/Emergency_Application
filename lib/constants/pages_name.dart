@@ -13,3 +13,7 @@ const settingScreen = '/settings-screen';
 const notificationsScreen = '/notifications-screen';
 const reportsScreen = '/reports-screen';
 const userInfoScreen = '/userinfo-screen';
+const emergencyProfileScreen = '/emergencyprofile-screen';
+const contactWithAdminScreen = '/contactwithadmin-screen';
+const calendarScreen = '/calendar-screen';
+const placesScreen = '/places-screen';

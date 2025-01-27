@@ -49,6 +49,8 @@ dependencies:
   google_maps_flutter: ^2.10.0
   geolocator: ^13.0.2
   shared_preferences: ^2.3.2
+  syncfusion_flutter_charts: ^28.1.41
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_lints: ^4.0.0

@@ -1,4 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:user_accident/constants/app_style.dart';
 
 class Places extends StatelessWidget {
   const Places({super.key, required this.locations});
@@ -14,20 +17,37 @@ class Places extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          scrolledUnderElevation: 0,
           title: Text(
             "Places",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+            style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
           ),
+          toolbarHeight: MediaQuery.sizeOf(context).height / 8,
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back)),
+              icon: Icon(
+                Icons.arrow_back,
+                size: MediaQuery.sizeOf(context).width > 600 ? 50 : null,
+              )),
           centerTitle: true,
           backgroundColor: Colors.white,
-          elevation: 1,
+          elevation: 0,
         ),
-        body: SizedBox(
+        body: Container(
+          height: 2,
+          decoration: BoxDecoration(
+            color: Colors.grey[400],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 3,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
           width: MediaQuery.sizeOf(context).width,
           child: ListView.builder(
               itemCount: locations.length,
@@ -35,11 +55,12 @@ class Places extends StatelessWidget {
                 final location = locations[index];
                 return Container(
                   height: 150,
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.25),
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                       blurRadius: 4.0,
                     ),
                   ], borderRadius: BorderRadius.circular(5)),
@@ -49,7 +70,7 @@ class Places extends StatelessWidget {
                           flex: 2,
                           child: Container(
                             height: 150,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(5),
                                     topLeft: Radius.circular(5)),
@@ -70,13 +91,13 @@ class Places extends StatelessWidget {
                                     bottomRight: Radius.circular(5))),
                             child: Column(
                               children: [
-                                Spacer(
+                                const Spacer(
                                   flex: 1,
                                 ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.location_on_outlined,
                                       size: 22,
                                       color: Color.fromRGBO(211, 33, 33, 1),
@@ -85,7 +106,7 @@ class Places extends StatelessWidget {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        padding: EdgeInsets.only(left: 5),
+                                        padding: const EdgeInsets.only(left: 5),
                                         child: Text(
                                           "${location.key}",
                                           style: const TextStyle(
@@ -96,22 +117,21 @@ class Places extends StatelessWidget {
                                         ))
                                   ],
                                 ),
-                                SizedBox(height: 10,),
-                                  Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.5,
-                                        padding: EdgeInsets.only(left: 5),
-                                        child: Text(
-                                          "Accidents: ${location.value}",
-                                          style: const TextStyle(
-                                              color:
-                                                  Color.fromRGBO(38, 50, 56, 1),
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14),
-                                        ))
-                                  ,
-                                Spacer(
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.5,
+                                    padding: const EdgeInsets.only(left: 5),
+                                    child: Text(
+                                      "Accidents: ${location.value}",
+                                      style: const TextStyle(
+                                          color: Color.fromRGBO(38, 50, 56, 1),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14),
+                                    )),
+                                const Spacer(
                                   flex: 5,
                                 ),
                                 Row(
@@ -120,9 +140,9 @@ class Places extends StatelessWidget {
                                     GestureDetector(
                                       onTap: () {},
                                       child: Container(
-                                        margin: EdgeInsets.only(
+                                        margin: const EdgeInsets.only(
                                             bottom: 10, right: 10),
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 18,
                                             right: 18,
                                             bottom: 4,
@@ -130,10 +150,10 @@ class Places extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5),
-                                          color:
-                                              Color.fromRGBO(61, 100, 152, 1),
+                                          color: const Color.fromRGBO(
+                                              61, 100, 152, 1),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "View",
                                           style: TextStyle(
                                             fontSize: 13,
@@ -152,8 +172,6 @@ class Places extends StatelessWidget {
                   ),
                 );
               }),
-        )
-        
-        );
+        ));
   }
 }

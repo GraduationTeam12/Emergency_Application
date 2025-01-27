@@ -10,7 +10,7 @@ AppBar buildCustomAppBar(BuildContext context , String title) {
       title: Center(
           child: Text(
         title,
-        style: AppStyle.styleRegular25(context),
+        style: AppStyle.styleRegular30(context),
       )),
     );
   }
