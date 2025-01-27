@@ -4,6 +4,7 @@ import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/logic/login_emergency_cubit/login_emergency_cubit.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/contact_with_admin.dart';
 
 class EmergencyForm extends StatefulWidget {
   const EmergencyForm({super.key});
@@ -159,6 +160,20 @@ class _EmergencyFormState extends State<EmergencyForm> {
                   }
                   return null;
                 },
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (context) => const ContactWithAdmin(),)
+                      );
+                    },
+                    child: Text(
+                      "Contact Admin",
+                      style: AppStyle.styleSemiBold16(context)
+                          .copyWith(color: MyColors.premiumColor),
+                    )),
               ),
               const SizedBox(
                 height: 30,
