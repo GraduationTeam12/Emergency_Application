@@ -1,5 +1,7 @@
 //
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:user_accident/constants/pages_name.dart';
@@ -16,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, selectingMethodScreen);
+      Navigator.pushReplacementNamed(context, onBoardingScreen);
       // Navigator.pushReplacement(
       //   context,
       //   MaterialPageRoute(builder: (context) =>const SelectingMethodScreen()),

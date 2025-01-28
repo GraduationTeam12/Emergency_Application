@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
-import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/places_screen.dart';
 
 class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {

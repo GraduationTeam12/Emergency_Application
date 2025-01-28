@@ -4,9 +4,10 @@ import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_section.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key, required this.isOwner});
+  const OnBoardingScreen({
+    super.key,
+  });
 
-  final isOwner;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,12 +22,7 @@ class OnBoardingScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextButton(
                     onPressed: () {
-                      if (isOwner) {
-                        Navigator.pushNamed(context, signInScreen);
-                      }
-                      else{
-                        Navigator.pushNamed(context, emergencySignInScreen);
-                      }
+                      Navigator.pushNamed(context, emergencySignInScreen);
                     },
                     child: Text(
                       "Skip",
@@ -35,9 +31,7 @@ class OnBoardingScreen extends StatelessWidget {
               )
             ],
           ),
-          body: OnBoardingSection(
-            isOwner: isOwner,
-          )),
+          body: const OnBoardingSection()),
     );
   }
 }

@@ -6,7 +6,6 @@ import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/helper/location_helper.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/bottom_sheet.dart';
-import 'package:user_accident/presentation/screens/emegency_screens/places_screen.dart';
 
 class HomeScreenEmergency extends StatefulWidget {
   const HomeScreenEmergency({super.key});

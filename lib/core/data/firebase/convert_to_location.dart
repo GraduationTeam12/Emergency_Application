@@ -7,7 +7,7 @@ Future<String> getLocationKey(double latitude, double longitude) async {
 
   try {
     // تحديد Timeout بـ 10 ثوانٍ
-    final response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 10));
+    final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);

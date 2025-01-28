@@ -125,7 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PlacesScreen(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PlacesScreen(),));
                     //Navigator.pushNamed(context, contactWithAdminScreen);
                   },
                 ),

@@ -8,9 +8,9 @@ import 'package:user_accident/presentation/widgets/dots_indicator.dart';
 import 'package:user_accident/presentation/widgets/on_boarding_pageview.dart';
 
 class OnBoardingSection extends StatefulWidget {
-  const OnBoardingSection({super.key, required this.isOwner});
+  const OnBoardingSection({super.key,  });
 
-  final bool isOwner;
+   
   @override
   State<OnBoardingSection> createState() => _OnBoardingSectionState();
 }
@@ -21,7 +21,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
 
   void goToPreviousPage() {
     if (currentIndex == 0) {
-      goToSelectingMethodScreen();
+      // goToSelectingMethodScreen();
     } else if (currentIndex > 0) {
       currentIndex--;
       pageController.animateToPage(currentIndex,
@@ -37,11 +37,11 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
     }
   }
 
-  void goToSelectingMethodScreen() {
-    if (currentIndex == 0) {
-      Navigator.pushReplacementNamed(context, selectingMethodScreen);
-    }
-  }
+  // void goToSelectingMethodScreen() {
+  //   if (currentIndex == 0) {
+  //     Navigator.pushReplacementNamed(context, selectingMethodScreen);
+  //   }
+  // }
 
   @override
   void initState() {
@@ -63,7 +63,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Expanded(child: SizedBox()),
-          OnBoardingPageview(pageController: pageController, isOwner: widget.isOwner,),
+          OnBoardingPageview(pageController: pageController),
           const SizedBox(
             height: 60,
           ),
@@ -72,7 +72,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton(
+              currentIndex == 0 ? const Text('') :   TextButton(
                   onPressed: goToPreviousPage,
                   child: Text(
                     "Back",
@@ -89,7 +89,7 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25))),
                           onPressed: () {
-                            widget.isOwner? Navigator.pushNamed(context, signInScreen) : Navigator.pushNamed(context, emergencySignInScreen);
+                              Navigator.pushNamed(context, emergencySignInScreen);
                           },
                           child: FittedBox(
                             child: Padding(
