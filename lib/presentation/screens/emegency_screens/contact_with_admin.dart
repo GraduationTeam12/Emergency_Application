@@ -722,123 +722,138 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                       height: MediaQuery.sizeOf(context).height * (1 / 3) -
                           (MediaQuery.sizeOf(context).height * (1 / 3) * (1 / 8)),
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 25),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 15),
-                      decoration:
-                            BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            color: Colors.white, boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 4,
-                          offset: Offset(0, 4),
-                          color: Colors.black26,
-                          spreadRadius: 0,
+                    Stack(
+                      children: [
+                        Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 0),
+                            padding: const EdgeInsets.only(bottom: 50),
+                            
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 25),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 15),
+                            decoration:
+                                  BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  color: Colors.white, boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                color: Colors.black26,
+                                spreadRadius: 0,
+                              ),
+                            ]),
+                            child: Column(
+                              children: [
+                                  Text(
+                                  "Contact Admin",
+                                  style: AppStyle.styleSemiBold25(context).copyWith(color: Colors.black)
+                                ),
+                                const SizedBox(height: 20),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(0, 4),
+                                        blurRadius: 4.0,
+                                        spreadRadius: 0,
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextField(
+                                    controller: _emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration:   InputDecoration(
+                                      labelText: 'Enter your email',
+                                      labelStyle: AppStyle.styleRegular17(context),
+                                      prefixIcon: const Icon(
+                                        Icons.email,
+                                        color: Colors.grey,
+                                      ),
+                                      enabledBorder: const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      focusedBorder: const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.3,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 30),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(0, 4),
+                                        blurRadius: 4.0,
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextField(
+                                    maxLines: 8,
+                                    controller: _messageController,
+                                    decoration: InputDecoration(
+                                      labelText: "Message",
+                                      labelStyle: AppStyle.styleRegular25(context),
+                                      hintText: 'Enter your message here',
+                                      
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.always,
+                                      hintStyle: AppStyle.styleRegular17(context),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius: BorderRadius.circular(15.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius: BorderRadius.circular(15.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 40),
+                              ],
+                            ),
+                          ),
                         ),
-                      ]),
-                      child: Column(
-                        children: [
-                            Text(
-                            "Contact Admin",
-                            style: AppStyle.styleSemiBold25(context).copyWith(color: Colors.black)
-                          ),
-                          const SizedBox(height: 20),
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(0, 4),
-                                  blurRadius: 4.0,
-                                  spreadRadius: 0,
-                                ),
-                              ],
-                            ),
-                            child: TextField(
-                              controller: _emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration:   InputDecoration(
-                                labelText: 'Enter your email',
-                                labelStyle: AppStyle.styleRegular17(context),
-                                prefixIcon: const Icon(
-                                  Icons.email,
-                                  color: Colors.grey,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                    width: 1,
-                                  ),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                    width: 1.3,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 30),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15.0),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(0, 4),
-                                  blurRadius: 4.0,
-                                ),
-                              ],
-                            ),
-                            child: TextField(
-                              maxLines: 8,
-                              controller: _messageController,
-                              decoration: InputDecoration(
-                                labelText: "Message",
-                                labelStyle: AppStyle.styleRegular25(context),
-                                hintText: 'Enter your message here',
-                                
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                                hintStyle: AppStyle.styleRegular17(context),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 40),
-                        ],
-                      ),
+                         Positioned(
+                          bottom: 20,
+                          right: MediaQuery.sizeOf(context).width*0.5-30,
+                          
+                           child: InkWell(
+                                                 onTap: () {},
+                                                 child: Container(
+                                                   height: 60,
+                                                   width: 60,
+                                                   padding: const EdgeInsets.all(10.0),
+                                                   decoration: BoxDecoration(
+                            color: MyColors.premiumColor,
+                            borderRadius: BorderRadius.circular(60),
+                                                   ),
+                                                   child: SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: SvgPicture.asset(
+                                Assets.imagesAuthImagesEmergencyImagesSend),
+                                                   ),
+                                                 ),
+                                               ),
+                         ),
+                    
+                      ],
                     ),
                     const SizedBox(height: 20),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        height: 60,
-                        width: 60,
-                        padding: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: MyColors.premiumColor,
-                          borderRadius: BorderRadius.circular(60),
-                        ),
-                        child: SizedBox(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset(
-                              Assets.imagesAuthImagesEmergencyImagesSend),
-                        ),
-                      ),
-                    ),
                     const SizedBox(height: 40),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
