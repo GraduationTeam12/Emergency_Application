@@ -78,7 +78,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) =>  const CalendarWidget());
 
         case placesScreen:
-        return MaterialPageRoute(builder: (_) =>  const Places(locations: [],));
+        return MaterialPageRoute(builder: (_) =>  const Places());
     }
   }
 }
