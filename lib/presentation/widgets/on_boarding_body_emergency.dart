@@ -11,21 +11,23 @@ class OnBoardingBodyEmergency extends StatelessWidget {
   static List<OnBoardModelPageview> items = [
     OnBoardModelPageview(
         img: Assets.imagesAuthImagesOnBoarding1Emergency,
-        title: "Emergency",
-        description1: "We strive to ensure safety and prompt response",
-        discription2: "to emergencies and we hope to provide you with",
-        discription3: "the greatest benefit."),
+        title: "الطوارئ",
+        description1: "نحن نسعى جاهدين لضمان السلامة والاستجابة السريعة",
+        discription2: "حالات الطوارئ ونأمل أن نقدم لكم أكبر فائدة.",
+        // discription3: "the greatest benefit."
+        ),
     OnBoardModelPageview(
         img: Assets.imagesAuthImagesOnBoarding2Emergency,
-        title: " Location identification",
-        description1: "Quickly obtaining your location in the event of an",
-        discription2: "incident and delivering the appropriate",
-        discription3: "assistance to you in a short time."),
+        title: " تحديد الموقع",
+        description1: "الحصول على موقع الحادث في اسرع وقت في حالة حدوث",
+        discription2: "الحادث وتقديم المساعدة المناسبة لك في وقت قصير.",
+        // discription3: "assistance to you in a short time."
+        ),
     OnBoardModelPageview(
       img: Assets.imagesAuthImagesOnBoarding3Emergency,
-      title: "Report",
-      description1: "Preparation of daily reports on the number of",
-      discription2: "incidents and the most common locations.",
+      title: "التقارير اليومية",
+      description1: " إعداد التقارير اليومية عن عددالحوادث",
+      discription2: "والأماكن الأكثر شيوعا.",
     ),
   ];
 
@@ -59,13 +61,13 @@ class OnBoardingBodyEmergency extends StatelessWidget {
           child: Column(
             children: [
               Text(items[index].description1,
-                  style: AppStyle.styleRegular17(context)
+                  style: AppStyle.styleRegular20(context)
                       .copyWith(fontWeight: FontWeight.w600)),
               Text(items[index].discription2,
-                  style: AppStyle.styleRegular17(context)
+                  style: AppStyle.styleRegular20(context)
                       .copyWith(fontWeight: FontWeight.w600)),
               Text(items[index].discription3 ?? '',
-                  style: AppStyle.styleRegular17(context)
+                  style: AppStyle.styleRegular20(context)
                       .copyWith(fontWeight: FontWeight.w600))
             ],
           ),

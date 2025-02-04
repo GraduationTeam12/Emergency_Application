@@ -14,12 +14,11 @@ class Places extends StatelessWidget {
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         toolbarHeight: MediaQuery.sizeOf(context).height / 8,
-        title: Center(
-          child: Text(
-            'Places',
-            style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
-          ),
+        title: Text(
+          'المواقع',
+          style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
         ),
+        
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -29,137 +28,139 @@ class Places extends StatelessWidget {
         centerTitle: true,
       
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 2,
-            decoration: BoxDecoration(
-              color: Colors.grey[400],
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  spreadRadius: 1,
-                  blurRadius: 3,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height-MediaQuery.of(context).viewPadding.bottom-2-MediaQuery.of(context).viewPadding.top-MediaQuery.sizeOf(context).height / 8,
-            width: MediaQuery.sizeOf(context).width,
-            child: ListView.builder(
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 150,
-                  margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        offset: const Offset(0, 4),
-                        blurRadius: 4.0,
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(5),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 2,
+              decoration: BoxDecoration(
+                color: Colors.grey[400],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    spreadRadius: 1,
+                    blurRadius: 3,
+                    offset: const Offset(0, 2),
                   ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          height: 150,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(5),
-                              topLeft: Radius.circular(5),
-                            ),
-                            image: DecorationImage(
-                              image: AssetImage("assets/images/auth_images/place.jpeg"),
-                              fit: BoxFit.cover,
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height-MediaQuery.of(context).viewPadding.bottom-2-MediaQuery.of(context).viewPadding.top-MediaQuery.sizeOf(context).height / 8,
+              width: MediaQuery.sizeOf(context).width,
+              child: ListView.builder(
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 150,
+                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          offset: const Offset(0, 4),
+                          blurRadius: 4.0,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            height: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(5),
+                                topLeft: Radius.circular(5),
+                              ),
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/auth_images/place.jpeg"),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(5),
-                              bottomRight: Radius.circular(5),
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Spacer(flex: 2,),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Icon(
-                                    Icons.location_on_outlined,
-                                    size: 22,
-                                    color: Color.fromRGBO(211, 33, 33, 1),
-                                  ),
-                                  Container(
-                                    width: MediaQuery.sizeOf(context).width * 0.5,
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: Text(
-                                      "Al Arish, North Sinai, Egypt",
-                                      style: const TextStyle(
-                                        color: Color.fromRGBO(38, 50, 56, 1),
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                      //overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(5),
+                                bottomRight: Radius.circular(5),
                               ),
-                            
-                              const Spacer(flex: 7,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PlacesViewScreen(),));
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.only(bottom: 10, right: 10),
-                                      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: const Color.fromRGBO(61, 100, 152, 1),
-                                      ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Spacer(flex: 2,),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      size: 22,
+                                      color: Color.fromRGBO(211, 33, 33, 1),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.sizeOf(context).width * 0.5,
+                                      padding: const EdgeInsets.only(left: 5),
                                       child: const Text(
-                                        "View",
+                                        "لعريش، شمال سيناء، مصر",
                                         style: TextStyle(
-                                          fontSize: 13,
+                                          color: Color.fromRGBO(38, 50, 56, 1),
                                           fontWeight: FontWeight.w400,
-                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
+                                        //overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              
+                                const Spacer(flex: 7,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const PlacesViewScreen(),));
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.only(bottom: 10, right: 10),
+                                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          color: const Color.fromRGBO(61, 100, 152, 1),
+                                        ),
+                                        child: const Text(
+                                          "عرض",
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

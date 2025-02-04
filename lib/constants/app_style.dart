@@ -28,6 +28,15 @@ abstract class AppStyle {
     );
   }
 
+  static TextStyle styleBold22(BuildContext context) {
+    return  TextStyle(
+      color: const Color(0xFF5C5858),
+      fontSize: getResponsiveFontSize(context , fontSize: 22),
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
   static TextStyle styleBold25(BuildContext context) {
     return  TextStyle(
       color: const Color(0xFF5C5858),

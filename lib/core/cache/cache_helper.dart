@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user_accident/core/data/model/emergency_profile_model.dart';
 
 class CacheHelper {
   static late SharedPreferences sharedPreferences;
@@ -23,6 +26,12 @@ class CacheHelper {
       return await sharedPreferences.setString(key, value);
     }
 
+    if (value is EmergencyProfileModel) {
+       
+      String jsonString = json.encode(value.toJson());
+      return await sharedPreferences.setString(key, jsonString);
+    }
+
     if (value is int) {
       return await sharedPreferences.setInt(key, value);
     } else {
@@ -33,7 +42,14 @@ class CacheHelper {
 //! this method to get data already saved in local database
 
   dynamic getData({required String key}) {
-    return sharedPreferences.get(key);
+    var value = sharedPreferences.get(key);
+    if (key == 'emergency_profile' && value != null) {
+     
+      Map<String, dynamic> jsonMap = json.decode(value as String);
+      return EmergencyProfileModel.fromJson(jsonMap);
+    }
+    return value;
+    
   }
 
 //! remove data using specific key

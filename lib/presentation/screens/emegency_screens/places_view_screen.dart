@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:user_accident/core/helper/location_helper.dart';
 
 class PlacesViewScreen extends StatefulWidget {
   const PlacesViewScreen({super.key});
@@ -71,9 +69,9 @@ class _PlacesViewScreenState extends State<PlacesViewScreen> {
                       Container(
                         width: MediaQuery.sizeOf(context).width * 0.5,
                         padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          "Location",
-                          style: const TextStyle(
+                        child: const Text(
+                          "الموقع",
+                          style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
                               fontSize: 22,
@@ -90,7 +88,7 @@ class _PlacesViewScreenState extends State<PlacesViewScreen> {
                     width: MediaQuery.sizeOf(context).width * 0.5,
                     padding: const EdgeInsets.only(left: 25),
                     child: const Text(
-                      "Al Arish, North Sinai, Egypt",
+                      "لعريش، شمال سيناء، مصر",
                       style: TextStyle(
                           color: Color.fromRGBO(38, 50, 56, 1),
                           fontWeight: FontWeight.w400,
@@ -110,7 +108,7 @@ class _PlacesViewScreenState extends State<PlacesViewScreen> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back)),
+                icon: const Icon(Icons.arrow_forward)),
           )
         ],
       ),

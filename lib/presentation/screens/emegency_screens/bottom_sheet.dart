@@ -13,15 +13,15 @@ class DraggableBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     List<BottomSheetModel> buttons = [
       BottomSheetModel(
-          bottomName: 'Settings',
+          bottomName: 'الاعدادات',
           icon: Icons.settings,
           onPressed: () => Navigator.pushNamed(context, settingScreen)),
       BottomSheetModel(
-          bottomName: 'Reports',
+          bottomName: 'التقارير',
           icon: Icons.report,
           onPressed: () => Navigator.pushNamed(context, reportsScreen)),
       BottomSheetModel(
-          bottomName: 'Notifications',
+          bottomName: 'الاشعارات',
           icon: Icons.notifications,
           onPressed: () => Navigator.pushNamed(context, notificationsScreen)),
     ];

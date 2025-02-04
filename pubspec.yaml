@@ -51,6 +51,8 @@ dependencies:
   shared_preferences: ^2.3.2
   syncfusion_flutter_charts: ^28.1.41
   table_calendar: ^3.0.9
+  socket_io_client: ^3.0.2
+  easy_localization: ^3.0.7+1
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -70,6 +72,7 @@ flutter:
   assets:
     - assets/images/auth_images/
     - assets/images/auth_images/emergency_images/
+    - assets/translations/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

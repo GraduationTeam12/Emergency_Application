@@ -14,7 +14,12 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: MediaQuery.sizeOf(context).width > 600 ? 200 : 120,
+          height:  MediaQuery.sizeOf(context).width > 600
+              ? 250
+              : MediaQuery.sizeOf(context).width > 450 &&
+                      MediaQuery.sizeOf(context).width < 600
+                  ? 150
+                  : 120,
           padding: EdgeInsets.symmetric(
               horizontal: 10,
               vertical: MediaQuery.sizeOf(context).width > 600 ? 25 : 10),
@@ -58,7 +63,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                                 ? 25
                                 : 10,
                           ),
-                          Text('Most Accident places',
+                          Text('معظم أماكن الحوادث',
                               style: AppStyle.styleSemiBold28(context).copyWith(
                                   color: MyColors.premiumColor,
                                   fontFamily: 'Inter')),
@@ -70,7 +75,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                             left: MediaQuery.sizeOf(context).width > 600
                                 ? 81
                                 : 35),
-                        child: Text('3 Places for Today',
+                        child: Text('3 أماكن لهذا اليوم',
                             style: AppStyle.styleRegular20(context).copyWith(
                               fontFamily: 'Roboto',
                             )),
@@ -80,8 +85,8 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                 ],
               ),
               Positioned(
-                top: MediaQuery.sizeOf(context).width > 600 ? 80 : 45,
-                right: 10,
+                top: MediaQuery.sizeOf(context).width > 600 ? 140 : 45,
+                left: 10,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) =>const PlacesScreen(),));
@@ -93,7 +98,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Show',
+                    'عرض',
                     style: AppStyle.styleRegular17(context)
                         .copyWith(color: Colors.white),
                   ),
@@ -151,7 +156,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                                 ? 25
                                 : 10,
                           ),
-                          Text('Number of Car Accident',
+                          Text('عدد حوادث السيارات',
                               style: AppStyle.styleSemiBold28(context).copyWith(
                                   color: Colors.white, fontFamily: 'Inter')),
                         ],
@@ -162,7 +167,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                             left: MediaQuery.sizeOf(context).width > 600
                                 ? 81
                                 : 35),
-                        child: Text('8 Accidents',
+                        child: Text('8 حوادث',
                             style: AppStyle.styleRegular25(context).copyWith(
                               color: Colors.white,
                               fontFamily: 'Roboto',
@@ -174,7 +179,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
               ),
               Positioned(
                 top: MediaQuery.sizeOf(context).width > 600 ? 60 : 45,
-                right: 10,
+                left: 10,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -184,7 +189,7 @@ class ReportAccidentPlacesAndNumberOfAccident extends StatelessWidget {
                           .copyWith(color: Colors.white),
                     ),
                     Text(
-                      'from the last day',
+                      'من اليوم الأخير',
                       style: AppStyle.styleRegular25(context)
                           .copyWith(color: Colors.white),
                     ),
