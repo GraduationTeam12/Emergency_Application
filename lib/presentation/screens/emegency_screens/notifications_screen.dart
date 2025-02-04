@@ -1,10 +1,12 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, library_prefixes, avoid_print
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:user_accident/constants/app_style.dart';
-import 'package:user_accident/constants/colors.dart';
-import 'package:user_accident/constants/pages_name.dart';
-import 'package:user_accident/presentation/models/notification_model.dart';
+import 'package:user_accident/core/api/end_points.dart';
+import 'package:user_accident/core/cache/cache_helper.dart';
+import 'package:user_accident/presentation/widgets/notifications_body.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -14,32 +16,90 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-  static List<NotificationModel> items = [
-    NotificationModel(
-        name: 'Ayman Makram',
-        location: 'Plateau, Al Haram, Giza Governorate, Egypt',
-        img: 'assets/images/auth_images/emergency_images/aymanjpg.jpg'),
-    NotificationModel(
-        name: 'Ayman Makram',
-        location: 'Plateau, Al Haram, Giza Governorate, Egypt',
-        img: 'assets/images/auth_images/emergency_images/ayman2.jpg'),
-    NotificationModel(
-        name: 'Ayman Makram',
-        location: 'Plateau, Al Haram, Giza Governorate, Egypt',
-        img: 'assets/images/auth_images/emergency_images/ayman3.jpg'),
-    NotificationModel(
-        name: 'Ayman Makram',
-        location: 'Plateau, Al Haram, Giza Governorate, Egypt',
-        img: 'assets/images/auth_images/emergency_images/ayman4.jpg'),
-    NotificationModel(
-        name: 'Ayman Makram',
-        location: 'Plateau, Al Haram, Giza Governorate, Egypt',
-        img: 'assets/images/auth_images/emergency_images/aymanjpg.jpg'),
-    NotificationModel(
-        name: 'Ayman Makram',
-        location: 'Plateau, Al Haram, Giza Governorate, Egypt',
-        img: 'assets/images/auth_images/emergency_images/ayman2.jpg'),
-  ];
+   late IO.Socket socket;
+  List<dynamic> notifications = [];
+  String token = CacheHelper().getData(key: ApiKeys.token);
+  final String notificationsKey = 'cached_notifications';  
+
+  @override
+  void initState() {
+    super.initState();
+     
+    _loadCachedNotifications();
+    _connectToSocket();
+  }
+
+   
+  Future<void> _loadCachedNotifications() async {
+    var cachedData = CacheHelper().getData(key: notificationsKey);
+    if (cachedData != null) {
+      setState(() {
+        notifications = jsonDecode(cachedData);
+      });
+    }
+  }
+
+   
+  Future<void> _saveNotificationsToCache(List<dynamic> data) async {
+    await CacheHelper().saveData(
+      key: notificationsKey,
+      value: jsonEncode(data),
+    );
+  }
+
+  void _connectToSocket() {
+    socket = IO.io(
+      'https://satars.onrender.com/',
+      IO.OptionBuilder()
+          .setTransports(['websocket'])
+          .setExtraHeaders({'Authorization': 'Bearer $token'})
+          .disableAutoConnect()
+          .build(),
+    );
+
+    socket.onConnect((_) {
+      print('Connected to server');
+    });
+
+    socket.on('notificationUpdate', (data) async {
+      print('Data received: $data');
+      
+       
+      var newNotifications = jsonDecode(jsonEncode(data));
+      
+       
+      if (!_areNotificationsEqual(notifications, newNotifications)) {
+        setState(() {
+          notifications = newNotifications;
+        });
+         
+        await _saveNotificationsToCache(notifications);
+      }
+    });
+
+    socket.onDisconnect((_) {
+      print('Disconnected from server');
+    });
+
+    socket.connect();
+  }
+
+   
+  bool _areNotificationsEqual(List<dynamic> old, List<dynamic> newNotifications) {
+    if (old.length != newNotifications.length) return false;
+    for (int i = 0; i < old.length; i++) {
+      if (old[i]['id'] != newNotifications[i]['id']) return false;  
+    }
+    return true;
+  }
+
+  @override
+  void dispose() {
+    socket.disconnect();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,14 +109,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         backgroundColor: Colors.white,
         toolbarHeight: MediaQuery.sizeOf(context).height / 8,
         title: Text(
-                  'Notification',
-                  style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
-                ),
+          'الاشعارات',
+          style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
+          
           children: [
             Container(
               width: double.infinity,
@@ -73,134 +134,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ],
               ),
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Container(
-                    height: MediaQuery.sizeOf(context).width > 600 ? 150 : 100,
-                    decoration: BoxDecoration(
-                      color: MyColors.premiumColor.withOpacity(0.8),
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 4,
-                          offset: Offset(0, 4),
-                        )
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipOval(
-                              child: Image.asset(
-                                  width: MediaQuery.of(context).size.width > 600
-                                      ? 100
-                                      : 60,
-                                  height:
-                                      MediaQuery.of(context).size.width > 600
-                                          ? 100
-                                          : 60,
-                                  fit: BoxFit.cover,
-                                  items[index].img)),
-
-                          const SizedBox(width: 5),
-
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text('    ',
-                                        style: TextStyle(
-                                          fontSize:
-                                              MediaQuery.sizeOf(context).width >
-                                                      600
-                                                  ? 35
-                                                  : 20,
-                                        )),
-                                    FittedBox(
-                                      child: Text(
-                                        items[index].name,
-                                        style: AppStyle.styleSemiBold25(context)
-                                            .copyWith(color: Colors.amber),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.place_outlined,
-                                      color: Colors.amber,
-                                      size:
-                                          MediaQuery.sizeOf(context).width > 600
-                                              ? 35
-                                              : 20,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        items[index].location,
-                                        style: AppStyle.styleRegular16(context)
-                                            .copyWith(color: Colors.white),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          // Button at bottom-right
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const Spacer(),
-                              SizedBox(
-                                height: 27,
-                                width: 90,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.amber,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, userInfoScreen);
-                                  },
-                                  child: FittedBox(
-                                    child: Text(
-                                      'Check',
-                                      style: AppStyle.styleRegular30(context)
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            )
+            notifications.isEmpty
+                ? const Text('')
+                : NotificationsBody(notifications: notifications)
           ],
         ),
       ),
     );
   }
 }
+
+

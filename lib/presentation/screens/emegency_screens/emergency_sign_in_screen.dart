@@ -20,7 +20,7 @@ class _EmergencySignInScreenState extends State<EmergencySignInScreen> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: buildCustomAppBar(context, 'Welcome Back !'),
+        appBar: buildCustomAppBar(context, 'مرحبًا بعودتك !'),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: CustomScrollView(

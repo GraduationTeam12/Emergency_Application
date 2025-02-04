@@ -22,7 +22,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     return Container(
       margin: const EdgeInsets.all(0),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 244, 184, 4),
+        color:   Colors.white,
         borderRadius: BorderRadius.circular(15),
       ),
       child: SingleChildScrollView(
@@ -30,6 +30,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TableCalendar(
+              locale: 'ar',
               firstDay: DateTime(2020, 1, 1),
               lastDay: DateTime(2025, 12, 31),
               focusedDay: _focusedDay,
@@ -56,31 +57,31 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                 formatButtonVisible: true,
                 formatButtonShowsNext: false,
                 formatButtonDecoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.black.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 formatButtonTextStyle: AppStyle.styleRegular20(context)
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.black),
                 titleCentered: true,
                 leftChevronIcon: Icon(
                   Icons.chevron_left,
-                  color: Colors.white,
+                  color: MyColors.premiumColor,
                   size: MediaQuery.sizeOf(context).width > 600 ? 50 : null,
                 ),
                 rightChevronIcon: Icon(
                   Icons.chevron_right,
-                  color: Colors.white,
+                  color: MyColors.premiumColor,
                   size: MediaQuery.sizeOf(context).width > 600 ? 50 : null,
                 ),
                 titleTextStyle: AppStyle.styleRegular20(context)
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.black),
               ),
         
               calendarStyle: CalendarStyle(
                 defaultTextStyle: AppStyle.styleRegular20(context)
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.black),
                 weekendTextStyle: AppStyle.styleRegular20(context)
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.black),
                 selectedDecoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
                   shape: BoxShape.circle,
@@ -91,17 +92,17 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                 ),
                 outsideDaysVisible: false,
                 outsideTextStyle: AppStyle.styleRegular20(context)
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.black),
                 holidayTextStyle: AppStyle.styleRegular20(context)
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.black),
                 weekendDecoration: const BoxDecoration(shape: BoxShape.circle),
               ),
         
               daysOfWeekStyle: DaysOfWeekStyle(
-                  weekdayStyle: AppStyle.styleRegular20(context)
-                      .copyWith(color: Colors.white),
-                  weekendStyle: AppStyle.styleRegular20(context)
-                      .copyWith(color: Colors.white),
+                  weekdayStyle: AppStyle.styleRegular16(context)
+                      .copyWith(color: Colors.black),
+                  weekendStyle: AppStyle.styleRegular16(context)
+                      .copyWith(color: Colors.black),
                   decoration: const BoxDecoration(color: Colors.transparent)),
         
               startingDayOfWeek: StartingDayOfWeek.saturday,
@@ -148,7 +149,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
               height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(right: 10),
               child: SizedBox(
                  
                 child: ElevatedButton(
@@ -162,7 +163,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                       Navigator.pop(context);
                     },
                     child: FittedBox(
-                      child: Text('Select Day',
+                      child: Text(' حدد اليوم',
                           style: AppStyle.styleBold20(context)
                               .copyWith(color: Colors.white)),
                     )),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
@@ -75,8 +73,8 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
               currentIndex == 0 ? const Text('') :   TextButton(
                   onPressed: goToPreviousPage,
                   child: Text(
-                    "Back",
-                    style: AppStyle.styleSemiBold18(context)
+                    "رجوع",
+                    style: AppStyle.styleSemiBold20(context)
                         .copyWith(color: const Color(0xFF5C5858)),
                   )),
               currentIndex == 2
@@ -95,8 +93,8 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "Start",
-                                style: AppStyle.styleRegular16(context)
+                                "بدأ",
+                                style: AppStyle.styleRegular20(context)
                                     .copyWith(color: Colors.white),
                               ),
                             ),
@@ -104,15 +102,20 @@ class _OnBoardingSectionState extends State<OnBoardingSection> {
                     )
                   : GestureDetector(
                       onTap: goToNextPage,
-                      child: SizedBox(
+                      child: Container(
                           height:
                               MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
                           width:
                               MediaQuery.sizeOf(context).width > 600 ? 65 : 35,
-                          child: SvgPicture.asset(
-                            Assets.imagesAuthImagesNext,
-                            // fit: BoxFit.contain,
-                          )),
+                              decoration: const ShapeDecoration(
+                                color: MyColors.premiumColor,
+                                shape: CircleBorder()),
+                          child:   Icon(Icons.arrow_forward, color: Colors.white, size: MediaQuery.sizeOf(context).width > 600 ? 35 : null, )
+                          //  SvgPicture.asset(
+                          //   Assets.imagesAuthImagesNext,
+                          //   // fit: BoxFit.contain,
+                          // )
+                          ),
                     ),
             ],
           ),

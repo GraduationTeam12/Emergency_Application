@@ -25,8 +25,8 @@ class OnBoardingScreen extends StatelessWidget {
                       Navigator.pushNamed(context, emergencySignInScreen);
                     },
                     child: Text(
-                      "Skip",
-                      style: AppStyle.styleBold16(context),
+                      "تخطي",
+                      style: AppStyle.styleBold22(context),
                     )),
               )
             ],

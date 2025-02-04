@@ -24,7 +24,7 @@ class _ReportsScreeenState extends State<ReportsScreeen> {
         backgroundColor: Colors.white,
         toolbarHeight: MediaQuery.sizeOf(context).height / 8,
         title: Text(
-          'Report',
+          'التقارير',
           style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
         ),
         centerTitle: true,

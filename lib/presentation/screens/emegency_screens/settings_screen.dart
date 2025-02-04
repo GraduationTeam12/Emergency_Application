@@ -32,7 +32,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: Colors.white,
         toolbarHeight: MediaQuery.sizeOf(context).height / 8,
         title: Text(
-          'Settings',
+          'الاعدادات',
           style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
         ),
         centerTitle: true,
@@ -61,7 +61,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 EmergencySettingListView(
                   leading: Text(
-                    'Profile',
+                    ' حسابي',
                     style: AppStyle.styleRegular25(context),
                   ),
                   trailing: Transform.rotate(
@@ -87,7 +87,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 EmergencySettingListView(
                   leading: Text(
-                    'Reports',
+                    'التقارير',
                     style: AppStyle.styleRegular25(context),
                   ),
                   trailing: Transform.rotate(
@@ -113,7 +113,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 EmergencySettingListView(
                   leading: Text(
-                    'Places',
+                    'اكثر اماكن الحوادث',
                     style: AppStyle.styleRegular25(context),
                   ),
                   trailing: Transform.rotate(
@@ -140,7 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 EmergencySettingListView(
                   leading: Text(
-                    'Log Out',
+                    'تسجيل الخروج',
                     style: AppStyle.styleRegular25(context),
                   ),
                   trailing: Transform.rotate(

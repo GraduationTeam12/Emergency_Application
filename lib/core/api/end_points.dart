@@ -1,9 +1,12 @@
 class EndPoint {
   static const String baseUrl = 'https://satars.onrender.com/';
-  static const String emergencyLogin = 'emergencies/login';
+  static const String emergencyLogin = 'api/v1/emergencies/login';
+  static const String emergencyInfo = 'api/v1/emergencies/';
  
 
-   
+   static String getEmergency(id) {
+    return "$emergencyInfo$id";
+  }
 }
 
 class ApiKeys {

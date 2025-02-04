@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/constants/pages_name.dart';
-import 'package:user_accident/core/helper/location_helper.dart';
+import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/bottom_sheet.dart';
 
 class HomeScreenEmergency extends StatefulWidget {
@@ -16,9 +14,6 @@ class HomeScreenEmergency extends StatefulWidget {
 
 class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
   GoogleMapController? mapController;
-  static Position? position;
-
-  // static const LatLng _center = LatLng(30.0444, 31.2357);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -26,21 +21,17 @@ class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
 
   static final CameraPosition _myCurrentLocationCameraPosition = CameraPosition(
     bearing: 0.0,
-    target: LatLng(position!.latitude, position!.longitude),
+    target: LatLng(
+        CacheHelper().getData(key: 'lat'), CacheHelper().getData(key: 'lng')),
     tilt: 0.0,
     zoom: 17,
   );
 
   @override
-  initState() {
-    super.initState();
-    getMyCurrentLocation();
-  }
-
-  Future<void> getMyCurrentLocation() async {
-    position = await LocationHelper.getCurrentLocation().whenComplete(() {
-      setState(() {});
-    });
+  void dispose() {
+    mapController?.dispose();
+    mapController = null;  
+    super.dispose();
   }
 
   @override
@@ -48,23 +39,26 @@ class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
     return SafeArea(
       child: Scaffold(
           body: Stack(fit: StackFit.expand, children: [
-        position != null
-            ? GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: _myCurrentLocationCameraPosition,
-                mapType: MapType.normal,
-                myLocationEnabled: true,
-                zoomControlsEnabled: false,
-                myLocationButtonEnabled: false,
-              )
-            : const Center(
-                child: CircularProgressIndicator(
-                  color: MyColors.premiumColor,
-                ),
-              ),
+        GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: _myCurrentLocationCameraPosition,
+          mapType: MapType.terrain,
+          myLocationEnabled: true,
+          zoomControlsEnabled: true,
+          myLocationButtonEnabled: false,
+          markers: {
+            Marker(
+              markerId: const MarkerId('1'),
+              position: LatLng( CacheHelper().getData(key: 'lat'), CacheHelper().getData(key: 'lng')), // ضروري
+              onTap: () {},
+              icon: BitmapDescriptor.defaultMarkerWithHue(
+                  BitmapDescriptor.hueBlue),
+            ),
+          },
+        ),
         Positioned(
           top: 16,
-          left: 16,
+          right: 16,
           child: InkWell(
             onTap: () {
               Navigator.pushNamed(context, notificationsScreen);

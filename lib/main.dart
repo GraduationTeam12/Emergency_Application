@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +12,7 @@ import 'package:user_accident/routing.dart';
 Future<void> main() async {
   
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   CacheHelper().init();
   // The application works in portrait orientation only
   SystemChrome.setPreferredOrientations(
@@ -21,8 +23,15 @@ Future<void> main() async {
   );
   runApp(DevicePreview(
     enabled: true,
-    builder: (context)=> MyApp(
-      appRouter: AppRouter(),
+    builder: (context)=> EasyLocalization(
+      supportedLocales: const [Locale('ar'),],
+      fallbackLocale: const Locale('ar'),
+      startLocale: const Locale('ar'),
+        path:
+            'assets/translations',
+      child: MyApp(
+        appRouter: AppRouter(),
+      ),
     ),
   ));
 }
@@ -36,6 +45,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: const Locale('ar'),
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -43,7 +55,7 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: appRouter.generationRoute,
       initialRoute: token == null ? splashScreen : homeEmergencyScreen,
-      // initialRoute:  userInfoScreen,
+      // initialRoute:  emergencySignInScreen,
     );
   }
 }

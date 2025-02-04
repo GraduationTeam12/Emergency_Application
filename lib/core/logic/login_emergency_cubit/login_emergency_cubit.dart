@@ -25,15 +25,20 @@ class LoginEmergencyCubit extends Cubit<LoginEmergencyState> {
     final result = await authRepoEmergency.login(
         email: emailController.text, password: passwordController.text);
 
-    result.fold((l) => emit(LoginErrorEmergencyState(errorMessage: l)), (r) async {
+    result.fold((l) => emit(LoginErrorEmergencyState(errorMessage: l)),
+        (r) async {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
+      final lat = r.data['location']['coordinates'][0];
+      final lng = r.data['location']['coordinates'][1];
       await CacheHelper().saveData(key: ApiKeys.token, value: r.token);
       await CacheHelper()
           .saveData(key: ApiKeys.id, value: decodedToken[ApiKeys.id]);
 
+      CacheHelper().saveData(key: 'lat', value: lat);
+      CacheHelper().saveData(key: 'lng', value: lng);
+      
       loginModel = r;
       emit(LoginSuccessEmergencyState(message: r.message));
     });
   }
-
 }

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/api/dio_consumer.dart';
 import 'package:user_accident/core/data/repo/auth_repo_emergency.dart';
+import 'package:user_accident/core/logic/emergencies_features/emergencies_features_cubit.dart';
 import 'package:user_accident/core/logic/login_emergency_cubit/login_emergency_cubit.dart';
 import 'package:user_accident/core/logic/logout_cubit/logout_cubit.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/contact_with_admin.dart';
@@ -27,16 +28,9 @@ class AppRouter {
       case splashScreen:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
 
-       
-
       case onBoardingScreen:
-         
         return MaterialPageRoute(
-            builder: (context) => const OnBoardingScreen(
-                   
-                ));
-
-       
+            builder: (context) => const OnBoardingScreen());
 
       case emergencySignInScreen:
         return MaterialPageRoute(
@@ -45,8 +39,6 @@ class AppRouter {
                       AuthRepoEmergency(apiConsumer: DioConsumer(dio: Dio()))),
                   child: const EmergencySignInScreen(),
                 ));
-
-     
 
       case homeEmergencyScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreenEmergency());
@@ -69,16 +61,20 @@ class AppRouter {
 
       case emergencyProfileScreen:
         return MaterialPageRoute(
-            builder: (_) => const EmergencyProfileScreen());
+            builder: (_) => BlocProvider(
+                  create: (context) => EmergenciesFeaturesCubit(
+                      AuthRepoEmergency(apiConsumer: DioConsumer(dio: Dio()))),
+                  child: const EmergencyProfileScreen(),
+                ));
 
       case contactWithAdminScreen:
         return MaterialPageRoute(builder: (_) => const ContactWithAdmin());
 
       case calendarScreen:
-        return MaterialPageRoute(builder: (_) =>  const CalendarWidget());
+        return MaterialPageRoute(builder: (_) => const CalendarWidget());
 
-        case placesScreen:
-        return MaterialPageRoute(builder: (_) =>  const Places());
+      case placesScreen:
+        return MaterialPageRoute(builder: (_) => const Places());
     }
   }
 }

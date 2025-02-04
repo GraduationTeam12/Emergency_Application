@@ -746,7 +746,7 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                             child: Column(
                               children: [
                                   Text(
-                                  "Contact Admin",
+                                  "تواصل مع المشرف",
                                   style: AppStyle.styleSemiBold25(context).copyWith(color: Colors.black)
                                 ),
                                 const SizedBox(height: 20),
@@ -766,7 +766,7 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                                     controller: _emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     decoration:   InputDecoration(
-                                      labelText: 'Enter your email',
+                                      labelText: 'ادخل بريدك الالكتروني',
                                       labelStyle: AppStyle.styleRegular17(context),
                                       prefixIcon: const Icon(
                                         Icons.email,
@@ -804,9 +804,9 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                                     maxLines: 8,
                                     controller: _messageController,
                                     decoration: InputDecoration(
-                                      labelText: "Message",
-                                      labelStyle: AppStyle.styleRegular25(context),
-                                      hintText: 'Enter your message here',
+                                      labelText: "رسالتك",
+                                      labelStyle: AppStyle.styleRegular30(context),
+                                      hintText: 'اكتب رسالتك هنا',
                                       
                                       floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
@@ -859,8 +859,8 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                           Text(
-                          "Follow Us",
-                          style:  AppStyle.styleSemiBold16(context)
+                          "تواصل معنا",
+                          style:  AppStyle.styleSemiBold20(context).copyWith(color: Color(0xFF5C5858)),
                         ),
                         const SizedBox(height: 15),
                         Row(
@@ -886,7 +886,7 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
               ),
               Positioned(
                   top: MediaQuery.sizeOf(context).height * (1 / 3) * (1 / 8),
-                  left: 25,
+                  right: 25,
                   child: InkWell(
                       onTap: () {
                         Navigator.pop(context);

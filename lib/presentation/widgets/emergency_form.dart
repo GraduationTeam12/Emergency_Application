@@ -69,13 +69,13 @@ class _EmergencyFormState extends State<EmergencyForm> {
                         size: MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
                       ),
                     ),
-                    labelText: "E-mail",
-                    labelStyle: AppStyle.styleRegular16(context),
+                    labelText: "البريد الالكتروني",
+                    labelStyle: AppStyle.styleRegular17(context),
                     focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
                             width: 2, color: MyColors.premiumColor)),
-                    floatingLabelStyle: AppStyle.styleRegular16(context)
+                    floatingLabelStyle: AppStyle.styleRegular17(context)
                         .copyWith(
                             color: MyColors.premiumColor,
                             fontWeight: FontWeight.w600),
@@ -89,7 +89,7 @@ class _EmergencyFormState extends State<EmergencyForm> {
                     border: buildBorder()),
                 validator: (email) {
                   if (email!.isEmpty) {
-                    return "Please enter emergency email";
+                    return " من فضلك ادخل البريد الالكتروني";
                   }
                   return null;
                 },
@@ -137,8 +137,8 @@ class _EmergencyFormState extends State<EmergencyForm> {
                                     ? 45
                                     : 25,
                               )),
-                    labelText: "Password",
-                    labelStyle: AppStyle.styleRegular16(context),
+                    labelText: "كلمة المرور",
+                    labelStyle: AppStyle.styleRegular17(context),
                     focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(
@@ -157,23 +157,12 @@ class _EmergencyFormState extends State<EmergencyForm> {
                     border: buildBorder()),
                 validator: (password) {
                   if (password!.isEmpty) {
-                    return "Please enter emergency password";
+                    return "من فضلك ادخل كلمة المرور";
                   }
                   return null;
                 },
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, contactWithAdminScreen);
-                    },
-                    child: Text(
-                      "Contact Admin",
-                      style: AppStyle.styleSemiBold16(context)
-                          .copyWith(color: MyColors.premiumColor),
-                    )),
-              ),
+            
               const SizedBox(
                 height: 30,
               ),
@@ -196,10 +185,24 @@ class _EmergencyFormState extends State<EmergencyForm> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
                     child: Text(
-                      "Log In",
+                      "تسجيل الدخول",
                       style: AppStyle.styleSemiBold18(context),
                     ),
                   )),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, contactWithAdminScreen);
+                        },
+                        child: Text(
+                          "تواصل مع المشرف",
+                          style: AppStyle.styleBold22(context)
+                              .copyWith(color: MyColors.premiumColor),
+                        )),
             ],
           ),
         );

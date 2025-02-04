@@ -39,10 +39,12 @@ void showLogOutDialog(BuildContext context) {
                     const SizedBox(
                       height: 10,
                     ),
-                      Text(
-                      "Are you sure you want to log out?",
-                      style:  AppStyle.styleSemiBold20(context)
-                    ),
+                      FittedBox(
+                        child: Text(
+                        "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+                        style:  AppStyle.styleSemiBold25(context).copyWith(color: Colors.black),
+                                            ),
+                      ),
                     const SizedBox(
                       height: 25,
                     ),
@@ -66,7 +68,7 @@ void showLogOutDialog(BuildContext context) {
                                   EdgeInsets.only(
                                       right: 20, left: 20, top: 6, bottom: 6))),
                           child:   Text(
-                            "NO",
+                            "لا",
                             style:  AppStyle.styleBold16(context).copyWith(color: Colors.white)
                           ),
                         ),
@@ -92,7 +94,7 @@ void showLogOutDialog(BuildContext context) {
                                   EdgeInsets.only(
                                       right: 20, left: 20, top: 6, bottom: 6))),
                           child:   Text(
-                            "Yes",
+                            "نعم",
                             style: AppStyle.styleBold16(context)
                           ),
                         )
