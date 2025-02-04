@@ -52,7 +52,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       'https://satars.onrender.com/',
       IO.OptionBuilder()
           .setTransports(['websocket'])
-          .setExtraHeaders({'Authorization': 'Bearer $token'})
+          // .setExtraHeaders({'Authorization': 'Bearer $token'})
           .disableAutoConnect()
           .build(),
     );
@@ -61,7 +61,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       print('Connected to server');
     });
 
-    socket.on('notificationUpdate', (data) async {
+    socket.on('loadNotifications', (data) async {
       print('Data received: $data');
       
        

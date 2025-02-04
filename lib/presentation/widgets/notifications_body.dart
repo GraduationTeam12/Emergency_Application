@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_style.dart';
- 
+import 'package:user_accident/presentation/widgets/dialog_info_user_accident.dart';
 
 class NotificationsBody extends StatelessWidget {
   const NotificationsBody({
@@ -13,19 +13,31 @@ class NotificationsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: notifications.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 20, vertical: 10),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: notifications.length,
+      itemBuilder: (context, index) {
+        final lat = notifications[index]['sensors']['gps']['lat'];
+        final long = notifications[index]['sensors']['gps']['long'];
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: InkWell(
+            onTap: () {
+              showUserInfoDialog(
+                context,
+                lat: lat,
+                long: long,
+                userName: notifications[index]['user']['username'],
+                phoneNumber: notifications[index]['user']['phone'],
+                address: notifications[index]['user']['address'],
+                nationalId: notifications[index]['user']['nationalId'],
+                age: notifications[index]['user']['age'],
+              );
+            },
             child: Container(
-              height: MediaQuery.sizeOf(context).width > 600
-                  ? 150
-                  : 90,
+              height: MediaQuery.sizeOf(context).width > 600 ? 150 : 90,
               decoration: BoxDecoration(
-                color: Colors.white ,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: const [
                   BoxShadow(
@@ -39,29 +51,25 @@ class NotificationsBody extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [         
+                  children: [
                     const SizedBox(width: 5),
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           FittedBox(
                             child: Text(
                               notifications[index]['title'],
                               style: AppStyle.styleSemiBold25(
-                                      context , )
-                                  .copyWith(
-                                      color: Colors.black),
+                                context,
+                              ).copyWith(color: Colors.black),
                             ),
                           ),
                           Expanded(
                             child: Text(
                               notifications[index]['message'],
-                              style: AppStyle.styleRegular16(
-                                      context)
-                                  .copyWith(
-                                      color: const Color(0xFF5C5858)),
+                              style: AppStyle.styleRegular16(context)
+                                  .copyWith(color: const Color(0xFF5C5858)),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                             ),
@@ -69,7 +77,7 @@ class NotificationsBody extends StatelessWidget {
                         ],
                       ),
                     ),
-    
+
                     // Button at bottom-right
                     // Column(
                     //   mainAxisAlignment: MainAxisAlignment.end,
@@ -107,8 +115,9 @@ class NotificationsBody extends StatelessWidget {
                 ),
               ),
             ),
-          );
-        },
-      );
+          ),
+        );
+      },
+    );
   }
 }
