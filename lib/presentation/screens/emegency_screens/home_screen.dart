@@ -44,12 +44,12 @@ class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
           initialCameraPosition: _myCurrentLocationCameraPosition,
           mapType: MapType.terrain,
           myLocationEnabled: true,
-          zoomControlsEnabled: true,
+          zoomControlsEnabled: false,
           myLocationButtonEnabled: false,
           markers: {
             Marker(
               markerId: const MarkerId('1'),
-              position: LatLng( CacheHelper().getData(key: 'lat'), CacheHelper().getData(key: 'lng')), // ضروري
+              position: LatLng( CacheHelper().getData(key: 'lat'), CacheHelper().getData(key: 'lng')), 
               onTap: () {},
               icon: BitmapDescriptor.defaultMarkerWithHue(
                   BitmapDescriptor.hueBlue),
