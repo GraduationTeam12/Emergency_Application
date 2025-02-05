@@ -17,7 +17,7 @@ class _PlacesViewScreenState extends State<PlacesViewScreen> {
     mapController = controller;
   }
 
-  static final CameraPosition _myCurrentLocationCameraPosition = CameraPosition(
+  static const CameraPosition _myCurrentLocationCameraPosition = CameraPosition(
     bearing: 0.0,
     target: LatLng(31.13580925794313, 33.809837393253),
     tilt: 0.0,
@@ -48,9 +48,9 @@ class _PlacesViewScreenState extends State<PlacesViewScreen> {
                 MediaQuery.sizeOf(context).height / 3.5,
             child: Container(
               width: MediaQuery.sizeOf(context).width,
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               height: MediaQuery.sizeOf(context).height / 5,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),

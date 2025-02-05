@@ -54,6 +54,8 @@ dependencies:
   socket_io_client: ^3.0.2
   easy_localization: ^3.0.7+1
   flutter_polyline_points: ^2.0.0
+  firebase_messaging: ^15.2.1
+  flutter_local_notifications: ^18.0.1
 
 dev_dependencies:
   flutter_lints: ^4.0.0

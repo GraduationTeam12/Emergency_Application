@@ -7,6 +7,7 @@ import 'package:user_accident/core/data/model/emergency_profile_model.dart';
 import 'package:user_accident/core/data/model/model.dart';
 import 'package:user_accident/core/error/exception_response.dart';
 import 'package:user_accident/core/error/exceptions.dart';
+import 'package:user_accident/presentation/widgets/get_fcm_token.dart';
 
 class AuthRepoEmergency {
   final ApiConsumer apiConsumer;
@@ -21,7 +22,11 @@ class AuthRepoEmergency {
     try {
       final response = await apiConsumer.post(
         EndPoint.emergencyLogin,
-        data: {ApiKeys.email: email, ApiKeys.password: password},
+        data: {
+          ApiKeys.email: email,
+          ApiKeys.password: password,
+          'fcmToken': PushNotificationsService.token
+        },
       );
       return Right(LoginModel.fromJson(response));
     } on ServerException catch (error) {
@@ -44,10 +49,10 @@ class AuthRepoEmergency {
           'Authorization': 'Bearer $token',
         },
       );
-      
+
       final EmergencyProfileModel emergencyProfile =
           EmergencyProfileModel.fromJson(response['data']);
-      
+
       return Right(emergencyProfile);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);

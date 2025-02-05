@@ -16,20 +16,19 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-   late IO.Socket socket;
+  late IO.Socket socket;
   List<dynamic> notifications = [];
   String token = CacheHelper().getData(key: ApiKeys.token);
-  final String notificationsKey = 'cached_notifications';  
+  final String notificationsKey = 'cached_notifications';
 
   @override
   void initState() {
     super.initState();
-     
+
     _loadCachedNotifications();
     _connectToSocket();
   }
 
-   
   Future<void> _loadCachedNotifications() async {
     var cachedData = CacheHelper().getData(key: notificationsKey);
     if (cachedData != null) {
@@ -39,7 +38,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     }
   }
 
-   
   Future<void> _saveNotificationsToCache(List<dynamic> data) async {
     await CacheHelper().saveData(
       key: notificationsKey,
@@ -52,27 +50,26 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       'https://satars.onrender.com/',
       IO.OptionBuilder()
           .setTransports(['websocket'])
-          // .setExtraHeaders({'Authorization': 'Bearer $token'})
+          .setExtraHeaders({'Authorization': 'Bearer $token'})
           .disableAutoConnect()
           .build(),
     );
 
     socket.onConnect((_) {
       print('Connected to server');
+      print(token);
     });
 
     socket.on('loadNotifications', (data) async {
       print('Data received: $data');
-      
-       
+
       var newNotifications = jsonDecode(jsonEncode(data));
-      
-       
+
       if (!_areNotificationsEqual(notifications, newNotifications)) {
         setState(() {
           notifications = newNotifications;
         });
-         
+
         await _saveNotificationsToCache(notifications);
       }
     });
@@ -84,11 +81,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     socket.connect();
   }
 
-   
-  bool _areNotificationsEqual(List<dynamic> old, List<dynamic> newNotifications) {
+  bool _areNotificationsEqual(
+      List<dynamic> old, List<dynamic> newNotifications) {
     if (old.length != newNotifications.length) return false;
     for (int i = 0; i < old.length; i++) {
-      if (old[i]['id'] != newNotifications[i]['id']) return false;  
+      if (old[i]['id'] != newNotifications[i]['id']) return false;
     }
     return true;
   }
@@ -98,7 +95,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     socket.disconnect();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +113,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
-          
           children: [
             Container(
               width: double.infinity,
@@ -143,5 +138,3 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     );
   }
 }
-
-

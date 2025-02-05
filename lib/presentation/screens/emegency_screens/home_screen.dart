@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:user_accident/constants/pages_name.dart';
@@ -9,11 +9,12 @@ class HomeScreenEmergency extends StatefulWidget {
   const HomeScreenEmergency({super.key});
 
   @override
-  State<HomeScreenEmergency> createState() => _HomeScreenEmergencyState();
+  State<HomeScreenEmergency> createState() => HomeScreenEmergencyState();
 }
 
-class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
+class HomeScreenEmergencyState extends State<HomeScreenEmergency> {
   GoogleMapController? mapController;
+  
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -26,6 +27,8 @@ class _HomeScreenEmergencyState extends State<HomeScreenEmergency> {
     tilt: 0.0,
     zoom: 17,
   );
+
+  
 
   @override
   void dispose() {

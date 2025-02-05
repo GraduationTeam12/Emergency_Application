@@ -7,9 +7,12 @@ class LogoutCubit extends Cubit<LogoutState> {
   LogoutCubit() : super(LogoutInitial());
 
   Future<void> logout() async {
-    await CacheHelper().removeData(key: ApiKeys.token);
-    CacheHelper().removeData(key: 'lat');
-    CacheHelper().removeData(key: 'lng');
+     await Future.wait([
+      CacheHelper().removeData(key: ApiKeys.token),
+      CacheHelper().removeData(key: 'lat'),
+      CacheHelper().removeData(key: 'lng'),
+    ]);
+    
     emit(LogoutSuccessState());
     
   }

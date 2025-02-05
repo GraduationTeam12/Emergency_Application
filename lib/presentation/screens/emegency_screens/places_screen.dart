@@ -57,6 +57,6 @@ class PlacesScreen extends StatefulWidget {
 class _PlacesScreenState extends State<PlacesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Places();
+    return const Places();
   }
 }

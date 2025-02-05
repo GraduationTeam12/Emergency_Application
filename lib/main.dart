@@ -7,6 +7,8 @@ import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/api/end_points.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/firebase_options.dart';
+import 'package:user_accident/presentation/widgets/get_fcm_token.dart';
+import 'package:user_accident/presentation/widgets/receiving_notifications.dart';
 import 'package:user_accident/routing.dart';
 
 Future<void> main() async {
@@ -21,6 +23,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await Future.wait([
+    PushNotificationsService.init(),
+    ReceivingNotifications.init(),
+  ]);
   runApp(DevicePreview(
     enabled: true,
     builder: (context)=> EasyLocalization(

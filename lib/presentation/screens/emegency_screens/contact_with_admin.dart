@@ -860,7 +860,7 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                       children: [
                           Text(
                           "تواصل معنا",
-                          style:  AppStyle.styleSemiBold20(context).copyWith(color: Color(0xFF5C5858)),
+                          style:  AppStyle.styleSemiBold20(context).copyWith(color: const Color(0xFF5C5858)),
                         ),
                         const SizedBox(height: 15),
                         Row(
