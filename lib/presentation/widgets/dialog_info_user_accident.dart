@@ -363,6 +363,7 @@ void showUserInfoDialog(BuildContext context,
                 Center(
                   child: InkWell(
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.push(
                           context,
                           MaterialPageRoute(

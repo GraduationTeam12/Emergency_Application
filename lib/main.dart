@@ -8,8 +8,11 @@ import 'package:user_accident/core/api/end_points.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/firebase_options.dart';
 import 'package:user_accident/presentation/widgets/get_fcm_token.dart';
+import 'package:user_accident/presentation/widgets/local_notification.dart';
 import 'package:user_accident/presentation/widgets/receiving_notifications.dart';
 import 'package:user_accident/routing.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   
@@ -27,6 +30,7 @@ Future<void> main() async {
   await Future.wait([
     PushNotificationsService.init(),
     ReceivingNotifications.init(),
+    LocalNotificationService.init()
   ]);
   runApp(DevicePreview(
     enabled: true,
@@ -51,11 +55,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: const Locale('ar'),
-      title: 'Flutter Demo',
+      title: 'SATARS',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:user_accident/constants/colors.dart';
-import 'package:user_accident/core/cache/cache_helper.dart';
+import 'package:user_accident/core/helper/location_helper.dart';
 
 class LocationOfAccident extends StatefulWidget {
   const LocationOfAccident(
@@ -26,10 +28,8 @@ class _LocationOfAccidentState extends State<LocationOfAccident> {
   final Completer<GoogleMapController> _mapController = Completer();
   Set<Marker> markers = {};
   List<LatLng> polylineCoordinates = [];
-
-  // void _onMapCreated(GoogleMapController controller) {
-  //   mapController = controller;
-  // }
+  static Position? position;
+  StreamSubscription<Position>? positionStreamSubscription;
 
   void buildCameraNewPosition() {
     goToAccidentLocation = CameraPosition(
@@ -45,28 +45,72 @@ class _LocationOfAccidentState extends State<LocationOfAccident> {
 
   static final CameraPosition _myCurrentLocationCameraPosition = CameraPosition(
     bearing: 0.0,
-    target: LatLng(
-        CacheHelper().getData(key: 'lat'), CacheHelper().getData(key: 'lng')),
+    target: LatLng(position!.latitude, position!.longitude
+        // CacheHelper().getData(key: 'lat'), CacheHelper().getData(key: 'lng')
+        ),
     tilt: 0.0,
     zoom: 17,
   );
+  // Position? _lastDirectionsUpdatePosition;
+  // static const double _updateDistance = 1.0;
 
-  Future<void> goToMySearchedForLocation() async {
-    buildCameraNewPosition();
-    final GoogleMapController controller = await _mapController.future;
-    controller
-        .animateCamera(CameraUpdate.newCameraPosition(goToAccidentLocation));
+  void _trackLocationChanges() async {
+    position = await LocationHelper.getCurrentLocation();
 
-    buildAccidentLocationMarker();
+    _getDirections();
+    // _lastDirectionsUpdatePosition = position;
+    positionStreamSubscription = Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 2,
+    )).listen(
+      (Position newPosition) async {
+        position = newPosition;
+
+        final GoogleMapController controller = await _mapController.future;
+        controller.animateCamera(CameraUpdate.newLatLng(
+            LatLng(position!.latitude, position!.longitude)));
+
+        // double distance = _lastDirectionsUpdatePosition != null
+        //     ? Geolocator.distanceBetween(
+        //         _lastDirectionsUpdatePosition!.latitude,
+        //         _lastDirectionsUpdatePosition!.longitude,
+        //         newPosition.latitude,
+        //         newPosition.longitude,
+        //       )
+        //     : double.infinity;
+
+        // if (distance >= _updateDistance) {
+        //   _getDirections();
+
+        //   _lastDirectionsUpdatePosition = newPosition;
+        //   log('Updating directions after moving $_updateDistance meters');
+        // }
+
+        await _getDirections();
+
+        log('Updating directions after moving meters');
+
+        setState(() {});
+      },
+    );
   }
 
-  void _getDirections() async {
+  Future<void> getMyCurrentLocation() async {
+    position = await LocationHelper.getCurrentLocation().whenComplete(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
+  Future<void> _getDirections() async {
+    polylineCoordinates.clear();
     PolylinePoints polylinePoints = PolylinePoints();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       googleApiKey: "AIzaSyBW3ndkvcWC4zrdYMnOe4o7vMZb279fJNo",
       request: PolylineRequest(
-        origin: PointLatLng(CacheHelper().getData(key: 'lat'),
-            CacheHelper().getData(key: 'lng')),
+        origin: PointLatLng(position!.latitude, position!.longitude),
         destination: PointLatLng(
             widget.latOfAccidentLocation, widget.longOfAccidentLocation),
         mode: TravelMode.driving,
@@ -92,18 +136,6 @@ class _LocationOfAccidentState extends State<LocationOfAccident> {
     addMarkerToMarkersAndUpdateUI(accidentLocationMarker);
   }
 
-  void buildCurrentLocationMarker() {
-    hospitalLocationMarker = Marker(
-      position: LatLng(
-          CacheHelper().getData(key: 'lat'), CacheHelper().getData(key: 'lng')),
-      markerId: const MarkerId('2'),
-      onTap: () {},
-      // infoWindow: InfoWindow(title: "Your current Location"),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-    );
-    addMarkerToMarkersAndUpdateUI(hospitalLocationMarker);
-  }
-
   void addMarkerToMarkersAndUpdateUI(Marker marker) {
     setState(() {
       markers.add(marker);
@@ -125,14 +157,16 @@ class _LocationOfAccidentState extends State<LocationOfAccident> {
   @override
   void initState() {
     super.initState();
-    _getDirections();
+    _trackLocationChanges();
+    // _trackLocationChanges();
     buildCameraNewPosition();
-    buildCurrentLocationMarker();
+    // buildCurrentLocationMarker();
     buildAccidentLocationMarker();
   }
 
   @override
   void dispose() {
+    positionStreamSubscription?.cancel();
     mapController?.dispose();
     mapController = null;
     super.dispose();
@@ -144,25 +178,31 @@ class _LocationOfAccidentState extends State<LocationOfAccident> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          GoogleMap(
-            onMapCreated: (GoogleMapController controller) {
-              _mapController.complete(controller);
-            },
-            initialCameraPosition: goToAccidentLocation,
-            mapType: MapType.terrain,
-            myLocationEnabled: true,
-            zoomControlsEnabled: false,
-            myLocationButtonEnabled: false,
-            markers: markers,
-            polylines: {
-              Polyline(
-                polylineId: const PolylineId("route"),
-                points: polylineCoordinates,
-                color: Colors.blue,
-                width: 5,
-              ),
-            },
-          ),
+          position != null
+              ? GoogleMap(
+                  onMapCreated: (GoogleMapController controller) {
+                    _mapController.complete(controller);
+                  },
+                  initialCameraPosition: goToAccidentLocation,
+                  mapType: MapType.terrain,
+                  myLocationEnabled: true,
+                  zoomControlsEnabled: false,
+                  myLocationButtonEnabled: false,
+                  markers: markers,
+                  polylines: {
+                    Polyline(
+                      polylineId: const PolylineId("route"),
+                      points: polylineCoordinates,
+                      color: Colors.blue,
+                      width: 5,
+                    ),
+                  },
+                )
+              : const Center(
+                  child: CircularProgressIndicator(
+                    color: MyColors.premiumColor,
+                  ),
+                ),
         ],
       ),
       floatingActionButton: Container(

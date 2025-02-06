@@ -9,7 +9,11 @@ class PushNotificationsService {
 
   static Future init() async {
      
-    await messaging.requestPermission();
+    await messaging.requestPermission(
+       alert: true,
+      badge: true,
+      sound: true,
+    );
 
 
     token = await messaging.getToken();

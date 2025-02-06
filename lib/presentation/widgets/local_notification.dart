@@ -23,7 +23,7 @@ class LocalNotificationService {
   // Initialization of local notifications
   static Future init() async {
     InitializationSettings settings = const InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'), // Default small icon
+      android: AndroidInitializationSettings('@drawable/ic_notification'), // Default small icon
       iOS: DarwinInitializationSettings(),
     );
     flutterLocalNotificationsPlugin.initialize(
@@ -34,7 +34,9 @@ class LocalNotificationService {
   }
 
   // Basic Notification
-  static void showBasicNotification(RemoteMessage message) async {
+  static void showBasicNotification(RemoteMessage message , {
+    Function(String?)? onNotificationClick,
+  }) async {
     // If you want to load an image for the notification (optional)
     // final http.Response image = await http
     //     .get(Uri.parse(message.notification?.android?.imageUrl ?? ''));
@@ -46,16 +48,28 @@ class LocalNotificationService {
     // );
 
     // Define Android notification details
+    
     AndroidNotificationDetails android = const AndroidNotificationDetails(
       'channel_id', // Channel ID
       'channel_name', // Channel name
       importance: Importance.max, // High importance
       priority: Priority.high, // High priority
       playSound: true, // Play sound when notification arrives
-      icon: '@mipmap/ic_launcher', // Small icon
+      icon: '@drawable/ic_notification', // Small icon
       // sound: RawResourceAndroidNotificationSound(
       //     'long_notification_sound'.split('.').first), // Custom sound (if needed)
     );
+
+    flutterLocalNotificationsPlugin.initialize(
+        const InitializationSettings(
+          android: AndroidInitializationSettings('@drawable/ic_notification'),
+        ),
+        onDidReceiveNotificationResponse: (NotificationResponse response) {
+          if (onNotificationClick != null) {
+            onNotificationClick(response.payload);
+          }
+        },
+      );
 
     // Define notification details
     NotificationDetails details = NotificationDetails(
