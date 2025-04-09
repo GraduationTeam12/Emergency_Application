@@ -9,6 +9,7 @@ import 'package:user_accident/core/error/exception_response.dart';
 import 'package:user_accident/core/error/exceptions.dart';
 import 'package:user_accident/presentation/widgets/get_fcm_token.dart';
 
+
 class AuthRepoEmergency {
   final ApiConsumer apiConsumer;
   AuthRepoEmergency({

@@ -1,0 +1,2 @@
+D:/Users_Emergency_app/android/app/.cxx/RelWithDebInfo/4x6e3564/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Users_Emergency_app/android/app/.cxx/RelWithDebInfo/4x6e3564/armeabi-v7a/CMakeFiles/rebuild_cache.dir

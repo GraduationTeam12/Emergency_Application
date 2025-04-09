@@ -47,7 +47,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   void _connectToSocket() {
     socket = IO.io(
-      'https://satars.onrender.com/',
+      'https://satars.onrender.com/emergency',
       IO.OptionBuilder()
           .setTransports(['websocket'])
           .setExtraHeaders({'Authorization': 'Bearer $token'})
