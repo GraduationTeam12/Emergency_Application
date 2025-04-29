@@ -691,9 +691,7 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                 color: MyColors.premiumColor,
               ),
               Positioned(
-                bottom: MediaQuery.sizeOf(context).height * (2 / 3) +
-                    10 +
-                    (MediaQuery.sizeOf(context).height * (1 / 3) * (1 / 8)),
+                top: 0,
                 right: 25,
                 left: 25,
                 child: SizedBox(
@@ -701,16 +699,13 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                   height: MediaQuery.sizeOf(context).height * (1 / 3) -
                       2 * MediaQuery.sizeOf(context).height * (1 / 3) * (1 / 8) -
                       10,
-                  child: Center(
-                    child: SvgPicture.asset(
-                      Assets.imagesAuthImagesEmergencyImagesContactAdmin,
-                      width: MediaQuery.sizeOf(context).width - 50,
-                      height: MediaQuery.sizeOf(context).height * (1 / 3) -
-                          2.5 *
-                              MediaQuery.sizeOf(context).height *
-                              (1 / 3) *
-                              (1 / 8) -
-                          10,
+                  child: AspectRatio(
+                    aspectRatio:1,
+                    child: Center(
+                      child: SvgPicture.asset(
+                        Assets.imagesAuthImagesEmergencyImagesContactAdmin,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),
@@ -892,7 +887,8 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                         Navigator.pop(context);
                       },
                       child: const Icon(
-                        Icons.arrow_back,
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
                         size: 25,
                       ))),
             ],
