@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/bottom_sheet.dart';
+import 'package:user_accident/presentation/widgets/sidebar_icons.dart';
 
 class HomeScreenEmergency extends StatefulWidget {
   const HomeScreenEmergency({super.key});
@@ -66,9 +67,22 @@ class HomeScreenEmergencyState extends State<HomeScreenEmergency> {
             onTap: () {
               Navigator.pushNamed(context, notificationsScreen);
             },
-            child: SizedBox(
-              height: MediaQuery.sizeOf(context).width > 600 ? 60 : 45,
-              width: MediaQuery.sizeOf(context).width > 600 ? 60 : 45,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              height: MediaQuery.sizeOf(context).width > 600 ? 65 : 45,
+              width: MediaQuery.sizeOf(context).width > 600 ? 65 : 45,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4.0,
+                    spreadRadius: 1.0,
+                    offset: Offset(0.0, 2.0),
+                  ),
+                ],
+              ),
               child: SvgPicture.asset(
                 'assets/images/auth_images/emergency_images/notification.svg',
                 fit: BoxFit.contain,
@@ -76,7 +90,11 @@ class HomeScreenEmergencyState extends State<HomeScreenEmergency> {
             ),
           ),
         ),
-        const DraggableBottomSheet()
+         Positioned(
+          bottom: 8,
+          left: 4,
+          child: SidebarIcons())
+        // const DraggableBottomSheet()
       ])),
     );
   }

@@ -19,6 +19,12 @@ class Assets {
   static const String imagesAuthImagesEmergencyImagesNotification = "assets/images/auth_images/emergency_images/notification.svg";
 
   
+  
+  /// Assets for imagesAuthImagesEmergencyImagesContactAdmin
+  /// assets/images/auth_images/emergency_images/streamline-emojis_hospital.svg
+  static const String imagesAuthImagesEmergencyImagesEmojisHospital = "assets/images/auth_images/emergency_images/streamline-emojis_hospital.svg";
+
+
   /// Assets for imagesAuthImagesEmergencyImagesContactAdmin
   /// assets/images/auth_images/emergency_images/contact_admin.svg
   static const String imagesAuthImagesEmergencyImagesContactAdmin = "assets/images/auth_images/emergency_images/contact_admin.svg";
