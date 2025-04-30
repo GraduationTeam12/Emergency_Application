@@ -29,6 +29,26 @@ class Assets {
   /// assets/images/auth_images/emergency_images/contact_admin.svg
   static const String imagesAuthImagesEmergencyImagesContactAdmin = "assets/images/auth_images/emergency_images/contact_admin.svg";
 
+  /// Assets for imagesAuthImagesEmergencyImagesAddIcon
+  ///assets/images/auth_images/emergency_images/add.svg
+  static const String imagesAuthImagesEmergencyImagesAddIcon = "assets/images/auth_images/emergency_images/add.svg";
+
+  /// Assets for imagesAuthImagesEmergencyImagesAdministrator
+  ///assets/images/auth_images/emergency_images/clarity_administrator-solid.svg
+  static const String imagesAuthImagesEmergencyImagesAdministrator = "assets/images/auth_images/emergency_images/clarity_administrator-solid.svg";
+
+
+  /// Assets for imagesAuthImagesEmergencyImagesAdministrator
+  ///assets/images/auth_images/emergency_images/hospital_icon.svg
+  static const String imagesAuthImagesEmergencyHospitalIcon = "assets/images/auth_images/emergency_images/hospital_icon.svg";
+
+  /// Assets for imagesAuthImagesEmergencyHospitalImage
+  ///assets/images/auth_images/emergency_images/hospital_image.svg
+  static const String imagesAuthImagesEmergencyHospitalImage = "assets/images/auth_images/emergency_images/hospital_image.svg";
+
+  /// Assets for imagesAuthImagesEmergencyImage
+  ///assets/images/auth_images/emergency_images/image.jpg
+  static const String imagesAuthImagesEmergencyImage = "assets/images/auth_images/emergency_images/image.jpg";
 
   /// Assets for imagesAuthImagesEmergencyImagesSend
   /// assets/images/auth_images/emergency_images/send.svg
