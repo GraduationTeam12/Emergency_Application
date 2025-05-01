@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
+import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/core/data/model/emergency_profile_model.dart';
 import 'package:user_accident/core/logic/emergencies_features/emergencies_features_cubit.dart';
 import 'package:user_accident/core/logic/emergencies_features/emergencies_features_state.dart';
@@ -19,12 +20,17 @@ class EmergencyProfileScreen extends StatefulWidget {
 
 class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
   EmergencyProfileModel? emergencyprofile;
+  String? userType;
+
+  @override
+  
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<EmergenciesFeaturesCubit>().getEmergencyProfile();
     });
+    userType = CacheHelper().getData(key: 'userType');
     super.initState();
   }
 
@@ -116,6 +122,13 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
+                      (userType == "hospitals")
+                          ? "اسم المستشفى"
+                          : (userType == "firestations")
+                              ? "اسم وحدة الإطفاء"
+                              : (userType == "cranes")
+                                  ? "اسم وحدة الإنقاذ":
+
                                 "اسم وحدة الطوارئ",
                                 style: AppStyle.styleBold22(context)
                                     .copyWith(color: Colors.black),
@@ -301,7 +314,7 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                 height: 8,
                               ),
                               TextFormField(
-                                initialValue: emergencyprofile!.phone,
+                                initialValue: emergencyprofile!.number.toString(),
                                 style: AppStyle.styleRegular17(context)
                                     .copyWith(color: Colors.black),
                                 keyboardType: TextInputType.number,

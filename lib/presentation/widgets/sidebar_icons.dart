@@ -7,6 +7,9 @@ import 'package:user_accident/constants/pages_name.dart';
 class SidebarIcons extends StatefulWidget {
   @override
   _SidebarIconsState createState() => _SidebarIconsState();
+  final String userType;
+
+  const SidebarIcons({super.key, required this.userType});
 }
 
 class _SidebarIconsState extends State<SidebarIcons> {
@@ -44,6 +47,9 @@ class _SidebarIconsState extends State<SidebarIcons> {
         child: Column(
           children: List.generate(4, (index) {
             final bool isHidden = hideOthers && index != 3;
+            if (widget.userType != 'hospitals' && index == 1) {
+              return SizedBox.shrink();
+            }
             if (isHidden) return SizedBox.shrink();
             return GestureDetector(
               onTapDown: (_) {
@@ -90,7 +96,8 @@ class _SidebarIconsState extends State<SidebarIcons> {
                         offset: Offset(_pressedIndex == index ? 0 : 0, 0),
                         child: Icon(
                           icons[index],
-                          size: 28.5,
+                          size:
+                              MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
                           color: _pressedIndex == index
                               ? MyColors.premiumColor
                               : Colors.white,
@@ -112,8 +119,12 @@ class _SidebarIconsState extends State<SidebarIcons> {
                             child: SvgPicture.asset(
                               Assets
                                   .imagesAuthImagesEmergencyImagesEmojisHospital,
-                              width: 28.5,
-                              height: 28.5,
+                              width: MediaQuery.sizeOf(context).width > 600
+                                  ? 40
+                                  : 25,
+                              height: MediaQuery.sizeOf(context).width > 600
+                                  ? 40
+                                  : 25,
                               key: ValueKey('svg_$index'),
                             ),
                           );
@@ -131,7 +142,9 @@ class _SidebarIconsState extends State<SidebarIcons> {
                             angle: angle,
                             child: Icon(
                               icons[index],
-                              size: 28.5,
+                              size: MediaQuery.sizeOf(context).width > 600
+                                  ? 40
+                                  : 25,
                               color: _pressedIndex == index
                                   ? MyColors.premiumColor
                                   : Colors.white,
@@ -145,7 +158,8 @@ class _SidebarIconsState extends State<SidebarIcons> {
                         angle: _pressedIndex == index ? -1.8 : -1.5708,
                         child: Icon(
                           icons[index],
-                          size: 28.5,
+                          size:
+                              MediaQuery.sizeOf(context).width > 600 ? 40 : 25,
                           color: _pressedIndex == index
                               ? MyColors.premiumColor
                               : Colors.white,

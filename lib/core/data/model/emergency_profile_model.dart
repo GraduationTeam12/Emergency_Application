@@ -4,12 +4,14 @@ class EmergencyProfileModel {
   final String email;
   final String address;
   final String phone;
+  final int number;
 
   EmergencyProfileModel({
     required this.name,
     required this.email,
     required this.address,
     required this.phone,
+    required this.number
   });
 
 
@@ -19,6 +21,8 @@ class EmergencyProfileModel {
       email: json['email'],
       address: json['address'],
       phone: json['phone'],
+      number: json['number']??0
+      
     );
   }
 
@@ -28,6 +32,7 @@ class EmergencyProfileModel {
       'email': email,
       'address': address,
       'phone': phone,
+      'number':number
     };
   }
 }

@@ -1,25 +1,21 @@
-// ignore_for_file: deprecated_member_use, library_prefixes, avoid_print
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:turn_page_transition/turn_page_transition.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/core/api/end_points.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
-import 'package:user_accident/presentation/screens/emegency_screens/seen_screen.dart';
 import 'package:user_accident/presentation/widgets/notifications_body.dart';
 
-class NotificationsScreen extends StatefulWidget {
-  const NotificationsScreen({super.key});
+class SeenScreen extends StatefulWidget {
+  const SeenScreen({super.key});
 
   @override
-  State<NotificationsScreen> createState() => _NotificationsScreenState();
+  State<SeenScreen> createState() => _SeenScreenState();
 }
 
-class _NotificationsScreenState extends State<NotificationsScreen> {
-  late IO.Socket socket;
+class _SeenScreenState extends State<SeenScreen> {late IO.Socket socket;
   List<dynamic> notifications = [];
   String token = CacheHelper().getData(key: ApiKeys.token);
   final String notificationsKey = 'cached_notifications';
@@ -102,59 +98,31 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
+      appBar:  PreferredSize(
         preferredSize: Size.fromHeight(MediaQuery.sizeOf(context).height / 10),
         child: Container(
           decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
-                    spreadRadius: 0,
-                    color: Colors.black26)
-              ],
-              color: MyColors.premiumColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-              )),
+            boxShadow: [
+              BoxShadow(blurRadius: 4,offset: Offset(0, 4),spreadRadius: 0,color: Colors.black26)
+            ],
+            color: MyColors.premiumColor,
+             borderRadius: BorderRadius.only( bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30),)
+          ),
           child: AppBar(
             elevation: 0,
             scrolledUnderElevation: 0,
             backgroundColor: Colors.transparent,
             toolbarHeight: MediaQuery.sizeOf(context).height / 10,
             title: Text(
-              'الاشعارات',
-              style:
-                  AppStyle.styleBold25(context).copyWith(color: Colors.white),
+              'تمت المتابعة',
+              style: AppStyle.styleBold25(context).copyWith(color: Colors.white),
             ),
             centerTitle: true,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                  
-Navigator.of(context).push(
-  TurnPageRoute(
-    builder: (context) => const SeenScreen(),
-    overleafColor:MyColors.premiumColor.withOpacity(1),
-    barrierColor: MyColors.premiumColor.withOpacity(1),
-    transitionDuration: const Duration(milliseconds: 1500),
-    
-  ),
-);
-                  },
-                  icon: Icon(
-                    Icons.more_vert,
-                    color: Colors.white,
-                    size: MediaQuery.sizeOf(context).width > 600 ? 40 : null,
-                  ))
-            ],
             leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios_new_outlined,
-                color: Colors.white,
-                size: MediaQuery.sizeOf(context).width > 600 ? 40 : null,
-              ),
+              icon:  Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,
+                size: MediaQuery.sizeOf(context).width > 600
+                                    ? 40
+                                    : null,),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -166,6 +134,7 @@ Navigator.of(context).push(
       body: SingleChildScrollView(
         child: Column(
           children: [
+            
             notifications.isEmpty
                 ? const Text('')
                 : NotificationsBody(notifications: notifications)

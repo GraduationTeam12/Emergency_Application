@@ -15,7 +15,15 @@ class HomeScreenEmergency extends StatefulWidget {
 
 class HomeScreenEmergencyState extends State<HomeScreenEmergency> {
   GoogleMapController? mapController;
+
   
+String? userType;
+
+@override
+void initState() {
+  super.initState();
+  userType = CacheHelper().getData(key: 'userType');
+}
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -93,7 +101,7 @@ class HomeScreenEmergencyState extends State<HomeScreenEmergency> {
          Positioned(
           bottom: 8,
           left: 4,
-          child: SidebarIcons())
+          child: SidebarIcons(userType: userType??""),)
         // const DraggableBottomSheet()
       ])),
     );
