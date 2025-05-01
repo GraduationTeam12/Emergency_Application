@@ -90,7 +90,7 @@ class _InformationPersonState extends State<InformationPerson> {
                       style: AppStyle.styleBold22(context),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 5,
                     ),
                     TextFormField(
                       initialValue: widget.userName,
@@ -130,14 +130,14 @@ class _InformationPersonState extends State<InformationPerson> {
                           enabled: false),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 20,
                     ),
                     Text(
                       "البريد الالكتروني",
                       style: AppStyle.styleBold22(context),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 5,
                     ),
                     TextFormField(
                       initialValue: widget.email,
@@ -177,14 +177,14 @@ class _InformationPersonState extends State<InformationPerson> {
                           enabled: false),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 20,
                     ),
                     Text(
-                      "الموقع",
+                      "العنوان",
                       style: AppStyle.styleBold22(context),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 5,
                     ),
                     TextFormField(
                       initialValue: widget.address,
@@ -224,14 +224,14 @@ class _InformationPersonState extends State<InformationPerson> {
                           enabled: false),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 20,
                     ),
                     Text(
                       "العمر",
                       style: AppStyle.styleBold22(context),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 5,
                     ),
                     TextFormField(
                       initialValue: '${widget.age}',
@@ -271,14 +271,14 @@ class _InformationPersonState extends State<InformationPerson> {
                           enabled: false),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 20,
                     ),
                     Text(
                       "رقم الهاتف",
                       style: AppStyle.styleBold22(context),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 5,
                     ),
                     TextFormField(
                       initialValue: widget.phoneNumber,
@@ -318,14 +318,14 @@ class _InformationPersonState extends State<InformationPerson> {
                           enabled: false),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 20,
                     ),
                     Text(
                       "الرقم القومي",
                       style: AppStyle.styleBold22(context),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 5,
                     ),
                     TextFormField(
                       initialValue:widget. nationalId,
