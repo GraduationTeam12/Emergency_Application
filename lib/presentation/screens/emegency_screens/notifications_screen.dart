@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:user_accident/constants/app_style.dart';
+import 'package:user_accident/constants/colors.dart';
 import 'package:user_accident/core/api/end_points.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/presentation/widgets/notifications_body.dart';
@@ -99,36 +100,40 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        backgroundColor: Colors.white,
-        toolbarHeight: MediaQuery.sizeOf(context).height / 8,
-        title: Text(
-          'الاشعارات',
-          style: AppStyle.styleBold25(context).copyWith(color: Colors.black),
+      appBar:  PreferredSize(
+        preferredSize: Size.fromHeight(MediaQuery.sizeOf(context).height / 10),
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(blurRadius: 4,offset: Offset(0, 4),spreadRadius: 0,color: Colors.black26)
+            ],
+            color: MyColors.premiumColor,
+             borderRadius: BorderRadius.only( bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30),)
+          ),
+          child: AppBar(
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            backgroundColor: Colors.transparent,
+            toolbarHeight: MediaQuery.sizeOf(context).height / 10,
+            title: Text(
+              'الاشعارات',
+              style: AppStyle.styleBold25(context).copyWith(color: Colors.white),
+            ),
+            centerTitle: true,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
         ),
-        centerTitle: true,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              height: 2,
-              decoration: BoxDecoration(
-                color: Colors.grey[400],
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: 1,
-                    blurRadius: 3,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-            ),
+            
             notifications.isEmpty
                 ? const Text('')
                 : NotificationsBody(notifications: notifications)

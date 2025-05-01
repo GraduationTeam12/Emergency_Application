@@ -19,10 +19,49 @@ class Assets {
   static const String imagesAuthImagesEmergencyImagesNotification = "assets/images/auth_images/emergency_images/notification.svg";
 
   
+  
+  /// Assets for imagesAuthImagesEmergencyImagesContactAdmin
+  /// assets/images/auth_images/emergency_images/streamline-emojis_hospital.svg
+  static const String imagesAuthImagesEmergencyImagesEmojisHospital = "assets/images/auth_images/emergency_images/streamline-emojis_hospital.svg";
+
+
   /// Assets for imagesAuthImagesEmergencyImagesContactAdmin
   /// assets/images/auth_images/emergency_images/contact_admin.svg
   static const String imagesAuthImagesEmergencyImagesContactAdmin = "assets/images/auth_images/emergency_images/contact_admin.svg";
 
+  /// Assets for imagesAuthImagesEmergencyImagesAddIcon
+  ///assets/images/auth_images/emergency_images/add.svg
+  static const String imagesAuthImagesEmergencyImagesAddIcon = "assets/images/auth_images/emergency_images/add.svg";
+
+  /// Assets for imagesAuthImagesEmergencyImagesAdministrator
+  ///assets/images/auth_images/emergency_images/clarity_administrator-solid.svg
+  static const String imagesAuthImagesEmergencyImagesAdministrator = "assets/images/auth_images/emergency_images/clarity_administrator-solid.svg";
+
+
+  /// Assets for imagesAuthImagesEmergencyImagesAdministrator
+  ///assets/images/auth_images/emergency_images/hospital_icon.svg
+  static const String imagesAuthImagesEmergencyHospitalIcon = "assets/images/auth_images/emergency_images/hospital_icon.svg";
+
+  /// Assets for imagesAuthImagesEmergencyHospitalImage
+  ///assets/images/auth_images/emergency_images/hospital_image.svg
+  static const String imagesAuthImagesEmergencyHospitalImage = "assets/images/auth_images/emergency_images/hospital_image.svg";
+
+  /// Assets for imagesAuthImagesEmergencyImage
+  ///assets/images/auth_images/emergency_images/image.jpg
+  static const String imagesAuthImagesEmergencyImage = "assets/images/auth_images/emergency_images/image.jpg";
+
+  /// Assets for imagesAuthImagesEmergencyImageDrowning
+  ///assets/images/auth_images/emergency_images/drowing.png
+  static const String imagesAuthImagesEmergencyImageDrowning = "assets/images/auth_images/emergency_images/drowing.png";
+
+  /// Assets for imagesAuthImagesEmergencyImageFire
+  ///assets/images/auth_images/emergency_images/fire.png
+  static const String imagesAuthImagesEmergencyImageFire = "assets/images/auth_images/emergency_images/fire.png";
+
+
+  /// Assets for imagesAuthImagesEmergencyImageCrash
+  ///assets/images/auth_images/emergency_images/crash.png
+  static const String imagesAuthImagesEmergencyImageCrash = "assets/images/auth_images/emergency_images/crash.png";
 
   /// Assets for imagesAuthImagesEmergencyImagesSend
   /// assets/images/auth_images/emergency_images/send.svg
