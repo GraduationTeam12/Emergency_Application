@@ -16,7 +16,8 @@ class EmergenciesFeaturesCubit extends Cubit<EmergenciesFeaturesState> {
         oldData.name != newData.name ||
         oldData.email != newData.email ||
         oldData.address != newData.address ||
-        oldData.phone != newData.phone) {
+        oldData.phone != newData.phone ||
+        oldData.number != newData.number) {
       return false;
     }
     return true;

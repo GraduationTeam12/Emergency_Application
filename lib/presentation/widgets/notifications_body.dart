@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
+import 'package:user_accident/presentation/screens/emegency_screens/information_person.dart';
 import 'package:user_accident/presentation/widgets/dialog_info_user_accident.dart';
 
 class NotificationsBody extends StatelessWidget {
@@ -23,7 +24,8 @@ for (var notification in notifications) {
   groupedNotifications.putIfAbsent(dateString, () => []).add(notification);
 }
 
-final dateKeys = groupedNotifications.keys.toList();
+final dateKeys = groupedNotifications.keys.toList()
+  ..sort((a, b) => DateFormat.yMMMMd('ar').parse(b).compareTo(DateFormat.yMMMMd('ar').parse(a)));
 
     return  ListView.builder(
   shrinkWrap: true,
@@ -40,7 +42,7 @@ final dateKeys = groupedNotifications.keys.toList();
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Text(
             dateKey,
-            style: AppStyle.styleBold20(context).copyWith(color: Colors.black,fontSize: 14),
+            style: AppStyle.styleBold16(context).copyWith(color: Colors.black),
           ),
         ),
         ...dayNotifications.map((notification) {
@@ -51,22 +53,37 @@ final dateKeys = groupedNotifications.keys.toList();
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: InkWell(
               onTap: () {
-                showUserInfoDialog(
-                  context,
+                
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => InformationPerson(
                   lat: lat,
                   long: long,
                   userName: notification['user']['username'],
+                  email: notification['user']['email'],
                   phoneNumber: notification['user']['phone'],
                   address: notification['user']['address'],
                   nationalId: notification['user']['nationalId'],
-                  age: notification['user']['age'],
-                );
+                  age: notification['user']['age'],),
+                ));
+                // showUserInfoDialog(
+                //   context,
+                //   lat: lat,
+                //   long: long,
+                //   userName: notification['user']['username'],
+                //   phoneNumber: notification['user']['phone'],
+                //   address: notification['user']['address'],
+                //   nationalId: notification['user']['nationalId'],
+                //   age: notification['user']['age'],
+                // );
               },
               child: Container(
                 height: MediaQuery.sizeOf(context).width > 600 ? 150 : 100,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: const Color(0xffDD2E4).withOpacity(0.15),
+                  ),
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black26,

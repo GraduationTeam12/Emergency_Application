@@ -32,31 +32,32 @@ dependencies:
   dartz: ^0.10.1
   device_preview: ^1.2.0
   dio: ^5.7.0
+  easy_localization: ^3.0.7+1
   expandable_page_view: ^1.0.17
   firebase_auth: ^5.3.1
   firebase_core: ^3.6.0
   firebase_database: ^11.3.1
+  firebase_messaging: ^15.2.1
   firebase_storage: ^12.3.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_local_notifications: ^18.0.1
+  flutter_polyline_points: ^2.0.0
   flutter_svg: ^2.0.10+1
+  geolocator: ^13.0.2
+  google_maps_flutter: ^2.10.0
   jwt_decoder: ^2.0.1
+  location: ^8.0.0
   lottie: ^3.1.3
   ml_algo: ^16.17.13
   pin_code_fields: ^8.0.1
   pinput: ^5.0.0
-  google_maps_flutter: ^2.10.0
-  geolocator: ^13.0.2
   shared_preferences: ^2.3.2
+  socket_io_client: ^3.0.2
   syncfusion_flutter_charts: ^28.1.41
   table_calendar: ^3.0.9
-  socket_io_client: ^3.0.2
-  easy_localization: ^3.0.7+1
-  flutter_polyline_points: ^2.0.0
-  firebase_messaging: ^15.2.1
-  flutter_local_notifications: ^18.0.1
-  location: ^8.0.0
+  turn_page_transition: ^0.4.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0
