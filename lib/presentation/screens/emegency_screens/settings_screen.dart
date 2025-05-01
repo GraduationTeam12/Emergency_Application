@@ -33,6 +33,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         preferredSize: Size.fromHeight(MediaQuery.sizeOf(context).height / 10),
         child: Container(
           decoration: BoxDecoration(
+              boxShadow: [
+              BoxShadow(blurRadius: 4,offset: Offset(0, 4),spreadRadius: 0,color: Colors.black26)
+            ],
             color: MyColors.premiumColor,
              borderRadius: BorderRadius.only( bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30),)
           ),

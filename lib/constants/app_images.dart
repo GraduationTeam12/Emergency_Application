@@ -50,6 +50,19 @@ class Assets {
   ///assets/images/auth_images/emergency_images/image.jpg
   static const String imagesAuthImagesEmergencyImage = "assets/images/auth_images/emergency_images/image.jpg";
 
+  /// Assets for imagesAuthImagesEmergencyImageDrowning
+  ///assets/images/auth_images/emergency_images/drowing.png
+  static const String imagesAuthImagesEmergencyImageDrowning = "assets/images/auth_images/emergency_images/drowing.png";
+
+  /// Assets for imagesAuthImagesEmergencyImageFire
+  ///assets/images/auth_images/emergency_images/fire.png
+  static const String imagesAuthImagesEmergencyImageFire = "assets/images/auth_images/emergency_images/fire.png";
+
+
+  /// Assets for imagesAuthImagesEmergencyImageCrash
+  ///assets/images/auth_images/emergency_images/crash.png
+  static const String imagesAuthImagesEmergencyImageCrash = "assets/images/auth_images/emergency_images/crash.png";
+
   /// Assets for imagesAuthImagesEmergencyImagesSend
   /// assets/images/auth_images/emergency_images/send.svg
   static const String imagesAuthImagesEmergencyImagesSend = "assets/images/auth_images/emergency_images/send.svg";
