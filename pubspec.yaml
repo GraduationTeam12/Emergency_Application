@@ -30,6 +30,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
+  device_info_plus: ^11.4.0
   device_preview: ^1.2.0
   dio: ^5.7.0
   easy_localization: ^3.0.7+1

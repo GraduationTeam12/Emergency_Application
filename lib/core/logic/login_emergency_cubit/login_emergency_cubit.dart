@@ -5,6 +5,7 @@ import 'package:user_accident/core/api/end_points.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
 import 'package:user_accident/core/data/model/model.dart';
 import 'package:user_accident/core/data/repo/auth_repo_emergency.dart';
+import 'package:user_accident/presentation/widgets/get_fcm_token.dart';
 
 part 'login_emergency_state.dart';
 
@@ -23,7 +24,7 @@ class LoginEmergencyCubit extends Cubit<LoginEmergencyState> {
     emit(LoginLoadingEmergencyState());
 
     final result = await authRepoEmergency.login(
-        email: emailController.text, password: passwordController.text);
+        email: emailController.text, password: passwordController.text,fcmToken: PushNotificationsService.token);
 
     result.fold((l) => emit(LoginErrorEmergencyState(errorMessage: l)),
         (r) async {
