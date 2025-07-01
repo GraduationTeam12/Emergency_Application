@@ -205,17 +205,40 @@ class _LocationOfAccidentState extends State<LocationOfAccident> {
                 ),
         ],
       ),
-      floatingActionButton: Container(
-        margin: const EdgeInsets.fromLTRB(0, 0, 8, 30),
-        child: FloatingActionButton(
-          backgroundColor: MyColors.premiumColor,
-          onPressed: _goToMyCurrentLocation,
-          child: Icon(
-            Icons.place,
-            color: Colors.white,
-            size: MediaQuery.sizeOf(context).width > 600 ? 40 : null,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            margin: const EdgeInsets.fromLTRB(0, 0, 8, 30),
+            child: FloatingActionButton(
+              heroTag: 'fab2',
+              backgroundColor: MyColors.premiumColor,
+              onPressed: _goToMyCurrentLocation,
+              child: Icon(
+                Icons.place,
+                color: Colors.white,
+                size: MediaQuery.sizeOf(context).width > 600 ? 40 : null,
+              ),
+            ),
           ),
-        ),
+           Container(
+            margin: const EdgeInsets.fromLTRB(0, 0, 8, 30),
+            child: FloatingActionButton(
+              heroTag: 'fab1',
+              backgroundColor: MyColors.premiumColor,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              
+             child:  Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                  size: MediaQuery.sizeOf(context).width > 600 ? 40 : null,
+                ),
+              ),
+           ),
+          
+        ],
       ),
     );
   }

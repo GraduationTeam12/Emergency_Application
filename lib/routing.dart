@@ -46,7 +46,7 @@ class AppRouter {
       case settingScreen:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (BuildContext context) => LogoutCubit(),
+                  create: (BuildContext context) => LogoutCubit( AuthRepoEmergency(apiConsumer: DioConsumer(dio: Dio()))),
                   child: const SettingsScreen(),
                 ));
 

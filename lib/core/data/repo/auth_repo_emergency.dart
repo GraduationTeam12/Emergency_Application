@@ -7,6 +7,7 @@ import 'package:user_accident/core/data/model/emergency_profile_model.dart';
 import 'package:user_accident/core/data/model/model.dart';
 import 'package:user_accident/core/error/exception_response.dart';
 import 'package:user_accident/core/error/exceptions.dart';
+import 'package:user_accident/presentation/widgets/device_details.dart';
 import 'package:user_accident/presentation/widgets/get_fcm_token.dart';
 
 
@@ -19,14 +20,21 @@ class AuthRepoEmergency {
   Future<Either<String, LoginModel>> login({
     required String email,
     required String password,
+    required String? fcmToken,
   }) async {
     try {
+      final deviceDetails = await getDeviceDetails();
       final response = await apiConsumer.post(
         EndPoint.emergencyLogin,
         data: {
           ApiKeys.email: email,
           ApiKeys.password: password,
-          'fcmToken': PushNotificationsService.token
+          'fcmToken': {
+            "token": fcmToken,
+            "deviceId": deviceDetails['deviceId'],
+            "deviceInfo":
+                "${deviceDetails['manufacturer']} ${deviceDetails['model']}"
+          },
         },
       );
       return Right(LoginModel.fromJson(response));
@@ -63,4 +71,28 @@ class AuthRepoEmergency {
       return Left(e.toString());
     }
   }
+  
+  Future<Either<String, String>> logout() async {
+    final String? token = await CacheHelper().getData(key: "token");
+    final deviceDetails = await getDeviceDetails();
+    try {
+      final response = await apiConsumer.post(
+        EndPoint.emergencyLogout,
+        data: {
+          "deviceId": deviceDetails['deviceId'],
+        },
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
+      return right(response[ApiKeys.message]);
+    } on ServerException catch (error) {
+      return left(error.errorModel.errorMessage);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
 }
+
+
