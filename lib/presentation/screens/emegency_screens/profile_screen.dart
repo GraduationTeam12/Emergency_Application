@@ -20,29 +20,49 @@ class EmergencyProfileScreen extends StatefulWidget {
 
 class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
   EmergencyProfileModel? emergencyprofile;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
   String? userType;
 
   @override
-  
-
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<EmergenciesFeaturesCubit>().getEmergencyProfile();
     });
+    Future.delayed(Duration.zero, () {
+    context.read<EmergenciesFeaturesCubit>().getEmergencyProfile();
+  });
     userType = CacheHelper().getData(key: 'userType');
+    
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    addressController.dispose();
+    numberController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       backgroundColor: Colors.white,
       body: BlocConsumer<EmergenciesFeaturesCubit, EmergenciesFeaturesState>(
         listener: (context, state) {
           if (state is EmergencyProfileSuccess) {
             emergencyprofile = state.emergency;
+
+            nameController.text = emergencyprofile?.name ?? '';
+            emailController.text = emergencyprofile?.email ?? '';
+            addressController.text = emergencyprofile?.address ?? '';
+            numberController.text = emergencyprofile?.number?.toString() ?? '';
           }
           if (state is EmergencyProfileUpdated) {
             emergencyprofile = state.emergency;
@@ -68,9 +88,8 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
           }
           return SizedBox(
             height: MediaQuery.sizeOf(context).height,
-            width:  MediaQuery.sizeOf(context).width,
+            width: MediaQuery.sizeOf(context).width,
             child: Stack(
-              
               children: [
                 Container(
                   height: MediaQuery.sizeOf(context).height / 5,
@@ -78,21 +97,34 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                   decoration: BoxDecoration(color: MyColors.premiumColor),
                 ),
                 Positioned(
-                  top: kToolbarHeight,
-                  right: 8,
-                  child: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios,color: Colors.white,)))
-,
+                    top: kToolbarHeight,
+                    right: 8,
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ))),
                 Positioned(
-                  top: MediaQuery.sizeOf(context).height>1000&&MediaQuery.sizeOf(context).width>800?MediaQuery.sizeOf(context).height / 6-30:MediaQuery.sizeOf(context).height / 5-45,
-                  right:  MediaQuery.sizeOf(context).height>1000&&MediaQuery.sizeOf(context).width>800?225:120+20,
-                  child: Text( emergencyprofile!.name ,
+                  top: MediaQuery.sizeOf(context).height > 1000 &&
+                          MediaQuery.sizeOf(context).width > 800
+                      ? MediaQuery.sizeOf(context).height / 6 - 30
+                      : MediaQuery.sizeOf(context).height / 5 - 45,
+                  right: MediaQuery.sizeOf(context).height > 1000 &&
+                          MediaQuery.sizeOf(context).width > 800
+                      ? 225
+                      : 120 + 20,
+                  child: Text(
+                    emergencyprofile!.name,
                     style: AppStyle.styleBold22(context)
                         .copyWith(color: Colors.white),
                   ),
                 ),
                 Positioned(
-                  top: MediaQuery.sizeOf(context).height / 5 ,
-                  left:0,  
+                  top: MediaQuery.sizeOf(context).height / 5,
+                  left: 0,
                   right: 0,
                   child: Column(
                     children: [
@@ -111,10 +143,15 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: MediaQuery.sizeOf(context).height>1000&&MediaQuery.sizeOf(context).width>800?120: 70,),
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height > 1000 &&
+                                MediaQuery.sizeOf(context).width > 800
+                            ? 120
+                            : 70,
+                      ),
                       Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
                         child: Form(
                           // key: BlocProvider.of<AddOwnerCubit>(context).getUserInfoKey,
                           child: Column(
@@ -122,14 +159,13 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                      (userType == "hospitals")
-                          ? "اسم المستشفى"
-                          : (userType == "firestations")
-                              ? "اسم وحدة الإطفاء"
-                              : (userType == "cranes")
-                                  ? "اسم وحدة الإنقاذ":
-
-                                "اسم وحدة الطوارئ",
+                                (userType == "hospitals")
+                                    ? "اسم المستشفى"
+                                    : (userType == "firestations")
+                                        ? "اسم وحدة الإطفاء"
+                                        : (userType == "cranes")
+                                            ? "اسم وحدة الإنقاذ"
+                                            : "اسم وحدة الطوارئ",
                                 style: AppStyle.styleBold22(context)
                                     .copyWith(color: Colors.black),
                               ),
@@ -137,12 +173,15 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                 height: 8,
                               ),
                               TextFormField(
-                                initialValue: emergencyprofile!.name,
-                                style: AppStyle.styleRegular17(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: InputDecoration(
+                                  controller: nameController,
+                                  onTap: () {
+                                    FocusScope.of(context).unfocus();
+                                  },
+                                  style: AppStyle.styleRegular17(context)
+                                      .copyWith(color: Colors.black),
+                                  keyboardType: TextInputType.text,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
                                     errorStyle: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.red),
                                     prefixIconConstraints: const BoxConstraints(
@@ -153,37 +192,41 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         SizedBox(
-                                          width: MediaQuery.sizeOf(context).width > 600
-                                              ? 20
-                                              : 10,
+                                          width:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 20
+                                                  : 10,
                                         ),
                                         Icon(
                                           Icons.local_hospital,
                                           color: Colors.black,
-                                          size: MediaQuery.sizeOf(context).width > 600
-                                              ? 50
-                                              : 20,
+                                          size:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 50
+                                                  : 20,
                                         ),
                                         const SizedBox(width: 4),
                                       ],
                                     ),
                                     isDense: true,
                                     disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
-                                      borderSide: BorderSide(
-                                        color:  Color(0xff5C5858),
-                                        width: 1,
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
+                                      borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide(
                                         color: Color(0xff5C5858),
                                         width: 1,
                                       ),
                                     ),
-                                    enabled: false),
-                              ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Color(0xff5C5858),
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  readOnly: true),
                               const SizedBox(
                                 height: 18,
                               ),
@@ -196,12 +239,15 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                 height: 8,
                               ),
                               TextFormField(
-                                initialValue: emergencyprofile!.email,
-                                style: AppStyle.styleRegular17(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: InputDecoration(
+                                  controller: emailController,
+                                  onTap: () {
+                                    FocusScope.of(context).unfocus();
+                                  },
+                                  style: AppStyle.styleRegular17(context)
+                                      .copyWith(color: Colors.black),
+                                  keyboardType: TextInputType.text,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
                                     errorStyle: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.red),
                                     prefixIconConstraints: const BoxConstraints(
@@ -212,37 +258,41 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         SizedBox(
-                                          width: MediaQuery.sizeOf(context).width > 600
-                                              ? 20
-                                              : 10,
+                                          width:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 20
+                                                  : 10,
                                         ),
                                         Icon(
                                           Icons.email_outlined,
                                           color: Colors.black,
-                                          size: MediaQuery.sizeOf(context).width > 600
-                                              ? 50
-                                              : null,
+                                          size:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 50
+                                                  : null,
                                         ),
                                         const SizedBox(width: 4),
                                       ],
                                     ),
                                     isDense: true,
                                     disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
-                                      borderSide: BorderSide(
-                                        color:  Color(0xff5C5858),
-                                        width: 1,
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
+                                      borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide(
                                         color: Color(0xff5C5858),
                                         width: 1,
                                       ),
                                     ),
-                                    enabled: false),
-                              ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Color(0xff5C5858),
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  readOnly: true),
                               const SizedBox(
                                 height: 18,
                               ),
@@ -255,12 +305,15 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                 height: 8,
                               ),
                               TextFormField(
-                                initialValue: emergencyprofile!.address,
-                                style: AppStyle.styleRegular17(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: InputDecoration(
+                                  controller: addressController,
+                                  onTap: () {
+                                    FocusScope.of(context).unfocus();
+                                  },
+                                  style: AppStyle.styleRegular17(context)
+                                      .copyWith(color: Colors.black),
+                                  keyboardType: TextInputType.text,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
                                     errorStyle: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.red),
                                     prefixIconConstraints: const BoxConstraints(
@@ -271,37 +324,41 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         SizedBox(
-                                          width: MediaQuery.sizeOf(context).width > 600
-                                              ? 20
-                                              : 10,
+                                          width:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 20
+                                                  : 10,
                                         ),
                                         Icon(
                                           Icons.location_on,
                                           color: Colors.black,
-                                          size: MediaQuery.sizeOf(context).width > 600
-                                              ? 50
-                                              : null,
+                                          size:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 50
+                                                  : null,
                                         ),
                                         const SizedBox(width: 4),
                                       ],
                                     ),
                                     isDense: true,
-                                      disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
-                                      borderSide: BorderSide(
-                                        color:  Color(0xff5C5858),
-                                        width: 1,
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
+                                    disabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide(
                                         color: Color(0xff5C5858),
                                         width: 1,
                                       ),
                                     ),
-                                    enabled: false),
-                              ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Color(0xff5C5858),
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  readOnly: true),
                               const SizedBox(
                                 height: 18,
                               ),
@@ -314,12 +371,15 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                 height: 8,
                               ),
                               TextFormField(
-                                initialValue: emergencyprofile!.number.toString(),
-                                style: AppStyle.styleRegular17(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.number,
-                                textInputAction: TextInputAction.done,
-                                decoration: InputDecoration(
+                                  controller: numberController,
+                                  onTap: () {
+                                    FocusScope.of(context).unfocus();
+                                  },
+                                  style: AppStyle.styleRegular17(context)
+                                      .copyWith(color: Colors.black),
+                                  keyboardType: TextInputType.number,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
                                     errorStyle: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.red),
                                     prefixIconConstraints: const BoxConstraints(
@@ -330,37 +390,41 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         SizedBox(
-                                          width: MediaQuery.sizeOf(context).width > 600
-                                              ? 20
-                                              : 10,
+                                          width:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 20
+                                                  : 10,
                                         ),
                                         Icon(
                                           Icons.credit_card,
                                           color: Colors.black,
-                                          size: MediaQuery.sizeOf(context).width > 600
-                                              ? 50
-                                              : null,
+                                          size:
+                                              MediaQuery.sizeOf(context).width >
+                                                      600
+                                                  ? 50
+                                                  : null,
                                         ),
                                         const SizedBox(width: 4),
                                       ],
                                     ),
                                     isDense: true,
-                                      disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
-                                      borderSide: BorderSide(
-                                        color:  Color(0xff5C5858),
-                                        width: 1,
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12), 
+                                    disabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide(
                                         color: Color(0xff5C5858),
                                         width: 1,
                                       ),
                                     ),
-                                    enabled: false),
-                              ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Color(0xff5C5858),
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  readOnly: true),
                               const SizedBox(
                                 height: 8,
                               ),
@@ -372,16 +436,24 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                   ),
                 ),
                 Positioned(
-                  top:  MediaQuery.sizeOf(context).height>1000&&MediaQuery.sizeOf(context).width>800?MediaQuery.sizeOf(context).height / 5-100:MediaQuery.sizeOf(context).height / 5-60,
+                  top: MediaQuery.sizeOf(context).height > 1000 &&
+                          MediaQuery.sizeOf(context).width > 800
+                      ? MediaQuery.sizeOf(context).height / 5 - 100
+                      : MediaQuery.sizeOf(context).height / 5 - 60,
                   right: 10,
                   child: Container(
-                    height: MediaQuery.sizeOf(context).height>1000&&MediaQuery.sizeOf(context).width>800?200: 120,
-                    width: MediaQuery.sizeOf(context).height>1000&&MediaQuery.sizeOf(context).width>800?200: 120,
+                    height: MediaQuery.sizeOf(context).height > 1000 &&
+                            MediaQuery.sizeOf(context).width > 800
+                        ? 200
+                        : 120,
+                    width: MediaQuery.sizeOf(context).height > 1000 &&
+                            MediaQuery.sizeOf(context).width > 800
+                        ? 200
+                        : 120,
                     padding: const EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(120),
-                      
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(120),
@@ -392,7 +464,6 @@ class _EmergencyProfileScreenState extends State<EmergencyProfileScreen> {
                     ),
                   ),
                 ),
-                
               ],
             ),
           );

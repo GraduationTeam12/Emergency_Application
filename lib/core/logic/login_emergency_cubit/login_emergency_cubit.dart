@@ -20,30 +20,33 @@ class LoginEmergencyCubit extends Cubit<LoginEmergencyState> {
 
   LoginModel? loginModel;
 
-  void login() async {
-    emit(LoginLoadingEmergencyState());
+void login() async {
+  emit(LoginLoadingEmergencyState());
 
-    final result = await authRepoEmergency.login(
-        email: emailController.text, password: passwordController.text,fcmToken: PushNotificationsService.token);
+  final result = await authRepoEmergency.login(
+    email: emailController.text,
+    password: passwordController.text,
+    fcmToken: PushNotificationsService.token,
+  );
 
-    result.fold((l) => emit(LoginErrorEmergencyState(errorMessage: l)),
-        (r) async {
-      Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
-      final lat = r.data['location']['coordinates'][0];
-      final lng = r.data['location']['coordinates'][1];
-      final emergencyType = r.data['emergencyType'];
+  result.fold((l) => emit(LoginErrorEmergencyState(errorMessage: l)), (r) async {
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
+    final lat = r.data['location']['coordinates'][0];
+    final lng = r.data['location']['coordinates'][1];
+    final emergencyType = r.data['emergencyType'];
 
-      await CacheHelper().saveData(key: ApiKeys.token, value: r.token);
-      await CacheHelper()
-          .saveData(key: ApiKeys.id, value: decodedToken[ApiKeys.id]);
+    // 🧹 حذف بيانات الطوارئ القديمة
+    await CacheHelper().removeData(key: 'emergency_profile');
 
-      CacheHelper().saveData(key: 'lat', value: lat);
-      CacheHelper().saveData(key: 'lng', value: lng);
-      await CacheHelper().saveData(key: 'userType', value: emergencyType);
+    // 📝 حفظ البيانات الجديدة
+    await CacheHelper().saveData(key: ApiKeys.token, value: r.token);
+    await CacheHelper().saveData(key: ApiKeys.id, value: decodedToken[ApiKeys.id]);
+    await CacheHelper().saveData(key: 'lat', value: lat);
+    await CacheHelper().saveData(key: 'lng', value: lng);
+    await CacheHelper().saveData(key: 'userType', value: emergencyType);
 
-      
-      loginModel = r;
-      emit(LoginSuccessEmergencyState(message: r.message));
-    });
-  }
+    loginModel = r;
+    emit(LoginSuccessEmergencyState(message: r.message));
+  });
+}
 }

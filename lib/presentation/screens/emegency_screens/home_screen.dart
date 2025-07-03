@@ -1,8 +1,10 @@
  import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:user_accident/constants/pages_name.dart';
 import 'package:user_accident/core/cache/cache_helper.dart';
+import 'package:user_accident/core/logic/emergencies_features/emergencies_features_cubit.dart';
 import 'package:user_accident/presentation/screens/emegency_screens/bottom_sheet.dart';
 import 'package:user_accident/presentation/widgets/sidebar_icons.dart';
 
@@ -23,6 +25,9 @@ String? userType;
 void initState() {
   super.initState();
   userType = CacheHelper().getData(key: 'userType');
+  Future.delayed(Duration.zero, () {
+    context.read<EmergenciesFeaturesCubit>().getEmergencyProfile();
+  });
 }
 
   void _onMapCreated(GoogleMapController controller) {

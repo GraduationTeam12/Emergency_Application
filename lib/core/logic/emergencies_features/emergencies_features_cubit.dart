@@ -23,31 +23,23 @@ class EmergenciesFeaturesCubit extends Cubit<EmergenciesFeaturesState> {
     return true;
   }
 
-  void getEmergencyProfile() async {
-    emit(EmergencyProfileLoading());
+void getEmergencyProfile() async {
+  emit(EmergencyProfileLoading());
 
-    final cachedData = CacheHelper().getData(key: 'emergency_profile');
+  final res = await authRepoEmergency.getEmergencyProfile();
 
-    if (cachedData != null) {
-      emit(EmergencyProfileSuccess(cachedData));
-    }
-    final res = await authRepoEmergency.getEmergencyProfile();
-
-    res.fold((l) => emit(EmergencyProfileError(l)), (r) async {
-      if (cachedData != null) {
-        if (!_areTheSameData(cachedData, r)) {
-          await CacheHelper().saveData(key: 'emergency_profile', value: r);
-          emit(EmergencyProfileUpdated(r));
-          return;
-        } else if (cachedData != null && _areTheSameData(cachedData, r)) {
-          return;
-        }
-      }
-
+  res.fold(
+    (l) => emit(EmergencyProfileError(l)),
+    (r) async {
       await CacheHelper().saveData(key: 'emergency_profile', value: r);
       emit(EmergencyProfileSuccess(r));
-    });
-  }
+    },
+  );
+}
+void reset() {
+  clearEmergencyProfileCache(); 
+  emit(EmergenciesFeaturesInitial());
+}
 
   Future<void> clearEmergencyProfileCache() async {
     await CacheHelper().removeData(key: 'emergency_profile');
