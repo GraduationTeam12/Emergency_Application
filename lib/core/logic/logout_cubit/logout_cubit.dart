@@ -9,16 +9,22 @@ class LogoutCubit extends Cubit<LogoutState> {
   final AuthRepoEmergency authRepoEmergency;
 
   Future<void> logout() async {
-    final result = await authRepoEmergency.logout();
-    result.fold((error) => emit(LogoutError(errorMessage: error)),
-        (message) async {
+  final result = await authRepoEmergency.logout();
+
+  result.fold(
+    (error) => emit(LogoutError(errorMessage: error)),
+    (message) async {
       await Future.wait([
         CacheHelper().removeData(key: ApiKeys.token),
+        CacheHelper().removeData(key: ApiKeys.id),
         CacheHelper().removeData(key: 'lat'),
         CacheHelper().removeData(key: 'lng'),
+        CacheHelper().removeData(key: 'userType'),
+        CacheHelper().removeData(key: 'emergency_profile'),
       ]);
 
       emit(LogoutSuccessState());
-    });
-  }
+    },
+  );
+}
 }
