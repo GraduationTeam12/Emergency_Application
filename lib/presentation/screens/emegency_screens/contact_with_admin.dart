@@ -663,6 +663,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_accident/constants/app_images.dart';
 import 'package:user_accident/constants/app_style.dart';
 import 'package:user_accident/constants/colors.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ContactWithAdmin extends StatefulWidget {
   const ContactWithAdmin({super.key});
@@ -674,6 +676,47 @@ class ContactWithAdmin extends StatefulWidget {
 class _ContactWithAdminState extends State<ContactWithAdmin> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();
+  void sendEmail(String name, String email, String subject, String message,
+      BuildContext context) async {
+    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+
+    const String serviceId = "service_nh1b3vb";
+    const String templateId = "template_hb3l35q";
+    const String userId = "ELFIa2fG24VBtdyRK";
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json", // نوع المحتوى
+        },
+        body: jsonEncode({
+          // تحويل الجسم إلى JSON
+          "service_id": serviceId,
+          "template_id": templateId,
+          "user_id": userId,
+          "template_params": {
+            "to_name": "doaa",
+            "from_name": name,
+            "reply_to": email,
+            "message": message,
+            "subject_data": subject,
+          },
+        }),
+      );
+
+      // تحقق من الاستجابة
+      if (response.statusCode == 200) {
+        print("Email sent successfully!");
+        Navigator.pop(context);
+      } else {
+        print("Failed to send email. Status code: ${response.statusCode}");
+        print("Response body: ${response.body}");
+      }
+    } catch (e) {
+      print("Error occurred: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -699,7 +742,7 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                     2 * MediaQuery.sizeOf(context).height * (1 / 3) * (1 / 8) -
                     10,
                 child: AspectRatio(
-                  aspectRatio:1,
+                  aspectRatio: 1,
                   child: Center(
                     child: SvgPicture.asset(
                       Assets.imagesAuthImagesEmergencyImagesContactAdmin,
@@ -719,30 +762,28 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                   Stack(
                     children: [
                       Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 0),
-                          padding: const EdgeInsets.only(bottom: 50),
-                          
+                        margin: const EdgeInsets.symmetric(horizontal: 0),
+                        padding: const EdgeInsets.only(bottom: 50),
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 25),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 15),
-                          decoration:
-                                BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: Colors.white, boxShadow: const [
-                            BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(0, 4),
-                              color: Colors.black26,
-                              spreadRadius: 0,
-                            ),
-                          ]),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 4,
+                                  offset: Offset(0, 4),
+                                  color: Colors.black26,
+                                  spreadRadius: 0,
+                                ),
+                              ]),
                           child: Column(
                             children: [
-                                Text(
-                                "تواصل مع المشرف",
-                                style: AppStyle.styleSemiBold25(context).copyWith(color: Colors.black)
-                              ),
+                              Text("تواصل مع المشرف",
+                                  style: AppStyle.styleSemiBold25(context)
+                                      .copyWith(color: Colors.black)),
                               const SizedBox(height: 20),
                               Container(
                                 decoration: const BoxDecoration(
@@ -759,9 +800,10 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                                 child: TextField(
                                   controller: _emailController,
                                   keyboardType: TextInputType.emailAddress,
-                                  decoration:   InputDecoration(
+                                  decoration: InputDecoration(
                                     labelText: 'ادخل بريدك الالكتروني',
-                                    labelStyle: AppStyle.styleRegular17(context),
+                                    labelStyle:
+                                        AppStyle.styleRegular17(context),
                                     prefixIcon: const Icon(
                                       Icons.email,
                                       color: Colors.grey,
@@ -799,9 +841,9 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                                   controller: _messageController,
                                   decoration: InputDecoration(
                                     labelText: "رسالتك",
-                                    labelStyle: AppStyle.styleRegular30(context),
+                                    labelStyle:
+                                        AppStyle.styleRegular30(context),
                                     hintText: 'اكتب رسالتك هنا',
-                                    
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
                                     hintStyle: AppStyle.styleRegular17(context),
@@ -821,30 +863,36 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                           ),
                         ),
                       ),
-                       Positioned(
+                      Positioned(
                         bottom: 20,
-                        right: MediaQuery.sizeOf(context).width*0.5-30,
-                        
-                         child: InkWell(
-                                               onTap: () {},
-                                               child: Container(
-                                                 height: 60,
-                                                 width: 60,
-                                                 padding: const EdgeInsets.all(10.0),
-                                                 decoration: BoxDecoration(
-                          color: MyColors.premiumColor,
-                          borderRadius: BorderRadius.circular(60),
-                                                 ),
-                                                 child: SizedBox(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset(
-                              Assets.imagesAuthImagesEmergencyImagesSend),
-                                                 ),
-                                               ),
-                                             ),
-                       ),
-                  
+                        right: MediaQuery.sizeOf(context).width * 0.5 - 30,
+                        child: InkWell(
+                          onTap: () {
+                            print("Send button pressed");
+                            sendEmail(
+                                "admin app (SATARS)",
+                                _emailController.text.trim(),
+                                "Please I want a solution to the problem",
+                                _messageController.text.trim(),
+                                context);
+                          },
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: MyColors.premiumColor,
+                              borderRadius: BorderRadius.circular(60),
+                            ),
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: SvgPicture.asset(
+                                  Assets.imagesAuthImagesEmergencyImagesSend),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -852,9 +900,10 @@ class _ContactWithAdminState extends State<ContactWithAdmin> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                        Text(
+                      Text(
                         "تواصل معنا",
-                        style:  AppStyle.styleSemiBold20(context).copyWith(color: const Color(0xFF5C5858)),
+                        style: AppStyle.styleSemiBold20(context)
+                            .copyWith(color: const Color(0xFF5C5858)),
                       ),
                       const SizedBox(height: 15),
                       Row(
